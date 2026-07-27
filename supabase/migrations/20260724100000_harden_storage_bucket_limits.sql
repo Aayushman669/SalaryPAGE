@@ -1,0 +1,13 @@
+-- Supabase-managed storage.buckets is not application-owned on hosted projects.
+-- Direct UPDATE statements here previously failed with SQLSTATE 42501
+-- ("must be owner of table buckets") when run by the normal migration role.
+--
+-- Bucket visibility, file-size limits, and MIME restrictions are configured in
+-- the Supabase Dashboard. See docs/storage-configuration.md for the exact
+-- production values. Storage object RLS, ownership checks, and application-side
+-- upload validation remain enforced by the other migrations and application
+-- services.
+--
+-- This migration is intentionally a documented no-op so a previously failed
+-- deployment can be retried without rewriting any managed storage metadata.
+select 1;

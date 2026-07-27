@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+/* Keep Tailwind dark variants aligned with the app's next-themes class. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #111827;
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --popover: #ffffff;
+  --popover-foreground: #111827;
+  --border: #e5e7eb;
+  --input: #ffffff;
+  --muted: #f8fafc;
+  --muted-foreground: #6b7280;
+  --accent: #eab308;
+  --accent-foreground: #111827;
+  --primary: #111827;
+  --primary-foreground: #ffffff;
+  --elevated: #ffffff;
+  --skeleton: #f3f4f6;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #0f0f10;
+  --foreground: #f5f5f5;
+  --card: #171719;
+  --card-foreground: #f5f5f5;
+  --popover: #1d1d20;
+  --popover-foreground: #f5f5f5;
+  --border: #2a2a2e;
+  --input: #1d1d20;
+  --muted: #202023;
+  --muted-foreground: #a1a1aa;
+  --accent: #eab308;
+  --accent-foreground: #111827;
+  --primary: #f5f5f5;
+  --primary-foreground: #111827;
+  --elevated: #1d1d20;
+  --skeleton: #27272a;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-elevated: var(--elevated);
+  --color-skeleton: var(--skeleton);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Keep keyboard focus visible on controls that do not define a custom ring. */
+:where(a, button, input, textarea, select):focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+:where(a, button) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 32%, transparent);
+  color: var(--foreground);
+}
+
+.dark [class~="bg-white"],
+.dark [class~="bg-[#FEFEFC]"],
+.dark [class~="bg-[#FFFDF7]"] {
+  background-color: var(--card);
+}
+
+.dark [class~="bg-white/50"],
+.dark [class~="bg-white/60"],
+.dark [class~="bg-white/70"],
+.dark [class~="bg-white/75"],
+.dark [class~="bg-white/80"],
+.dark [class~="bg-white/90"],
+.dark [class~="bg-white/95"] {
+  background-color: color-mix(in srgb, var(--card) 88%, transparent);
+}
+
+.dark [class~="bg-[#FFF7D6]"],
+.dark [class~="bg-[#FFF3B0]/40"] {
+  background-color: color-mix(in srgb, var(--accent) 12%, var(--card));
+}
+
+.dark [class~="bg-gray-50"],
+.dark [class~="bg-gray-100"],
+.dark [class~="bg-gray-200"],
+.dark [class~="bg-gray-300"],
+.dark [class~="bg-gray-400"] {
+  background-color: var(--muted);
+}
+
+.dark .hover\:bg-gray-50:hover,
+.dark .hover\:bg-gray-100:hover,
+.dark .disabled\:hover\:bg-white:hover:disabled,
+.dark .disabled\:bg-gray-300:disabled,
+.dark .disabled\:bg-gray-400:disabled {
+  background-color: var(--muted);
+}
+
+.dark [class~="bg-gray-900"],
+.dark [class~="bg-black"] {
+  background-color: var(--primary);
+}
+
+.dark [class~="bg-yellow-50"],
+.dark [class~="bg-yellow-100"],
+.dark [class~="bg-yellow-200"] {
+  background-color: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.dark .hover\:bg-yellow-50:hover,
+.dark .hover\:bg-yellow-50\/40:hover,
+.dark .hover\:bg-yellow-50\/50:hover,
+.dark .hover\:bg-yellow-50\/60:hover {
+  background-color: color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.dark [class~="border-gray-100"],
+.dark [class~="border-gray-200"],
+.dark [class~="border-gray-300"],
+.dark .disabled\:hover\:border-gray-200:hover:disabled {
+  border-color: var(--border);
+}
+
+.dark [class~="border-gray-900"] {
+  border-color: var(--foreground);
+}
+
+.dark [class~="border-yellow-200"],
+.dark [class~="border-yellow-300"],
+.dark [class~="border-yellow-400"],
+.dark [class~="border-yellow-500"] {
+  border-color: color-mix(in srgb, var(--accent) 48%, transparent);
+}
+
+.dark .hover\:border-yellow-200:hover,
+.dark .hover\:border-yellow-300:hover,
+.dark .focus\:border-yellow-400:focus {
+  border-color: color-mix(in srgb, var(--accent) 56%, transparent);
+}
+
+.dark [class~="text-gray-900"],
+.dark [class~="text-gray-800"],
+.dark [class~="text-gray-700"] {
+  color: var(--foreground);
+}
+
+.dark [class~="text-gray-600"],
+.dark [class~="text-gray-500"],
+.dark [class~="text-gray-400"] {
+  color: var(--muted-foreground);
+}
+
+.dark .hover\:text-gray-900:hover,
+.dark .hover\:text-gray-800:hover,
+.dark .hover\:text-black:hover {
+  color: var(--foreground);
+}
+
+.dark .disabled\:text-gray-400:disabled,
+.dark .disabled\:text-gray-500:disabled {
+  color: color-mix(in srgb, var(--muted-foreground) 65%, transparent);
+}
+
+.dark [class~="text-white"] {
+  color: var(--primary-foreground);
+}
+
+.dark [class~="bg-yellow-300"][class~="text-gray-900"],
+.dark [class~="bg-yellow-400"][class~="text-gray-900"],
+.dark [class~="bg-yellow-500"][class~="text-gray-900"],
+.dark [class~="bg-yellow-300"] [class~="text-gray-900"],
+.dark [class~="bg-yellow-400"] [class~="text-gray-900"],
+.dark [class~="bg-yellow-500"] [class~="text-gray-900"] {
+  color: var(--accent-foreground);
+}
+
+.dark [class~="bg-gray-900"][class~="text-white"],
+.dark [class~="bg-black"][class~="text-white"],
+.dark [class~="bg-gray-900"] [class~="text-white"],
+.dark [class~="bg-black"] [class~="text-white"] {
+  color: var(--primary-foreground);
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: var(--input);
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+.dark option {
+  background-color: var(--popover);
+  color: var(--popover-foreground);
+}
+
+.dark [class~="bg-gray-100"].animate-pulse,
+.dark .animate-pulse [class~="bg-gray-100"],
+.dark .animate-pulse [class~="bg-yellow-50"] {
+  background-color: var(--skeleton);
+}
