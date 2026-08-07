@@ -184,9 +184,9 @@ export function createHomeStructuredData() {
       ...(organizationId ? { publisher: { "@id": organizationId } } : {}),
     },
     createWebPageNode({
-      description: "Browse high-quality jobs from top companies on Job Board.",
+      description: "Browse high-quality jobs from top companies on JobForge.",
       isPartOf: websiteId,
-      name: "Find Your Dream Job",
+      name: "JobForge",
       path: "/",
     }),
   ]);
@@ -210,7 +210,7 @@ export function createPricingStructuredData(plans: readonly PricingPlan[]) {
   return createGraph([
     createWebPageNode({
       description:
-        "Compare one-time Job Board plans for focused hiring and growing teams.",
+        "Compare one-time JobForge plans for focused hiring and growing teams.",
       isPartOf: websiteId,
       name: "Pricing",
       path: "/pricing",
@@ -218,9 +218,9 @@ export function createPricingStructuredData(plans: readonly PricingPlan[]) {
     {
       "@type": "Service",
       ...(pricingUrl ? { "@id": `${pricingUrl}#service`, url: pricingUrl } : {}),
-      name: "Job Board Hiring Plans",
+      name: "JobForge Hiring Plans",
       description:
-        "One-time hiring plans for posting jobs and managing applicants on Job Board.",
+        "One-time hiring plans for posting jobs and managing applicants on JobForge.",
       ...(organizationId ? { provider: { "@id": organizationId } } : {}),
       offers: plans.map((plan) => ({
         "@type": "Offer",
@@ -279,7 +279,7 @@ export function createCompanyStructuredData({
     createWebPageNode({
       description:
         cleanDescription(about) ||
-        `Explore ${name} and its open roles on Job Board.`,
+        `Explore ${name} and its open roles on JobForge.`,
       isPartOf: websiteId,
       name: `${name} | Company Profile`,
       path: companyPath,

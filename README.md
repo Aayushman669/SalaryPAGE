@@ -1,6 +1,6 @@
-# Job Board
+# JobForge
 
-Next.js App Router job board with Supabase authentication, candidate workflows, recruiter management, company profiles, interviews, analytics, payments, and public SEO support.
+JobForge is a modern hiring platform that helps job seekers discover opportunities and helps recruiters connect with the right talent.
 
 ## Local setup
 

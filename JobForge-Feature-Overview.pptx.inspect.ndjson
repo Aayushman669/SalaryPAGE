@@ -1,0 +1,382 @@
+{"kind":"deck","id":"pr/8684va","name":"Deck"}
+{"kind":"layout","layoutId":"47015c10-e424-4d39-b99b-a459df7c3aa1","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"182511fe-e982-4e89-b8d6-ffaffe6a951b","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/cnq2ck","slide":1,"title":"JOBFORGE","textShapes":8}
+{"kind":"shape","id":"sh/utcnqp03","slide":1,"bbox":[72,70,112,6]}
+{"kind":"textbox","id":"sh/hwn61kje","slide":1,"text":"JOBFORGE","textPreview":"JOBFORGE","textChars":8,"textLines":1,"bbox":[72,94,360,28]}
+{"kind":"textbox","id":"sh/wvu5szi9","slide":1,"text":"The complete product story","textPreview":"The complete product story","textChars":26,"textLines":1,"bbox":[72,176,760,88]}
+{"kind":"textbox","id":"sh/jy5o3uhk","slide":1,"text":"A job marketplace and hiring workspace for candidates, recruiters and platform administrators.","textPreview":"A job marketplace and hiring workspace for candidates, recruiters and platform administrators.","textChars":94,"textLines":1,"bbox":[76,288,660,66]}
+{"kind":"shape","id":"sh/50n654zq","slide":1,"bbox":[850,340,330,2]}
+{"kind":"textbox","id":"sh/4ze5wzi5","slide":1,"text":"Feature inventory","textPreview":"Feature inventory","textChars":17,"textLines":1,"bbox":[850,366,330,30]}
+{"kind":"textbox","id":"sh/rm5o7ehw","slide":1,"text":"Public experience\nCandidate tools\nRecruiter operations\nAdmin and platform systems","textPreview":"Public experience | Candidate tools | Recruiter operations | Admin and platform systems","textChars":81,"textLines":4,"bbox":[850,412,330,128]}
+{"kind":"textbox","id":"sh/6lwny90b","slide":1,"text":"Based on the current JobForge codebase","textPreview":"Based on the current JobForge codebase","textChars":38,"textLines":1,"bbox":[76,616,450,24]}
+{"kind":"shape","id":"sh/07m1ozu5","slide":1,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/18v2hkvq","slide":1,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/e54jmpwf","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"image","id":"im/ni94vid0","slide":1,"name":"","alt":"JobForge logo","bbox":[850,176,320,132]}
+{"kind":"notes","id":"nt/cnq2ck","slide":1,"text":""}
+{"kind":"slide","id":"sl/ueed82","slide":2,"title":"01 / PRODUCT MODEL","textShapes":20}
+{"kind":"textbox","id":"sh/1kvi5s7m","slide":2,"text":"01 / PRODUCT MODEL","textPreview":"01 / PRODUCT MODEL","textChars":18,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/ehkjud8b","slide":2,"text":"One platform, three operating modes","textPreview":"One platform, three operating modes","textChars":35,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/fit03i9w","slide":2,"text":"JobForge connects opportunity discovery with the full hiring workflow.","textPreview":"JobForge connects opportunity discovery with the full hiring workflow.","textChars":70,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"shape","id":"sh/onm10nqd","slide":2,"bbox":[72,230,1136,4]}
+{"kind":"textbox","id":"sh/98vi9s7y","slide":2,"text":"CANDIDATE","textPreview":"CANDIDATE","textChars":9,"textLines":1,"bbox":[72,264,240,24]}
+{"kind":"textbox","id":"sh/ml4jyd87","slide":2,"text":"Discover, save, apply","textPreview":"Discover, save, apply","textChars":21,"textLines":1,"bbox":[72,300,330,36]}
+{"kind":"textbox","id":"sh/nmd07ips","slide":2,"text":"Build a profile, manage applications, follow interviews and control privacy.","textPreview":"Build a profile, manage applications, follow interviews and control privacy.","textChars":76,"textLines":1,"bbox":[72,346,310,78]}
+{"kind":"textbox","id":"sh/wb6147q9","slide":2,"text":"RECRUITER","textPreview":"RECRUITER","textChars":9,"textLines":1,"bbox":[470,264,240,24]}
+{"kind":"textbox","id":"sh/xcf2dc7u","slide":2,"text":"Post, review, hire","textPreview":"Post, review, hire","textChars":18,"textLines":1,"bbox":[470,300,330,36]}
+{"kind":"textbox","id":"sh/1c7yhobu","slide":2,"text":"Manage companies and jobs, review applicants, schedule interviews and measure hiring activity.","textPreview":"Manage companies and jobs, review applicants, schedule interviews and measure hiring activity.","textChars":94,"textLines":1,"bbox":[470,346,330,78]}
+{"kind":"textbox","id":"sh/0byxoja9","slide":2,"text":"ADMIN","textPreview":"ADMIN","textChars":5,"textLines":1,"bbox":[880,264,240,24]}
+{"kind":"textbox","id":"sh/zapgfeto","slide":2,"text":"Operate the marketplace","textPreview":"Operate the marketplace","textChars":23,"textLines":1,"bbox":[880,300,330,36]}
+{"kind":"textbox","id":"sh/e9gfm9s3","slide":2,"text":"Monitor users, companies, jobs, applications, payments and moderation activity.","textPreview":"Monitor users, companies, jobs, applications, payments and moderation activity.","textChars":79,"textLines":1,"bbox":[880,346,300,78]}
+{"kind":"shape","id":"sh/9grylobq","slide":2,"bbox":[72,480,1136,2]}
+{"kind":"textbox","id":"sh/ofihs3a5","slide":2,"text":"DISCOVER","textPreview":"DISCOVER","textChars":8,"textLines":1,"bbox":[72,520,200,24]}
+{"kind":"textbox","id":"sh/nepgjyt0","slide":2,"text":"APPLY","textPreview":"APPLY","textChars":5,"textLines":1,"bbox":[430,520,200,24]}
+{"kind":"textbox","id":"sh/mdgfqtsf","slide":2,"text":"HIRE","textPreview":"HIRE","textChars":4,"textLines":1,"bbox":[780,520,200,24]}
+{"kind":"textbox","id":"sh/pkny94bm","slide":2,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[300,508,70,36]}
+{"kind":"textbox","id":"sh/4jexgzu1","slide":2,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[650,508,70,36]}
+{"kind":"textbox","id":"sh/g3ixwz2x","slide":2,"text":"A single product loop, with role-specific access and workflows.","textPreview":"A single product loop, with role-specific access and workflows.","textChars":63,"textLines":1,"bbox":[72,578,700,28]}
+{"kind":"shape","id":"sh/h4ry54ji","slide":2,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/u10fu9kr","slide":2,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/v29g3u1c","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/ueed82","slide":2,"text":""}
+{"kind":"slide","id":"sl/xldtpx","slide":3,"title":"02 / PUBLIC EXPERIENCE","textShapes":20}
+{"kind":"textbox","id":"sh/aps36p0z","slide":3,"text":"02 / PUBLIC EXPERIENCE","textPreview":"02 / PUBLIC EXPERIENCE","textChars":22,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/xs3m14ja","slide":3,"text":"The public site turns browsing into a next step","textPreview":"The public site turns browsing into a next step","textChars":47,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/crul8zi5","slide":3,"text":"The discovery layer is designed to help people find jobs, understand employers and choose an action.","textPreview":"The discovery layer is designed to help people find jobs, understand employers and choose an action.","textChars":100,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"shape","id":"sh/nm1kvu18","slide":3,"bbox":[72,232,5,62]}
+{"kind":"textbox","id":"sh/2ls32p0n","slide":3,"text":"HOMEPAGE","textPreview":"HOMEPAGE","textChars":8,"textLines":1,"bbox":[94,234,488,20]}
+{"kind":"textbox","id":"sh/pojmx4je","slide":3,"text":"Hero, latest jobs, About section, pricing and clear entry points","textPreview":"Hero, latest jobs, About section, pricing and clear entry points","textChars":64,"textLines":1,"bbox":[94,258,488,34]}
+{"kind":"shape","id":"sh/onal4zit","slide":3,"bbox":[72,324,5,62]}
+{"kind":"textbox","id":"sh/7i547e1s","slide":3,"text":"JOBS","textPreview":"JOBS","textChars":4,"textLines":1,"bbox":[94,326,488,20]}
+{"kind":"textbox","id":"sh/6hc3e907","slide":3,"text":"Keyword search, filters, sorting, featured jobs and pagination","textPreview":"Keyword search, filters, sorting, featured jobs and pagination","textChars":62,"textLines":1,"bbox":[94,350,488,34]}
+{"kind":"shape","id":"sh/sv6pgz6x","slide":3,"bbox":[72,416,5,62]}
+{"kind":"textbox","id":"sh/twfq947i","slide":3,"text":"JOB DETAIL","textPreview":"JOB DETAIL","textChars":10,"textLines":1,"bbox":[94,418,488,20]}
+{"kind":"textbox","id":"sh/6to7e9or","slide":3,"text":"Description, requirements, benefits, salary, workplace and apply flow","textPreview":"Description, requirements, benefits, salary, workplace and apply flow","textChars":69,"textLines":1,"bbox":[94,442,488,34]}
+{"kind":"shape","id":"sh/7ux87epc","slide":3,"bbox":[72,508,5,62]}
+{"kind":"textbox","id":"sh/krmpcz6l","slide":3,"text":"COMPANY PAGES","textPreview":"COMPANY PAGES","textChars":13,"textLines":1,"bbox":[94,510,488,20]}
+{"kind":"textbox","id":"sh/5svq5476","slide":3,"text":"Public profiles, culture, benefits, social links and open roles","textPreview":"Public profiles, culture, benefits, social links and open roles","textChars":63,"textLines":1,"bbox":[94,534,488,34]}
+{"kind":"shape","id":"sh/i547apof","slide":3,"bbox":[690,232,1,340]}
+{"kind":"textbox","id":"sh/jqd83up0","slide":3,"text":"A job is more than a title","textPreview":"A job is more than a title","textChars":26,"textLines":1,"bbox":[740,248,410,36]}
+{"kind":"textbox","id":"sh/w3mp8f6p","slide":3,"text":"Each public job can expose the context a candidate needs before applying:","textPreview":"Each public job can expose the context a candidate needs before applying:","textChars":73,"textLines":1,"bbox":[740,306,410,54]}
+{"kind":"shape","id":"sh/x4vq1k7a","slide":3,"bbox":[740,397,10,10]}
+{"kind":"textbox","id":"sh/d83epwvm","slide":3,"text":"Company and location","textPreview":"Company and location","textChars":20,"textLines":1,"bbox":[764,390,396,36]}
+{"kind":"shape","id":"sh/cnuxgre1","slide":3,"bbox":[740,439,10,10]}
+{"kind":"textbox","id":"sh/bmlwnmdg","slide":3,"text":"Employment and workplace type","textPreview":"Employment and workplace type","textChars":29,"textLines":1,"bbox":[764,432,396,36]}
+{"kind":"shape","id":"sh/qlcfehwb","slide":3,"bbox":[740,481,10,10]}
+{"kind":"textbox","id":"sh/pk3elcvq","slide":3,"text":"Experience level and category","textPreview":"Experience level and category","textChars":29,"textLines":1,"bbox":[764,474,396,36]}
+{"kind":"shape","id":"sh/ojadc7e5","slide":3,"bbox":[740,523,10,10]}
+{"kind":"textbox","id":"sh/3i1wj2dk","slide":3,"text":"Salary range and application method","textPreview":"Salary range and application method","textChars":35,"textLines":1,"bbox":[764,516,396,36]}
+{"kind":"shape","id":"sh/2hsvaxwz","slide":3,"bbox":[740,565,10,10]}
+{"kind":"textbox","id":"sh/9gnexgvu","slide":3,"text":"Featured status and application count","textPreview":"Featured status and application count","textChars":37,"textLines":1,"bbox":[764,558,396,36]}
+{"kind":"shape","id":"sh/8fexobu9","slide":3,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/6l8bitcr","slide":3,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/7mhcrytc","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/xldtpx","slide":3,"text":""}
+{"kind":"slide","id":"sl/mljuvi","slide":4,"title":"03 / AUTHENTICATION AND ACCOUNT","textShapes":20}
+{"kind":"textbox","id":"sh/t4nih47m","slide":4,"text":"03 / AUTHENTICATION AND ACCOUNT","textPreview":"03 / AUTHENTICATION AND ACCOUNT","textChars":31,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/m1wzm98b","slide":4,"text":"The account layer sets the right experience from the start","textPreview":"The account layer sets the right experience from the start","textChars":58,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/7250fepw","slide":4,"text":"Authentication, onboarding and role-aware navigation determine what each person can see and do.","textPreview":"Authentication, onboarding and role-aware navigation determine what each person can see and do.","textChars":95,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"textbox","id":"sh/g7yhsjqd","slide":4,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[72,246,62,58]}
+{"kind":"textbox","id":"sh/h87ilo7y","slide":4,"text":"Create an account","textPreview":"Create an account","textChars":17,"textLines":1,"bbox":[146,248,446,30]}
+{"kind":"textbox","id":"sh/u5wzq987","slide":4,"text":"Email/password signup, full name, password confirmation and Terms/Privacy consent.","textPreview":"Email/password signup, full name, password confirmation and Terms/Privacy consent.","textChars":82,"textLines":1,"bbox":[146,281,446,52]}
+{"kind":"textbox","id":"sh/v650jeps","slide":4,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[72,356,62,58]}
+{"kind":"textbox","id":"sh/4vy1w3q9","slide":4,"text":"Verify and recover","textPreview":"Verify and recover","textChars":18,"textLines":1,"bbox":[146,358,446,30]}
+{"kind":"textbox","id":"sh/5w7ipo7u","slide":4,"text":"Email verification, resend cooldown, forgot password and reset-password flows.","textPreview":"Email verification, resend cooldown, forgot password and reset-password flows.","textChars":78,"textLines":1,"bbox":[146,391,446,52]}
+{"kind":"textbox","id":"sh/t4bqds7u","slide":4,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[72,466,62,58]}
+{"kind":"textbox","id":"sh/s3i9knq9","slide":4,"text":"Choose a mode","textPreview":"Choose a mode","textChars":13,"textLines":1,"bbox":[146,468,446,30]}
+{"kind":"textbox","id":"sh/r298bipo","slide":4,"text":"Onboarding lets the account start as Job Seeker or Recruiter.","textPreview":"Onboarding lets the account start as Job Seeker or Recruiter.","textChars":61,"textLines":1,"bbox":[146,501,446,52]}
+{"kind":"shape","id":"sh/610rid83","slide":4,"bbox":[676,242,5,328]}
+{"kind":"textbox","id":"sh/1sbqhs7q","slide":4,"text":"Once signed in","textPreview":"Once signed in","textChars":14,"textLines":1,"bbox":[720,246,360,30]}
+{"kind":"shape","id":"sh/gr29on6l","slide":4,"bbox":[720,317,10,10]}
+{"kind":"textbox","id":"sh/f6t8fip0","slide":4,"text":"Protected-route redirects preserve the intended destination.","textPreview":"Protected-route redirects preserve the intended destination.","textChars":60,"textLines":1,"bbox":[744,310,386,36]}
+{"kind":"shape","id":"sh/e5krmxof","slide":4,"bbox":[720,371,10,10]}
+{"kind":"textbox","id":"sh/hwrq587m","slide":4,"text":"The account menu exposes Settings, Pricing, Theme and Logout.","textPreview":"The account menu exposes Settings, Pricing, Theme and Logout.","textChars":61,"textLines":1,"bbox":[744,364,386,36]}
+{"kind":"shape","id":"sh/wbypc3q1","slide":4,"bbox":[720,425,10,10]}
+{"kind":"textbox","id":"sh/8f29s3yx","slide":4,"text":"Users can securely switch between Job Seeker and Recruiter modes.","textPreview":"Users can securely switch between Job Seeker and Recruiter modes.","textChars":65,"textLines":1,"bbox":[744,418,386,36]}
+{"kind":"shape","id":"sh/9gbql8fi","slide":4,"bbox":[720,479,10,10]}
+{"kind":"textbox","id":"sh/mdkrqtgr","slide":4,"text":"Restricted accounts and incomplete onboarding receive dedicated flows.","textPreview":"Restricted accounts and incomplete onboarding receive dedicated flows.","textChars":70,"textLines":1,"bbox":[744,472,386,36]}
+{"kind":"shape","id":"sh/net8jyxc","slide":4,"bbox":[720,533,10,10]}
+{"kind":"textbox","id":"sh/wjm9w3y9","slide":4,"text":"Supabase sessions persist across refreshes and role-specific navigation updates.","textPreview":"Supabase sessions persist across refreshes and role-specific navigation updates.","textChars":80,"textLines":1,"bbox":[744,526,386,36]}
+{"kind":"shape","id":"sh/xkvap8fe","slide":4,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/ah4rudg3","slide":4,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/vid8nixo","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/mljuvi","slide":4,"text":""}
+{"kind":"slide","id":"sl/mogd13","slide":5,"title":"04 / CANDIDATE EXPERIENCE","textShapes":18}
+{"kind":"textbox","id":"sh/za9wv21w","slide":5,"text":"04 / CANDIDATE EXPERIENCE","textPreview":"04 / CANDIDATE EXPERIENCE","textChars":25,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/0b2do7ih","slide":5,"text":"Candidates get a full job-search workspace","textPreview":"Candidates get a full job-search workspace","textChars":42,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/1cbexcj2","slide":5,"text":"Discovery, profile building, applications, alerts and privacy controls live in one connected journey.","textPreview":"Discovery, profile building, applications, alerts and privacy controls live in one connected journey.","textChars":101,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"textbox","id":"sh/mdkvqh0n","slide":5,"text":"DASHBOARD","textPreview":"DASHBOARD","textChars":9,"textLines":1,"bbox":[72,236,220,24]}
+{"kind":"textbox","id":"sh/netwzm18","slide":5,"text":"The candidate home shows saved jobs, active alerts, profile completion, recent applications and recommended roles.","textPreview":"The candidate home shows saved jobs, active alerts, profile completion, recent applications and recommended roles.","textChars":114,"textLines":1,"bbox":[72,274,460,88]}
+{"kind":"shape","id":"sh/of2dsrit","slide":5,"bbox":[72,392,460,2]}
+{"kind":"shape","id":"sh/9gbe1wjy","slide":5,"bbox":[72,431,10,10]}
+{"kind":"textbox","id":"sh/2hgved03","slide":5,"text":"Browse Jobs","textPreview":"Browse Jobs","textChars":11,"textLines":1,"bbox":[96,424,436,36]}
+{"kind":"shape","id":"sh/3ipcni1o","slide":5,"bbox":[72,469,10,10]}
+{"kind":"textbox","id":"sh/fy1orudo","slide":5,"text":"Saved Jobs","textPreview":"Saved Jobs","textChars":10,"textLines":1,"bbox":[96,462,436,36]}
+{"kind":"shape","id":"sh/ux8nypc3","slide":5,"bbox":[72,507,10,10]}
+{"kind":"textbox","id":"sh/h0j6t4vu","slide":5,"text":"Job Alerts","textPreview":"Job Alerts","textChars":10,"textLines":1,"bbox":[96,500,436,36]}
+{"kind":"shape","id":"sh/gza50zu9","slide":5,"bbox":[72,545,10,10]}
+{"kind":"textbox","id":"sh/7uhonuds","slide":5,"text":"Recent applications","textPreview":"Recent applications","textChars":19,"textLines":1,"bbox":[96,538,436,36]}
+{"kind":"shape","id":"sh/6t8nupw7","slide":5,"bbox":[72,583,10,10]}
+{"kind":"textbox","id":"sh/twz6pkvi","slide":5,"text":"Upcoming interview details","textPreview":"Upcoming interview details","textChars":26,"textLines":1,"bbox":[96,576,436,36]}
+{"kind":"textbox","id":"sh/svq5wzux","slide":5,"text":"CANDIDATE TOOLKIT","textPreview":"CANDIDATE TOOLKIT","textChars":17,"textLines":1,"bbox":[660,236,300,24]}
+{"kind":"shape","id":"sh/j6x4jadg","slide":5,"bbox":[660,281,10,10]}
+{"kind":"textbox","id":"sh/i5onq5wv","slide":5,"text":"Profile: headline, bio, skills, experience, education, location and social links.","textPreview":"Profile: headline, bio, skills, experience, education, location and social links.","textChars":81,"textLines":1,"bbox":[684,274,446,36]}
+{"kind":"shape","id":"sh/m1o725gn","slide":5,"bbox":[660,339,10,10]}
+{"kind":"textbox","id":"sh/n2xovax8","slide":5,"text":"Files: profile photo and private resume storage.","textPreview":"Files: profile photo and private resume storage.","textChars":48,"textLines":1,"bbox":[684,332,446,36]}
+{"kind":"shape","id":"sh/836p4fyt","slide":5,"bbox":[660,397,10,10]}
+{"kind":"textbox","id":"sh/94f6xkfe","slide":5,"text":"Alerts: keywords, location, salary, employment, workplace and experience filters.","textPreview":"Alerts: keywords, location, salary, employment, workplace and experience filters.","textChars":81,"textLines":1,"bbox":[684,390,446,36]}
+{"kind":"shape","id":"sh/a5o76pgz","slide":5,"bbox":[660,455,10,10]}
+{"kind":"textbox","id":"sh/v6xozaxk","slide":5,"text":"Applications: search, status/company/date filters, timeline, cover letter and withdrawal.","textPreview":"Applications: search, status/company/date filters, timeline, cover letter and withdrawal.","textChars":89,"textLines":1,"bbox":[684,448,446,36]}
+{"kind":"shape","id":"sh/wrqp8fy5","slide":5,"bbox":[660,513,10,10]}
+{"kind":"textbox","id":"sh/xsz61kfa","slide":5,"text":"Privacy: profile, resume, portfolio, social links, location and experience visibility.","textPreview":"Privacy: profile, resume, portfolio, social links, location and experience visibility.","textChars":86,"textLines":1,"bbox":[684,506,446,36]}
+{"kind":"shape","id":"sh/it87apgv","slide":5,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/juho3uxg","slide":5,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/tojatozi","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/mogd13","slide":5,"text":""}
+{"kind":"slide","id":"sl/aqe351","slide":6,"title":"05 / CANDIDATE JOURNEY","textShapes":21}
+{"kind":"textbox","id":"sh/itcfe1wz","slide":6,"text":"05 / CANDIDATE JOURNEY","textPreview":"05 / CANDIDATE JOURNEY","textChars":22,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/5wny9gvq","slide":6,"text":"The application workflow carries the candidate past the Apply button","textPreview":"The application workflow carries the candidate past the Apply button","textChars":68,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/4vexgbe5","slide":6,"text":"JobForge keeps the application, status history and interview context together.","textPreview":"JobForge keeps the application, status history and interview context together.","textChars":78,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"textbox","id":"sh/ry5gbqdw","slide":6,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[72,256,60,48]}
+{"kind":"shape","id":"sh/6xwfilwb","slide":6,"bbox":[72,318,180,3]}
+{"kind":"textbox","id":"sh/tknydgvm","slide":6,"text":"Find","textPreview":"Find","textChars":4,"textLines":1,"bbox":[72,350,180,30]}
+{"kind":"textbox","id":"sh/szexkve1","slide":6,"text":"Search public jobs by title, company, location, category and filters.","textPreview":"Search public jobs by title, company, location, category and filters.","textChars":69,"textLines":1,"bbox":[72,396,182,110]}
+{"kind":"textbox","id":"sh/721wzmdc","slide":6,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[298,256,60,48]}
+{"kind":"shape","id":"sh/m1sf6hwr","slide":6,"bbox":[298,318,180,3]}
+{"kind":"textbox","id":"sh/472lwnmt","slide":6,"text":"Save","textPreview":"Save","textChars":4,"textLines":1,"bbox":[298,350,180,30]}
+{"kind":"textbox","id":"sh/58b25s3e","slide":6,"text":"Bookmark roles and create alerts for future matches.","textPreview":"Bookmark roles and create alerts for future matches.","textChars":52,"textLines":1,"bbox":[298,396,182,110]}
+{"kind":"textbox","id":"sh/ilk3ud43","slide":6,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[524,256,60,48]}
+{"kind":"shape","id":"sh/j6tk3il8","slide":6,"bbox":[524,318,180,3]}
+{"kind":"textbox","id":"sh/sbml07m5","slide":6,"text":"Apply","textPreview":"Apply","textChars":5,"textLines":1,"bbox":[524,350,180,30]}
+{"kind":"textbox","id":"sh/tcv29c3q","slide":6,"text":"Submit a PDF resume, cover letter and custom answers.","textPreview":"Submit a PDF resume, cover letter and custom answers.","textChars":53,"textLines":1,"bbox":[524,396,182,110]}
+{"kind":"textbox","id":"sh/6943yx4z","slide":6,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[750,256,60,48]}
+{"kind":"shape","id":"sh/radk72lk","slide":6,"bbox":[750,318,180,3]}
+{"kind":"textbox","id":"sh/8fi1o3ml","slide":6,"text":"Follow","textPreview":"Follow","textChars":6,"textLines":1,"bbox":[750,350,180,30]}
+{"kind":"textbox","id":"sh/9gr2x8n6","slide":6,"text":"Track status, history, recruiter updates and interviews.","textPreview":"Track status, history, recruiter updates and interviews.","textChars":56,"textLines":1,"bbox":[750,396,182,110]}
+{"kind":"textbox","id":"sh/9cji14fa","slide":6,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[976,256,60,48]}
+{"kind":"shape","id":"sh/obahszep","slide":6,"bbox":[976,318,180,3]}
+{"kind":"textbox","id":"sh/na10zux4","slide":6,"text":"Respond","textPreview":"Respond","textChars":7,"textLines":1,"bbox":[976,350,180,30]}
+{"kind":"textbox","id":"sh/m9szqpwj","slide":6,"text":"See meeting details, instructions and current interview state.","textPreview":"See meeting details, instructions and current interview state.","textChars":62,"textLines":1,"bbox":[976,396,182,110]}
+{"kind":"shape","id":"sh/x03i54f6","slide":6,"bbox":[72,566,1136,2]}
+{"kind":"textbox","id":"sh/wzu1wzel","slide":6,"text":"Guardrails include duplicate-application prevention, closed-job checks, own-job checks, resume validation and withdrawal confirmation.","textPreview":"Guardrails include duplicate-application prevention, closed-job checks, own-job checks, resume validation and withdrawal confirmation.","textChars":134,"textLines":1,"bbox":[72,590,1030,34]}
+{"kind":"shape","id":"sh/bel03ex0","slide":6,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/adsju9wv","slide":6,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/l43i9ofi","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/aqe351","slide":6,"text":""}
+{"kind":"slide","id":"sl/abe11s","slide":7,"title":"06 / RECRUITER WORKSPACE","textShapes":20}
+{"kind":"textbox","id":"sh/pova18vi","slide":7,"text":"06 / RECRUITER WORKSPACE","textPreview":"06 / RECRUITER WORKSPACE","textChars":24,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/2l4rqtw7","slide":7,"text":"Recruiters move from a blank page to a managed hiring pipeline","textPreview":"Recruiters move from a blank page to a managed hiring pipeline","textChars":62,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/3mdszyds","slide":7,"text":"Company setup, job publishing and applicant operations are designed as one continuous workspace.","textPreview":"Company setup, job publishing and applicant operations are designed as one continuous workspace.","textChars":96,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"textbox","id":"sh/gjm9oje1","slide":7,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[72,244,62,58]}
+{"kind":"textbox","id":"sh/1kvaxovm","slide":7,"text":"Build the company","textPreview":"Build the company","textChars":17,"textLines":1,"bbox":[146,246,446,30]}
+{"kind":"textbox","id":"sh/ehkrm9wv","slide":7,"text":"Create the public company profile, add brand assets, culture, benefits and social links.","textPreview":"Create the public company profile, add brand assets, culture, benefits and social links.","textChars":88,"textLines":1,"bbox":[146,279,446,52]}
+{"kind":"textbox","id":"sh/fidsvexg","slide":7,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[72,356,62,58]}
+{"kind":"textbox","id":"sh/sf29kje5","slide":7,"text":"Create the job","textPreview":"Create the job","textChars":14,"textLines":1,"bbox":[146,358,446,30]}
+{"kind":"textbox","id":"sh/tgbat4fq","slide":7,"text":"Draft, preview, autosave, schedule or publish with salary, location and application details.","textPreview":"Draft, preview, autosave, schedule or publish with salary, location and application details.","textChars":92,"textLines":1,"bbox":[146,391,446,52]}
+{"kind":"textbox","id":"sh/dkny98v6","slide":7,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[72,468,62,58]}
+{"kind":"textbox","id":"sh/cjeh03el","slide":7,"text":"Manage the pipeline","textPreview":"Manage the pipeline","textChars":19,"textLines":1,"bbox":[146,470,446,30]}
+{"kind":"textbox","id":"sh/by5g7idg","slide":7,"text":"Search applicants, update status, add private notes, tag candidates and invite interviews.","textPreview":"Search applicants, update status, add private notes, tag candidates and invite interviews.","textChars":90,"textLines":1,"bbox":[146,503,446,52]}
+{"kind":"shape","id":"sh/qxwzydwv","slide":7,"bbox":[680,244,5,300]}
+{"kind":"textbox","id":"sh/pwny58va","slide":7,"text":"Job lifecycle","textPreview":"Job lifecycle","textChars":13,"textLines":1,"bbox":[720,246,360,30]}
+{"kind":"textbox","id":"sh/ovehw3ep","slide":7,"text":"Draft  ->  Pending  ->  Published  ->  Closed  ->  Archived","textPreview":"Draft  ->  Pending  ->  Published  ->  Closed  ->  Archived","textChars":59,"textLines":1,"bbox":[720,310,440,32]}
+{"kind":"shape","id":"sh/3ulg3yd4","slide":7,"bbox":[720,389,10,10]}
+{"kind":"textbox","id":"sh/2tczutwj","slide":7,"text":"Scheduled future publishing with timezone conversion.","textPreview":"Scheduled future publishing with timezone conversion.","textChars":53,"textLines":1,"bbox":[744,382,396,36]}
+{"kind":"shape","id":"sh/1s3y1ovy","slide":7,"bbox":[720,441,10,10]}
+{"kind":"textbox","id":"sh/gruhsjet","slide":7,"text":"Application email or URL support.","textPreview":"Application email or URL support.","textChars":33,"textLines":1,"bbox":[744,434,396,36]}
+{"kind":"shape","id":"sh/sbyh83m9","slide":7,"bbox":[720,493,10,10]}
+{"kind":"textbox","id":"sh/tc7ih83u","slide":7,"text":"Status, salary, workplace and experience validation.","textPreview":"Status, salary, workplace and experience validation.","textChars":52,"textLines":1,"bbox":[744,486,396,36]}
+{"kind":"shape","id":"sh/69gz6t4j","slide":7,"bbox":[720,545,10,10]}
+{"kind":"textbox","id":"sh/7apgfyl4","slide":7,"text":"Searchable recruiter-owned job management with pagination.","textPreview":"Searchable recruiter-owned job management with pagination.","textChars":58,"textLines":1,"bbox":[744,538,396,36]}
+{"kind":"shape","id":"sh/k7ehkjmd","slide":7,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/587ydo3y","slide":7,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/i5wzi947","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/abe11s","slide":7,"text":""}
+{"kind":"slide","id":"sl/aosnxw","slide":8,"title":"07 / APPLICANT AND INTERVIEW OPERATIONS","textShapes":19}
+{"kind":"textbox","id":"sh/ed07at8n","slide":8,"text":"07 / APPLICANT AND INTERVIEW OPERATIONS","textPreview":"07 / APPLICANT AND INTERVIEW OPERATIONS","textChars":39,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/1gr6l87e","slide":8,"text":"Shortlisting has a clear next action: invite the right person","textPreview":"Shortlisting has a clear next action: invite the right person","textChars":61,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/gfipc36t","slide":8,"text":"The recruiter workflow is built around review, controlled status changes, private notes and scheduled interviews.","textPreview":"The recruiter workflow is built around review, controlled status changes, private notes and scheduled interviews.","textChars":113,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"textbox","id":"sh/ra9ofepw","slide":8,"text":"APPLICANT MANAGEMENT","textPreview":"APPLICANT MANAGEMENT","textChars":20,"textLines":1,"bbox":[72,238,360,24]}
+{"kind":"shape","id":"sh/6907698r","slide":8,"bbox":[72,287,10,10]}
+{"kind":"textbox","id":"sh/tcr6ho72","slide":8,"text":"Summary: total applicants, new, shortlisted and interviews scheduled.","textPreview":"Summary: total applicants, new, shortlisted and interviews scheduled.","textChars":69,"textLines":1,"bbox":[96,280,476,36]}
+{"kind":"shape","id":"sh/sbip8jqh","slide":8,"bbox":[72,341,10,10]}
+{"kind":"textbox","id":"sh/j6pobep0","slide":8,"text":"Search by name, email, skills or location.","textPreview":"Search by name, email, skills or location.","textChars":42,"textLines":1,"bbox":[96,334,476,36]}
+{"kind":"shape","id":"sh/ilgn298f","slide":8,"bbox":[72,395,10,10]}
+{"kind":"textbox","id":"sh/cfetgbep","slide":8,"text":"Filter by job, status, dates, resume availability and tags.","textPreview":"Filter by job, status, dates, resume availability and tags.","textChars":59,"textLines":1,"bbox":[96,388,476,36]}
+{"kind":"shape","id":"sh/xgnu9gfa","slide":8,"bbox":[72,449,10,10]}
+{"kind":"textbox","id":"sh/adwbe1wj","slide":8,"text":"Review profile, resume, cover letter, custom answers and application history.","textPreview":"Review profile, resume, cover letter, custom answers and application history.","textChars":77,"textLines":1,"bbox":[96,442,476,36]}
+{"kind":"shape","id":"sh/be5s76x4","slide":8,"bbox":[72,503,10,10]}
+{"kind":"textbox","id":"sh/obutcred","slide":8,"text":"Private recruiter notes and tags remain outside the candidate view.","textPreview":"Private recruiter notes and tags remain outside the candidate view.","textChars":67,"textLines":1,"bbox":[96,496,476,36]}
+{"kind":"textbox","id":"sh/pcna5wfy","slide":8,"text":"INTERVIEW INVITATIONS","textPreview":"INTERVIEW INVITATIONS","textChars":21,"textLines":1,"bbox":[680,238,360,24]}
+{"kind":"shape","id":"sh/29cba1w7","slide":8,"bbox":[680,287,10,10]}
+{"kind":"textbox","id":"sh/nals36xs","slide":8,"text":"Video, phone or on-site interview type.","textPreview":"Video, phone or on-site interview type.","textChars":39,"textLines":1,"bbox":[704,280,446,36]}
+{"kind":"shape","id":"sh/87ytovex","slide":8,"bbox":[680,341,10,10]}
+{"kind":"textbox","id":"sh/987uh0f2","slide":8,"text":"Future date/time, timezone and duration.","textPreview":"Future date/time, timezone and duration.","textChars":40,"textLines":1,"bbox":[704,334,446,36]}
+{"kind":"shape","id":"sh/hsj2lwja","slide":8,"bbox":[680,395,10,10]}
+{"kind":"textbox","id":"sh/wra1cr2p","slide":8,"text":"Meeting link, phone number or physical location.","textPreview":"Meeting link, phone number or physical location.","textChars":48,"textLines":1,"bbox":[704,388,446,36]}
+{"kind":"shape","id":"sh/vq1kjm14","slide":8,"bbox":[680,449,10,10]}
+{"kind":"textbox","id":"sh/upsjahkj","slide":8,"text":"Candidate instructions and recruiter notes.","textPreview":"Candidate instructions and recruiter notes.","textChars":43,"textLines":1,"bbox":[704,442,446,36]}
+{"kind":"shape","id":"sh/9oj2hw3y","slide":8,"bbox":[680,503,10,10]}
+{"kind":"textbox","id":"sh/8na18r2d","slide":8,"text":"Duplicate prevention, status update, notification and email workflow.","textPreview":"Duplicate prevention, status update, notification and email workflow.","textChars":69,"textLines":1,"bbox":[704,496,446,36]}
+{"kind":"shape","id":"sh/7m1kfml8","slide":8,"bbox":[72,590,1136,2]}
+{"kind":"textbox","id":"sh/mlsj6hkn","slide":8,"text":"Application flow","textPreview":"Application flow","textChars":16,"textLines":1,"bbox":[72,612,160,24]}
+{"kind":"textbox","id":"sh/lkz2dc32","slide":8,"text":"Applied  ->  Reviewing  ->  Shortlisted  ->  Interview  ->  Offered / Hired","textPreview":"Applied  ->  Reviewing  ->  Shortlisted  ->  Interview  ->  Offered / Hired","textChars":75,"textLines":1,"bbox":[250,610,860,28]}
+{"kind":"shape","id":"sh/kjq1472h","slide":8,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/apozed0f","slide":8,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/bqx0nih0","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/aosnxw","slide":8,"text":""}
+{"kind":"slide","id":"sl/bgdpjf","slide":9,"title":"08 / PLANS, BILLING AND INSIGHT","textShapes":16}
+{"kind":"textbox","id":"sh/n65sz6ps","slide":9,"text":"08 / PLANS, BILLING AND INSIGHT","textPreview":"08 / PLANS, BILLING AND INSIGHT","textChars":31,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/87etsbqd","slide":9,"text":"Monetization unlocks the recruiter operating layer","textPreview":"Monetization unlocks the recruiter operating layer","textChars":50,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/98na1g7y","slide":9,"text":"Razorpay-backed one-time plans control posting capacity, featured visibility and analytics access.","textPreview":"Razorpay-backed one-time plans control posting capacity, featured visibility and analytics access.","textChars":98,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"textbox","id":"sh/y1cbm18b","slide":9,"text":"PLANS","textPreview":"PLANS","textChars":5,"textLines":1,"bbox":[72,240,150,24]}
+{"kind":"textbox","id":"sh/z2lsv6pw","slide":9,"text":"STARTER","textPreview":"STARTER","textChars":7,"textLines":1,"bbox":[72,286,240,30]}
+{"kind":"textbox","id":"sh/03utobqh","slide":9,"text":"$49","textPreview":"$49","textChars":3,"textLines":1,"bbox":[72,320,220,52]}
+{"kind":"textbox","id":"sh/l43axg72","slide":9,"text":"1 active job post\nCore applications and applicant management\nDashboard, billing and email notifications","textPreview":"1 active job post | Core applications and applicant management | Dashboard, billing and email notifications","textChars":103,"textLines":3,"bbox":[72,390,300,110]}
+{"kind":"textbox","id":"sh/qdsbi18f","slide":9,"text":"GROWTH","textPreview":"GROWTH","textChars":6,"textLines":1,"bbox":[430,286,240,30]}
+{"kind":"textbox","id":"sh/bylsrmpk","slide":9,"text":"$99","textPreview":"$99","textChars":3,"textLines":1,"bbox":[430,320,220,52]}
+{"kind":"textbox","id":"sh/nyd0v2t4","slide":9,"text":"5 active job posts\nFeatured posts and priority listings\nUsage analytics and hiring activity","textPreview":"5 active job posts | Featured posts and priority listings | Usage analytics and hiring activity","textChars":91,"textLines":3,"bbox":[430,390,300,110]}
+{"kind":"textbox","id":"sh/mx4zmxsz","slide":9,"text":"PRO","textPreview":"PRO","textChars":3,"textLines":1,"bbox":[788,286,240,30]}
+{"kind":"textbox","id":"sh/90vixcba","slide":9,"text":"$299","textPreview":"$299","textChars":4,"textLines":1,"bbox":[788,320,220,52]}
+{"kind":"textbox","id":"sh/8zmho7ap","slide":9,"text":"Unlimited active and featured posts\nPremium priority support\nMaximum flexibility for hiring at scale","textPreview":"Unlimited active and featured posts | Premium priority support | Maximum flexibility for hiring at scale","textChars":100,"textLines":3,"bbox":[788,390,320,110]}
+{"kind":"shape","id":"sh/v2d0zmtg","slide":9,"bbox":[72,558,1136,2]}
+{"kind":"textbox","id":"sh/u14zqhsv","slide":9,"text":"Billing includes current-plan state, usage, purchase history, payment references, retry support and verified entitlement activation.","textPreview":"Billing includes current-plan state, usage, purchase history, payment references, retry support and verified entitlement activation.","textChars":132,"textLines":1,"bbox":[72,584,1020,34]}
+{"kind":"shape","id":"sh/hofi1wbm","slide":9,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/w3mhsra1","slide":9,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/b6tgnitc","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/bgdpjf","slide":9,"text":""}
+{"kind":"slide","id":"sl/2pfklb","slide":10,"title":"09 / EVERYDAY PRODUCT LAYER","textShapes":23}
+{"kind":"textbox","id":"sh/bep8jedo","slide":10,"text":"09 / EVERYDAY PRODUCT LAYER","textPreview":"09 / EVERYDAY PRODUCT LAYER","textChars":27,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/wfypsje9","slide":10,"text":"The product stays useful between major actions","textPreview":"The product stays useful between major actions","textChars":46,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/xg7qlovu","slide":10,"text":"Notifications, preferences, storage and search keep the workspace connected day to day.","textPreview":"Notifications, preferences, storage and search keep the workspace connected day to day.","textChars":87,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"shape","id":"sh/mpw7m9w7","slide":10,"bbox":[72,244,5,62]}
+{"kind":"textbox","id":"sh/nq58feds","slide":10,"text":"NOTIFICATIONS","textPreview":"NOTIFICATIONS","textChars":13,"textLines":1,"bbox":[94,246,308,20]}
+{"kind":"textbox","id":"sh/orepojed","slide":10,"text":"All/read/unread views, search, pagination, mark-read, delete, clear-all and automatic unread toasts","textPreview":"All/read/unread views, search, pagination, mark-read, delete, clear-all and automatic unread toasts","textChars":99,"textLines":1,"bbox":[94,270,308,34]}
+{"kind":"shape","id":"sh/9s7qhovy","slide":10,"bbox":[475,244,5,62]}
+{"kind":"textbox","id":"sh/6l07ydwb","slide":10,"text":"SETTINGS","textPreview":"SETTINGS","textChars":8,"textLines":1,"bbox":[497,246,308,20]}
+{"kind":"textbox","id":"sh/7m98rydw","slide":10,"text":"Profile, account, security, notifications, privacy, job alerts, appearance, billing, preferences and danger zone","textPreview":"Profile, account, security, notifications, privacy, job alerts, appearance, billing, preferences and danger zone","textChars":112,"textLines":1,"bbox":[497,270,308,34]}
+{"kind":"shape","id":"sh/r6tkz2lg","slide":10,"bbox":[878,244,5,62]}
+{"kind":"textbox","id":"sh/q5k36xkv","slide":10,"text":"STORAGE","textPreview":"STORAGE","textChars":7,"textLines":1,"bbox":[900,246,308,20]}
+{"kind":"textbox","id":"sh/dsv21c3m","slide":10,"text":"Private resumes, profile photos, recruiter avatars, company logos, banners and galleries with signed URLs","textPreview":"Private resumes, profile photos, recruiter avatars, company logos, banners and galleries with signed URLs","textChars":105,"textLines":1,"bbox":[900,270,308,34]}
+{"kind":"shape","id":"sh/c7ml8721","slide":10,"bbox":[72,360,1136,2]}
+{"kind":"textbox","id":"sh/zudk3mlc","slide":10,"text":"Account controls","textPreview":"Account controls","textChars":16,"textLines":1,"bbox":[72,394,300,28]}
+{"kind":"shape","id":"sh/et43ahk7","slide":10,"bbox":[72,447,10,10]}
+{"kind":"textbox","id":"sh/1wv25w3i","slide":10,"text":"Theme: Light, Dark or System","textPreview":"Theme: Light, Dark or System","textChars":28,"textLines":1,"bbox":[96,440,406,36]}
+{"kind":"shape","id":"sh/0vmlcr2x","slide":10,"bbox":[72,485,10,10]}
+{"kind":"textbox","id":"sh/nydk7mlo","slide":10,"text":"Email and in-app preferences","textPreview":"Email and in-app preferences","textChars":28,"textLines":1,"bbox":[96,478,406,36]}
+{"kind":"shape","id":"sh/mx43ehk3","slide":10,"bbox":[72,523,10,10]}
+{"kind":"textbox","id":"sh/i5sfmp8n","slide":10,"text":"Candidate privacy visibility controls","textPreview":"Candidate privacy visibility controls","textChars":37,"textLines":1,"bbox":[96,516,406,36]}
+{"kind":"shape","id":"sh/j61wvu98","slide":10,"bbox":[72,561,10,10]}
+{"kind":"textbox","id":"sh/47axozqd","slide":10,"text":"Recruiter and candidate profile settings","textPreview":"Recruiter and candidate profile settings","textChars":40,"textLines":1,"bbox":[96,554,406,36]}
+{"kind":"shape","id":"sh/58jex4ry","slide":10,"bbox":[72,599,10,10]}
+{"kind":"textbox","id":"sh/u18vi58b","slide":10,"text":"Password and account access information","textPreview":"Password and account access information","textChars":39,"textLines":1,"bbox":[96,592,406,36]}
+{"kind":"textbox","id":"sh/v2hwra9w","slide":10,"text":"Search and navigation","textPreview":"Search and navigation","textChars":21,"textLines":1,"bbox":[660,394,300,28]}
+{"kind":"shape","id":"sh/w3qdkfqh","slide":10,"bbox":[660,447,10,10]}
+{"kind":"textbox","id":"sh/h4jetkr2","slide":10,"text":"Ctrl+K / Cmd+K command palette","textPreview":"Ctrl+K / Cmd+K command palette","textChars":30,"textLines":1,"bbox":[684,440,406,36]}
+{"kind":"shape","id":"sh/excfu98v","slide":10,"bbox":[660,485,10,10]}
+{"kind":"textbox","id":"sh/fylw3e9g","slide":10,"text":"Debounced job search","textPreview":"Debounced job search","textChars":20,"textLines":1,"bbox":[684,478,406,36]}
+{"kind":"shape","id":"sh/psnit8bi","slide":10,"bbox":[660,523,10,10]}
+{"kind":"textbox","id":"sh/oreh03ax","slide":10,"text":"Recent searches stored per account","textPreview":"Recent searches stored per account","textChars":34,"textLines":1,"bbox":[684,516,406,36]}
+{"kind":"shape","id":"sh/3q5grytc","slide":10,"bbox":[660,561,10,10]}
+{"kind":"textbox","id":"sh/2pwzytsr","slide":10,"text":"Quick links to core workspace destinations","textPreview":"Quick links to core workspace destinations","textChars":42,"textLines":1,"bbox":[684,554,406,36]}
+{"kind":"shape","id":"sh/1onypob6","slide":10,"bbox":[660,599,10,10]}
+{"kind":"textbox","id":"sh/gnehw3al","slide":10,"text":"Responsive desktop and mobile navigation","textPreview":"Responsive desktop and mobile navigation","textChars":40,"textLines":1,"bbox":[684,592,406,36]}
+{"kind":"shape","id":"sh/f2lgnytg","slide":10,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/e1czutsv","slide":10,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/lk7i1sbq","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/2pfklb","slide":10,"text":""}
+{"kind":"slide","id":"sl/ceqgyx","slide":11,"title":"10 / ADMINISTRATION","textShapes":17}
+{"kind":"textbox","id":"sh/90zytkvm","slide":11,"text":"10 / ADMINISTRATION","textPreview":"10 / ADMINISTRATION","textChars":19,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/md8zypcb","slide":11,"text":"Admins see the platform as an operating system","textPreview":"Admins see the platform as an operating system","textChars":46,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/nehgrudw","slide":11,"text":"The admin console combines health signals, records, payments and moderation controls.","textPreview":"The admin console combines health signals, records, payments and moderation controls.","textChars":85,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"textbox","id":"sh/0b6hwfu5","slide":11,"text":"PLATFORM VIEW","textPreview":"PLATFORM VIEW","textChars":13,"textLines":1,"bbox":[72,244,250,24]}
+{"kind":"textbox","id":"sh/1cfypkvq","slide":11,"text":"Overview","textPreview":"Overview","textChars":8,"textLines":1,"bbox":[72,288,200,30]}
+{"kind":"shape","id":"sh/e9ozu5cz","slide":11,"bbox":[72,347,10,10]}
+{"kind":"textbox","id":"sh/zaxgnadk","slide":11,"text":"Users, candidates and recruiters","textPreview":"Users, candidates and recruiters","textChars":32,"textLines":1,"bbox":[96,340,446,36]}
+{"kind":"shape","id":"sh/k7ah8ju9","slide":11,"bbox":[72,389,10,10]}
+{"kind":"textbox","id":"sh/l8ji14bu","slide":11,"text":"Companies, jobs and applications","textPreview":"Companies, jobs and applications","textChars":32,"textLines":1,"bbox":[96,382,446,36]}
+{"kind":"shape","id":"sh/9oz2psfm","slide":11,"bbox":[72,431,10,10]}
+{"kind":"textbox","id":"sh/8nq1gny1","slide":11,"text":"Active paid users and successful payments","textPreview":"Active paid users and successful payments","textChars":41,"textLines":1,"bbox":[96,424,446,36]}
+{"kind":"shape","id":"sh/nmhknixg","slide":11,"bbox":[72,473,10,10]}
+{"kind":"textbox","id":"sh/ml8jedgb","slide":11,"text":"Revenue, growth and plan distribution","textPreview":"Revenue, growth and plan distribution","textChars":37,"textLines":1,"bbox":[96,466,446,36]}
+{"kind":"shape","id":"sh/lkz2lsfq","slide":11,"bbox":[72,515,10,10]}
+{"kind":"textbox","id":"sh/0jq1cny5","slide":11,"text":"Top companies and recruiters","textPreview":"Top companies and recruiters","textChars":28,"textLines":1,"bbox":[96,508,446,36]}
+{"kind":"shape","id":"sh/zix0jixk","slide":11,"bbox":[72,557,10,10]}
+{"kind":"textbox","id":"sh/yxojadgz","slide":11,"text":"Recent platform activity","textPreview":"Recent platform activity","textChars":24,"textLines":1,"bbox":[96,550,446,36]}
+{"kind":"textbox","id":"sh/5gj2xcfu","slide":11,"text":"CONTROL SURFACES","textPreview":"CONTROL SURFACES","textChars":16,"textLines":1,"bbox":[690,244,270,24]}
+{"kind":"textbox","id":"sh/kfa1o7y9","slide":11,"text":"Operational sections","textPreview":"Operational sections","textChars":20,"textLines":1,"bbox":[690,288,360,30]}
+{"kind":"textbox","id":"sh/ob2dgfqx","slide":11,"text":"Users\nCompanies\nJobs\nApplications\nPayments\nModeration","textPreview":"Users | Companies | Jobs | Applications | Payments | Moderation","textChars":53,"textLines":6,"bbox":[690,342,280,210]}
+{"kind":"textbox","id":"sh/pwbu9kri","slide":11,"text":"Moderation supports review, warn, hide, suspend, restrict and mark-as-spam actions with reason capture, confirmation and audit history.","textPreview":"Moderation supports review, warn, hide, suspend, restrict and mark-as-spam actions with reason capture, confirmation and audit history.","textChars":135,"textLines":1,"bbox":[980,342,220,146]}
+{"kind":"shape","id":"sh/29kve58r","slide":11,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/3atc7a9c","slide":11,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/g7idcfal","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/ceqgyx","slide":11,"text":""}
+{"kind":"slide","id":"sl/efjft3","slide":12,"title":"11 / PLATFORM FOUNDATION","textShapes":19}
+{"kind":"textbox","id":"sh/4fmlkvih","slide":12,"text":"11 / PLATFORM FOUNDATION","textPreview":"11 / PLATFORM FOUNDATION","textChars":24,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/3ed4rq1w","slide":12,"text":"The visible product is backed by a protected service layer","textPreview":"The visible product is backed by a protected service layer","textChars":58,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/2d43il0b","slide":12,"text":"Supabase, PostgreSQL, Razorpay, storage policies and route-level authorization support the user-facing workflows.","textPreview":"Supabase, PostgreSQL, Razorpay, storage policies and route-level authorization support the user-facing workflows.","textChars":113,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"textbox","id":"sh/d4fmx0zy","slide":12,"text":"DATA AND ACCESS","textPreview":"DATA AND ACCESS","textChars":15,"textLines":1,"bbox":[72,240,260,24]}
+{"kind":"shape","id":"sh/c36lovid","slide":12,"bbox":[72,289,10,10]}
+{"kind":"textbox","id":"sh/r2x4vqhs","slide":12,"text":"Supabase Auth and persistent sessions","textPreview":"Supabase Auth and persistent sessions","textChars":37,"textLines":1,"bbox":[96,282,476,36]}
+{"kind":"shape","id":"sh/q143ml07","slide":12,"bbox":[72,339,10,10]}
+{"kind":"textbox","id":"sh/t8bmlwju","slide":12,"text":"PostgreSQL tables, constraints, indexes and functions","textPreview":"PostgreSQL tables, constraints, indexes and functions","textChars":53,"textLines":1,"bbox":[96,332,476,36]}
+{"kind":"shape","id":"sh/s72lcbi9","slide":12,"bbox":[72,389,10,10]}
+{"kind":"textbox","id":"sh/mpkbe18j","slide":12,"text":"RLS policies for candidate, recruiter and admin data","textPreview":"RLS policies for candidate, recruiter and admin data","textChars":52,"textLines":1,"bbox":[96,382,476,36]}
+{"kind":"shape","id":"sh/nqtcn694","slide":12,"bbox":[72,439,10,10]}
+{"kind":"textbox","id":"sh/8r2tgbqp","slide":12,"text":"Ownership checks for jobs, applications, companies, interviews and notes","textPreview":"Ownership checks for jobs, applications, companies, interviews and notes","textChars":72,"textLines":1,"bbox":[96,432,476,36]}
+{"kind":"shape","id":"sh/9sbupgra","slide":12,"bbox":[72,489,10,10]}
+{"kind":"textbox","id":"sh/atkbil8v","slide":12,"text":"Private storage policies and signed asset URLs","textPreview":"Private storage policies and signed asset URLs","textChars":46,"textLines":1,"bbox":[96,482,476,36]}
+{"kind":"textbox","id":"sh/vutcr690","slide":12,"text":"BACKEND ENTRY POINTS","textPreview":"BACKEND ENTRY POINTS","textChars":20,"textLines":1,"bbox":[690,240,300,24]}
+{"kind":"shape","id":"sh/wv2dkbql","slide":12,"bbox":[690,289,10,10]}
+{"kind":"textbox","id":"sh/xgvutgr6","slide":12,"text":"Recruiter jobs API and admin section API","textPreview":"Recruiter jobs API and admin section API","textChars":40,"textLines":1,"bbox":[714,282,446,36]}
+{"kind":"shape","id":"sh/ih4vml8r","slide":12,"bbox":[690,339,10,10]}
+{"kind":"textbox","id":"sh/jidcvqpc","slide":12,"text":"Razorpay order, verification, ledger and webhook routes","textPreview":"Razorpay order, verification, ledger and webhook routes","textChars":55,"textLines":1,"bbox":[714,332,446,36]}
+{"kind":"shape","id":"sh/fmdsjq5k","slide":12,"bbox":[690,389,10,10]}
+{"kind":"textbox","id":"sh/el4baloz","slide":12,"text":"Billing and payment history route","textPreview":"Billing and payment history route","textChars":33,"textLines":1,"bbox":[714,382,446,36]}
+{"kind":"shape","id":"sh/1oful0na","slide":12,"bbox":[690,439,10,10]}
+{"kind":"textbox","id":"sh/gn6tcv6p","slide":12,"text":"Email queue processing and provider events","textPreview":"Email queue processing and provider events","textChars":42,"textLines":1,"bbox":[714,432,446,36]}
+{"kind":"shape","id":"sh/7idsfq58","slide":12,"bbox":[690,489,10,10]}
+{"kind":"textbox","id":"sh/6h4b6lon","slide":12,"text":"Scheduled job publishing and public cache revalidation","textPreview":"Scheduled job publishing and public cache revalidation","textChars":54,"textLines":1,"bbox":[714,482,446,36]}
+{"kind":"shape","id":"sh/tkvahgne","slide":12,"bbox":[690,539,10,10]}
+{"kind":"textbox","id":"sh/sjmt8b6t","slide":12,"text":"Job view tracking and audit/security events","textPreview":"Job view tracking and audit/security events","textChars":43,"textLines":1,"bbox":[714,532,446,36]}
+{"kind":"shape","id":"sh/jutsb65c","slide":12,"bbox":[72,590,1136,2]}
+{"kind":"textbox","id":"sh/itkb21or","slide":12,"text":"The codebase also includes rate-limit foundations, input validation, error sanitization, webhook idempotency and subscription feature gates.","textPreview":"The codebase also includes rate-limit foundations, input validation, error sanitization, webhook idempotency and subscription feature gates.","textChars":140,"textLines":1,"bbox":[72,614,1080,28]}
+{"kind":"shape","id":"sh/8zipc7mp","slide":12,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/90rq5c3u","slide":12,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/mx07ax4j","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/efjft3","slide":12,"text":""}
+{"kind":"slide","id":"sl/msuhcc","slide":13,"title":"12 / ROUTE MAP","textShapes":13}
+{"kind":"textbox","id":"sh/bmp03qt4","slide":13,"text":"12 / ROUTE MAP","textPreview":"12 / ROUTE MAP","textChars":14,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/cny1cvup","slide":13,"text":"Every major surface has a clear home","textPreview":"Every major surface has a clear home","textChars":36,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/do7i5gba","slide":13,"text":"The application is organized around public discovery, role-specific workspaces and supporting platform routes.","textPreview":"The application is organized around public discovery, role-specific workspaces and supporting platform routes.","textChars":110,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"textbox","id":"sh/ypgjelcv","slide":13,"text":"PUBLIC AND AUTH","textPreview":"PUBLIC AND AUTH","textChars":15,"textLines":1,"bbox":[72,232,330,24]}
+{"kind":"textbox","id":"sh/zq907qtg","slide":13,"text":"/\n/jobs\n/jobs/[slug]\n/company/[slug]\n/pricing\n/login / signup\n/forgot-password / reset-password\n/verify-email / auth/callback","textPreview":"/ | /jobs | /jobs/[slug] | /company/[slug] | /pricing | /login / signup | /forgot-password / reset-password | /verify-email / auth/callback","textChars":125,"textLines":8,"bbox":[72,274,330,250]}
+{"kind":"textbox","id":"sh/0bi1gvu1","slide":13,"text":"WORKSPACE","textPreview":"WORKSPACE","textChars":9,"textLines":1,"bbox":[480,232,260,24]}
+{"kind":"textbox","id":"sh/lcr290bm","slide":13,"text":"/dashboard\n/applications\n/saved-jobs\n/job-alerts\n/interviews\n/post-job\n/notifications\n/settings/[section]\n/dashboard/billing","textPreview":"/dashboard | /applications | /saved-jobs | /job-alerts | /interviews | /post-job | /notifications | /settings/[section] | /dashboard/billing","textChars":124,"textLines":9,"bbox":[480,274,330,250]}
+{"kind":"textbox","id":"sh/etwz21cr","slide":13,"text":"ADMIN AND SUPPORT","textPreview":"ADMIN AND SUPPORT","textChars":17,"textLines":1,"bbox":[888,232,300,24]}
+{"kind":"textbox","id":"sh/fu50v6tc","slide":13,"text":"/admin\n/admin/[section]\n/onboarding\n/account-restricted\n/success\n/robots.txt / sitemap.xml\n/manifest.webmanifest\n/api/* payment, email, jobs, admin","textPreview":"/admin | /admin/[section] | /onboarding | /account-restricted | /success | /robots.txt / sitemap.xml | /manifest.webmanifest | /api/* pay...","textChars":147,"textLines":8,"bbox":[888,274,320,250]}
+{"kind":"shape","id":"sh/rmp0ba14","slide":13,"bbox":[72,576,1136,2]}
+{"kind":"textbox","id":"sh/qlgzi5kj","slide":13,"text":"Current boundaries","textPreview":"Current boundaries","textChars":18,"textLines":1,"bbox":[72,602,220,24]}
+{"kind":"textbox","id":"sh/doridkju","slide":13,"text":"About is a homepage section; global search has live job results while other categories are scaffolded; 2FA, data export and standalone legal pages are not confirmed as active features.","textPreview":"About is a homepage section; global search has live job results while other categories are scaffolded; 2FA, data export and standalone le...","textChars":184,"textLines":1,"bbox":[300,600,860,36]}
+{"kind":"shape","id":"sh/cnyhkf2p","slide":13,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/3yp07q1s","slide":13,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/2xgzelk7","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/msuhcc","slide":13,"text":""}
+{"kind":"slide","id":"sl/wh6ssj","slide":14,"title":"13 / SUMMARY","textShapes":13}
+{"kind":"textbox","id":"sh/donutcjy","slide":14,"text":"13 / SUMMARY","textPreview":"13 / SUMMARY","textChars":12,"textLines":1,"bbox":[72,48,520,24]}
+{"kind":"textbox","id":"sh/qlcbyh07","slide":14,"text":"JobForge is a connected hiring platform, not just a job board","textPreview":"JobForge is a connected hiring platform, not just a job board","textChars":61,"textLines":1,"bbox":[72,82,1120,64]}
+{"kind":"textbox","id":"sh/bm5cr21s","slide":14,"text":"The product spans discovery, applications, recruitment operations, monetization and platform governance.","textPreview":"The product spans discovery, applications, recruitment operations, monetization and platform governance.","textChars":104,"textLines":1,"bbox":[72,148,1120,38]}
+{"kind":"shape","id":"sh/ojutw721","slide":14,"bbox":[72,238,1136,5]}
+{"kind":"textbox","id":"sh/pk3upcjm","slide":14,"text":"FOR CANDIDATES","textPreview":"FOR CANDIDATES","textChars":14,"textLines":1,"bbox":[72,282,300,24]}
+{"kind":"textbox","id":"sh/2hcbuxkv","slide":14,"text":"Find better-fit work, present a complete profile, apply with context and follow the hiring process.","textPreview":"Find better-fit work, present a complete profile, apply with context and follow the hiring process.","textChars":99,"textLines":1,"bbox":[72,326,320,102]}
+{"kind":"textbox","id":"sh/3ilcn21g","slide":14,"text":"FOR RECRUITERS","textPreview":"FOR RECRUITERS","textChars":14,"textLines":1,"bbox":[470,282,300,24]}
+{"kind":"textbox","id":"sh/gfutsn25","slide":14,"text":"Build a company presence, publish jobs, manage real applicants and turn shortlists into interviews.","textPreview":"Build a company presence, publish jobs, manage real applicants and turn shortlists into interviews.","textChars":99,"textLines":1,"bbox":[470,326,330,102]}
+{"kind":"textbox","id":"sh/1g3ulsjq","slide":14,"text":"FOR OPERATORS","textPreview":"FOR OPERATORS","textChars":13,"textLines":1,"bbox":[880,282,300,24]}
+{"kind":"textbox","id":"sh/pwra9wru","slide":14,"text":"Run the marketplace with analytics, payments, moderation, security controls and auditable workflows.","textPreview":"Run the marketplace with analytics, payments, moderation, security controls and auditable workflows.","textChars":100,"textLines":1,"bbox":[880,326,320,102]}
+{"kind":"shape","id":"sh/ovit0ra9","slide":14,"bbox":[72,502,1136,2]}
+{"kind":"textbox","id":"sh/3u9s7m9o","slide":14,"text":"The core product loop is complete: discover -> apply -> review -> interview -> hire.","textPreview":"The core product loop is complete: discover -> apply -> review -> interview -> hire.","textChars":84,"textLines":1,"bbox":[72,550,930,40]}
+{"kind":"textbox","id":"sh/2t0by1s3","slide":14,"text":"Source: current JobForge application codebase and migration inventory.","textPreview":"Source: current JobForge application codebase and migration inventory.","textChars":70,"textLines":1,"bbox":[72,618,600,22]}
+{"kind":"shape","id":"sh/1sra5wri","slide":14,"bbox":[72,676,1136,1]}
+{"kind":"textbox","id":"sh/gritwrad","slide":14,"text":"JOBFORGE / PRODUCT OVERVIEW","textPreview":"JOBFORGE / PRODUCT OVERVIEW","textChars":27,"textLines":1,"bbox":[72,687,400,18]}
+{"kind":"textbox","id":"sh/fq9s3m9s","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1160,687,48,18]}
+{"kind":"notes","id":"nt/wh6ssj","slide":14,"text":""}

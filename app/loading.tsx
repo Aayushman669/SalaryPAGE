@@ -9,11 +9,25 @@ export default function Loading() {
         </nav>
 
         <div className="max-w-3xl text-center">
+          <img
+            alt="JobForge"
+            className="mx-auto mb-7 h-10 w-auto dark:hidden"
+            height={40}
+            src="/brand/jobforge-logo-light.svg"
+            width={182}
+          />
+          <img
+            alt="JobForge"
+            className="mx-auto mb-7 hidden h-10 w-auto dark:block"
+            height={40}
+            src="/brand/jobforge-logo-dark.svg"
+            width={182}
+          />
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-            Find Your Dream Job
+            Forge Your Future Career
           </h1>
           <p className="mt-5 text-lg leading-8 text-gray-500 sm:text-xl">
-            Browse high-quality jobs from top companies
+            Discover jobs, connect with recruiters, and build your future with JobForge.
           </p>
         </div>
 

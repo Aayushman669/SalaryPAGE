@@ -2,12 +2,13 @@
 
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import AuthLoading from "../auth-loading";
 import { useAuth } from "../auth-context";
 import { isValidRole } from "@/lib/dashboard-data";
 import {
   getSettingsSection,
+  getSettingsSectionHref,
   normalizeSettingsSectionForRole,
   type SettingsSectionId,
 } from "@/lib/settings";
@@ -50,6 +51,14 @@ const CandidateSettingsSection = dynamic(
 type SettingsPageClientProps = {
   initialSectionId?: string;
 };
+
+function getSettingsSectionFromPathname(pathname: string) {
+  if (pathname !== "/settings" && !pathname.startsWith("/settings/")) {
+    return undefined;
+  }
+
+  return pathname.slice("/settings".length).split("/").filter(Boolean)[0];
+}
 
 function SettingsContent({
   activeSectionId,
@@ -148,10 +157,51 @@ export default function SettingsPageClient({
     profile,
     retry,
   } = useSettingsData({ isAuthLoading, isLoggedIn });
+  const [sectionOverride, setSectionOverride] = useState<string | null | undefined>(
+    null,
+  );
+  const requestedSectionId =
+    sectionOverride === null ? initialSectionId : sectionOverride;
+
   const activeSectionId = normalizeSettingsSectionForRole(
-    initialSectionId,
+    requestedSectionId,
     profile?.role_mode ?? null,
   );
+
+  const handleSectionChange = useCallback(
+    (sectionId: SettingsSectionId) => {
+      const nextSectionId = normalizeSettingsSectionForRole(
+        sectionId,
+        profile?.role_mode ?? null,
+      );
+
+      setSectionOverride(nextSectionId);
+
+      if (typeof window !== "undefined") {
+        const nextPath = getSettingsSectionHref(nextSectionId);
+
+        if (window.location.pathname !== nextPath) {
+          window.history.replaceState(window.history.state, "", nextPath);
+        }
+      }
+    },
+    [profile?.role_mode],
+  );
+
+  useEffect(() => {
+    function handlePopState() {
+      setSectionOverride(
+        getSettingsSectionFromPathname(window.location.pathname),
+      );
+    }
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
+
   const handleCloseSettings = useCallback(() => {
     if (typeof window === "undefined") {
       router.replace("/dashboard");
@@ -170,7 +220,7 @@ export default function SettingsPageClient({
       !returnPath.startsWith("//") &&
       !returnPath.startsWith("/settings")
     ) {
-      router.push(returnPath);
+      router.replace(returnPath);
       return;
     }
 
@@ -234,6 +284,7 @@ export default function SettingsPageClient({
     <SettingsLayout
       activeSectionId={activeSectionId}
       onClose={handleCloseSettings}
+      onSectionChange={handleSectionChange}
       profile={profile}
     >
       <SettingsContent activeSectionId={activeSectionId} profile={profile} />

@@ -14,7 +14,7 @@ function AuthVisualPanel() {
       <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-yellow-400/30 blur-3xl" />
       <div className="relative">
         <p className="inline-flex rounded-full border border-yellow-500/30 bg-white/50 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-gray-900">
-          Job Board
+          JobForge
         </p>
         <h2 className="mt-6 max-w-sm text-4xl font-bold tracking-tight text-gray-900">
           Find your next opportunity.
@@ -120,7 +120,7 @@ export default function LoginPage() {
               Welcome Back
             </h1>
             <p className="mt-3 text-sm leading-6 text-gray-500">
-              Sign in to continue to your Job Board account.
+              Sign in to continue to your JobForge account.
             </p>
           </div>
 

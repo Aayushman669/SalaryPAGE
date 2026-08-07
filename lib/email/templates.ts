@@ -14,7 +14,7 @@ type TemplateDefinition = {
   templateKey: EmailTemplateKey;
 };
 
-const appName = "Job Board";
+const appName = "JobForge";
 
 function siteUrl() {
   const configured =
@@ -197,7 +197,7 @@ function renderNotificationEmail({
   const body =
     paragraph(`Hi ${fullName},`) +
     paragraph(message) +
-    actionLink("Open Job Board", actionHref || `${siteUrl()}/dashboard`);
+    actionLink("Open JobForge", actionHref || `${siteUrl()}/dashboard`);
 
   return {
     subject,
@@ -249,7 +249,7 @@ const templates: Record<EmailTemplateKey, TemplateDefinition> = {
             actionLink("Open Dashboard", dashboardUrl),
           eyebrow: "Welcome",
           preview: `Welcome to ${appName}.`,
-          title: "Your Job Board account is ready.",
+          title: "Your JobForge account is ready.",
         }),
       };
     },
@@ -263,15 +263,15 @@ const templates: Record<EmailTemplateKey, TemplateDefinition> = {
       return {
         subject: "Verify your email",
         text: templateText([
-          "Verify your email address to continue using Job Board.",
+          "Verify your email address to continue using JobForge.",
           verifyUrl,
         ]),
         html: renderLayout({
           body:
-            paragraph("Verify your email address to continue using Job Board.") +
+            paragraph("Verify your email address to continue using JobForge.") +
             actionLink("Verify Email", verifyUrl),
           eyebrow: "Security",
-          preview: "Verify your Job Board email address.",
+          preview: "Verify your JobForge email address.",
           title: "Verify your email",
         }),
       };
@@ -286,13 +286,13 @@ const templates: Record<EmailTemplateKey, TemplateDefinition> = {
       return {
         subject: "Password reset update",
         text: templateText([
-          "Your Job Board password was updated or a password reset was requested.",
+          "Your JobForge password was updated or a password reset was requested.",
           "If this was not you, secure your account immediately.",
           resetUrl,
         ]),
         html: renderLayout({
           body:
-            paragraph("Your Job Board password was updated or a password reset was requested.") +
+            paragraph("Your JobForge password was updated or a password reset was requested.") +
             paragraph("If this was not you, secure your account immediately.") +
             actionLink("Review Account", resetUrl),
           eyebrow: "Security",
@@ -366,7 +366,7 @@ const templates: Record<EmailTemplateKey, TemplateDefinition> = {
       const timezone = textValue(data, "timezone", "UTC");
       const schedule = interviewAt
         ? `Your interview is scheduled for ${formatDateTime(interviewAt)} (${timezone}).`
-        : "Your interview has been scheduled. Open Job Board to review the details.";
+        : "Your interview has been scheduled. Open JobForge to review the details.";
 
       return renderNotificationEmail({
         data: { ...data, message: textValue(data, "message", schedule) },
@@ -386,7 +386,7 @@ const templates: Record<EmailTemplateKey, TemplateDefinition> = {
       const timezone = textValue(data, "timezone", "UTC");
       const schedule = interviewAt
         ? `Your interview was rescheduled to ${formatDateTime(interviewAt)} (${timezone}).`
-        : "Your interview was rescheduled. Open Job Board to review the new details.";
+        : "Your interview was rescheduled. Open JobForge to review the new details.";
 
       return renderNotificationEmail({
         data: { ...data, message: textValue(data, "message", schedule) },
@@ -405,7 +405,7 @@ const templates: Record<EmailTemplateKey, TemplateDefinition> = {
       renderNotificationEmail({
         data,
         eyebrow: "Interview cancelled",
-        fallbackMessage: "Your interview was cancelled. Open Job Board to review the latest details.",
+        fallbackMessage: "Your interview was cancelled. Open JobForge to review the latest details.",
         preview: "Your interview was cancelled.",
         subject: "Interview cancelled",
         title: "Your interview was cancelled.",
@@ -434,10 +434,10 @@ const templates: Record<EmailTemplateKey, TemplateDefinition> = {
       renderNotificationEmail({
         data,
         eyebrow: "Platform message",
-        fallbackMessage: "You have a new message from the Job Board team.",
-        preview: "You have a new message from the Job Board team.",
-        subject: textValue(data, "notificationTitle", "Message from Job Board"),
-        title: textValue(data, "notificationTitle", "A message from Job Board"),
+        fallbackMessage: "You have a new message from the JobForge team.",
+        preview: "You have a new message from the JobForge team.",
+        subject: textValue(data, "notificationTitle", "Message from JobForge"),
+        title: textValue(data, "notificationTitle", "A message from JobForge"),
       }),
   },
   job_submitted: {
@@ -499,12 +499,12 @@ const templates: Record<EmailTemplateKey, TemplateDefinition> = {
       return {
         subject: `Job published: ${jobTitle}`,
         text: templateText([
-          `${jobTitle} is now public on Job Board.`,
+          `${jobTitle} is now public on JobForge.`,
           jobUrl,
         ]),
         html: renderLayout({
           body:
-            paragraph(`${jobTitle} is now public on Job Board.`) +
+            paragraph(`${jobTitle} is now public on JobForge.`) +
             actionLink("View Job", jobUrl),
           eyebrow: "Published",
           preview: `${jobTitle} is now public.`,

@@ -1,0 +1,8 @@
+
+> job-board@0.1.0 start
+> next start -p 3001
+
+▲ Next.js 16.2.12
+- Local:         http://localhost:3001
+- Network:       http://10.63.21.45:3001
+✓ Ready in 599ms

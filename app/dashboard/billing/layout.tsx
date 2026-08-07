@@ -3,7 +3,7 @@ import { createPrivateMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPrivateMetadata(
   "Billing & Subscription",
-  "Manage your private Job Board subscription and payment history.",
+  "Manage your private JobForge subscription and payment history.",
 );
 
 export default function BillingLayout({ children }: { children: React.ReactNode }) {

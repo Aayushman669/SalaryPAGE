@@ -1,0 +1,11 @@
+<svg width="320" height="104" viewBox="0 0 320 104" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">JobForge</title>
+  <desc id="desc">JobForge sidebar logo without tagline on a light transparent background.</desc>
+  <path d="M31 29L42 19H103L92 29H31Z" fill="#CA8A04"/>
+  <path d="M40 19H54L48 29H35L40 19Z" fill="#CA8A04"/>
+  <path d="M66 19H80L74 29H61L66 19Z" fill="#CA8A04"/>
+  <path d="M22 92L9 79L30 65L39 38H55L43 79L22 92Z" fill="#111827"/>
+  <path d="M60 38H110L99 50H73L70 60H95L84 72H67L61 89H45L60 38Z" fill="#111827"/>
+  <text x="126" y="68" fill="#111827" font-family="Inter, Geist, Satoshi, Arial, Helvetica, sans-serif" font-size="38" font-weight="700" letter-spacing="-1.1">Job</text>
+  <text x="205" y="68" fill="#CA8A04" font-family="Inter, Geist, Satoshi, Arial, Helvetica, sans-serif" font-size="38" font-weight="700" letter-spacing="-1.1">Forge</text>
+</svg>

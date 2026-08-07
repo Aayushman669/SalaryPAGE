@@ -23,31 +23,135 @@ const navItems: { id: SectionId; label: string }[] = [
 
 const techItems = [
   {
+    category: "FRAMEWORK",
+    description: "The React framework for production.",
+    brand: "next",
     name: "Next.js",
-    className:
-      "text-4xl font-black rotate-[-3deg] md:left-[9%] md:top-[33%]",
   },
   {
-    name: "Tailwind CSS",
-    className:
-      "text-xl font-bold rotate-[4deg] md:right-[9%] md:top-[18%]",
-  },
-  {
+    category: "DATABASE",
+    description: "Open source Firebase alternative.",
+    brand: "supabase",
     name: "Supabase",
-    className:
-      "text-3xl font-extrabold rotate-[-2deg] md:left-[41%] md:top-[43%]",
   },
   {
+    category: "STYLING",
+    description: "Utility-first CSS framework for rapid UI development.",
+    brand: "tailwind",
+    name: "Tailwind CSS",
+  },
+  {
+    category: "PAYMENTS",
+    description: "Online payments for internet businesses.",
+    brand: "stripe",
     name: "Stripe",
-    className:
-      "text-2xl font-bold rotate-[3deg] md:right-[16%] md:top-[58%]",
   },
   {
+    category: "SCALABLE",
+    description: "Powerful payment solutions for India.",
+    brand: "razorpay",
     name: "Razorpay",
-    className:
-      "text-lg font-extrabold rotate-[-4deg] md:left-[18%] md:bottom-[14%]",
   },
-];
+] as const;
+
+const capabilityItems = [
+  {
+    description: "Optimized for speed and performance",
+    icon: "lightning",
+    title: "Fast Frontend",
+  },
+  {
+    description: "Bank-grade security for all transactions",
+    icon: "shield",
+    title: "Secure Payments",
+  },
+  {
+    description: "Built to scale with your business",
+    icon: "layers",
+    title: "Scalable Backend",
+  },
+] as const;
+
+function StackGlyph({
+  name,
+}: {
+  name: "layers" | "lightning" | "rocket" | "shield";
+}) {
+  const pathClassName = "fill-none stroke-current stroke-2";
+
+  if (name === "lightning") {
+    return (
+      <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path className={pathClassName} d="m13 2-9 12h7l-1 8 9-12h-7l1-8Z" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "shield") {
+    return (
+      <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path className={pathClassName} d="M12 3 20 6v5c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-3Z" strokeLinecap="round" strokeLinejoin="round" />
+        <path className={pathClassName} d="m9 12 2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (name === "rocket") {
+    return (
+      <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path className={pathClassName} d="M14.5 9.5 4 20l-.5-4.5L14 5c2.4-2.4 5.4-3.1 7-3 .1 1.6-.6 4.6-3 7Z" strokeLinecap="round" strokeLinejoin="round" />
+        <path className={pathClassName} d="m8 16-3 1-1 3 3-1 1-3Zm8-8h.01M12 12l-2 2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24">
+      <path className={pathClassName} d="m12 3 8 4-8 4-8-4 8-4Z" strokeLinecap="round" strokeLinejoin="round" />
+      <path className={pathClassName} d="m4 12 8 4 8-4M4 17l8 4 8-4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function TechBrandMark({
+  brand,
+}: {
+  brand: "next" | "razorpay" | "stripe" | "supabase" | "tailwind";
+}) {
+  if (brand === "tailwind") {
+    return (
+      <svg aria-hidden="true" className="h-9 w-9 text-cyan-300" fill="none" viewBox="0 0 32 24">
+        <path d="M2 12c3.5-6 7.5-6 11 0s7.5 6 11 0 4.5-6 6-6" stroke="currentColor" strokeLinecap="round" strokeWidth="3" />
+        <path d="M2 20c3.5-6 7.5-6 11 0s7.5 6 11 0 4.5-6 6-6" stroke="currentColor" strokeLinecap="round" strokeWidth="3" />
+      </svg>
+    );
+  }
+
+  if (brand === "stripe") {
+    return (
+      <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#635bff] text-3xl font-black leading-none text-[#ffffff]">
+        S
+      </span>
+    );
+  }
+
+  if (brand === "next") {
+    return (
+      <span aria-hidden="true" className="relative text-3xl font-black leading-none text-[#f5f5f5]">
+        N<span className="absolute -right-1 top-0 h-9 w-px rotate-[34deg] bg-yellow-300" />
+      </span>
+    );
+  }
+
+  return (
+    <span
+      aria-hidden="true"
+      className={`text-3xl font-black leading-none ${brand === "supabase" ? "text-emerald-300" : "text-[#f5f5f5]"}`}
+    >
+      {brand === "supabase" ? "S" : "R"}
+    </span>
+  );
+}
 
 function JobCard({ job }: { job: PublicJobListItem }) {
   const companyInitial = job.companyName.trim().charAt(0).toUpperCase() || "J";
@@ -254,10 +358,10 @@ export default function Home() {
             Curated hiring, simplified
           </div>
           <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Find Your Dream Job
+            Forge Your Future Career
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-gray-500">
-            Browse high-quality jobs from top companies
+            Discover jobs, connect with recruiters, and build your future with JobForge.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
@@ -299,15 +403,15 @@ export default function Home() {
         <div className="mx-auto w-full max-w-6xl rounded-[2rem] border border-gray-200/70 bg-[#FEFEFC] px-8 py-10 shadow-[0_26px_75px_rgba(0,0,0,0.07)] sm:p-10">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Not just another job board.
+              Not just another hiring platform.
             </h2>
             <p className="mt-5 text-base leading-7 text-gray-500 sm:text-lg sm:leading-8">
               This platform wasn’t built to be just another job listing site. It
               was created to simplify how hiring and job searching actually work.
             </p>
             <p className="mt-4 text-base leading-7 text-gray-500 sm:text-lg sm:leading-8">
-              Built using modern technologies like Next.js and Tailwind CSS, this
-              job board focuses on speed, simplicity, and a clean experience —
+              Built using modern technologies like Next.js and Tailwind CSS, JobForge
+              focuses on speed, simplicity, and a clean experience —
               without unnecessary clutter.
             </p>
           </div>
@@ -342,84 +446,96 @@ export default function Home() {
             Built with one goal — quality over quantity.
           </p>
 
-          <div className="mx-auto mt-12 max-w-[650px] text-center">
-            <h3 className="text-2xl font-bold tracking-tight text-gray-900">
-              Built with technologies trusted by modern startups.
-            </h3>
-            <p className="mt-3 text-base leading-7 text-gray-500">
-              Chosen for speed, scalability, security and an excellent developer
-              experience.
-            </p>
-          </div>
-
-          <div className="relative mt-8 overflow-hidden rounded-3xl border border-yellow-300/60 bg-[#FFF3B0]/40 p-6 text-left shadow-[0_34px_100px_rgba(120,75,12,0.18)] transition-all duration-300 hover:shadow-2xl sm:p-8">
-            <div className="pointer-events-none absolute -right-10 -top-12 h-56 w-56 rounded-full bg-yellow-300/25 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-16 -left-12 h-48 w-48 rounded-full bg-white/80 blur-3xl" />
-            <div className="pointer-events-none absolute left-[8%] top-[16%] hidden h-[64%] w-[84%] rotate-[-7deg] rounded-[44%_56%_49%_51%/55%_45%_59%_41%] border border-yellow-800/40 md:block" />
-            <div className="pointer-events-none absolute left-[11%] top-[21%] hidden h-[52%] w-[75%] rotate-[6deg] rounded-[56%_44%_53%_47%/43%_57%_41%_59%] border border-yellow-900/25 md:block" />
-
-            <div className="pointer-events-none absolute left-[7%] top-[16%] hidden h-1.5 w-1.5 rounded-full bg-yellow-800/30 md:block" />
-            <div className="pointer-events-none absolute left-[28%] top-[20%] hidden h-1 w-1 rounded-full bg-yellow-800/25 md:block" />
-            <div className="pointer-events-none absolute right-[14%] top-[32%] hidden h-1.5 w-1.5 rounded-full bg-yellow-800/25 md:block" />
-            <div className="pointer-events-none absolute left-[35%] bottom-[18%] hidden h-1 w-1 rounded-full bg-yellow-800/25 md:block" />
-            <div className="pointer-events-none absolute right-[30%] bottom-[22%] hidden h-1.5 w-1.5 rounded-full bg-yellow-800/25 md:block" />
-            <div className="pointer-events-none absolute right-[8%] bottom-[16%] hidden h-1 w-1 rounded-full bg-yellow-800/25 md:block" />
-            <div className="pointer-events-none absolute left-[17%] top-[25%] hidden text-sm font-bold text-yellow-900/30 md:block">
-              +
-            </div>
-            <div className="pointer-events-none absolute right-[22%] bottom-[30%] hidden text-sm font-bold text-yellow-900/25 md:block">
-              +
-            </div>
-            <div className="pointer-events-none absolute right-[36%] top-[17%] hidden text-base font-black text-yellow-900/25 md:block">
-              *
-            </div>
-            <div className="pointer-events-none absolute left-[9%] bottom-[31%] hidden text-base font-black text-yellow-900/20 md:block">
-              *
-            </div>
-            <div className="pointer-events-none absolute bottom-[12%] right-[16%] hidden h-10 w-12 rounded-br-full border-b border-r border-yellow-900/25 md:block" />
+          <div className="relative mx-auto mt-10 max-w-5xl overflow-hidden rounded-[1.5rem] border border-white/20 bg-[#151619] p-5 text-left text-[#f5f5f5] shadow-[0_24px_70px_rgba(0,0,0,0.24)] sm:p-6 lg:p-7">
+            <div className="pointer-events-none absolute -right-48 top-8 hidden h-[27rem] w-[42rem] rounded-[50%] border border-yellow-400/10 md:block" />
+            <div className="pointer-events-none absolute -left-56 bottom-20 hidden h-[19rem] w-[34rem] rounded-[50%] border border-yellow-400/10 md:block" />
 
             <div className="relative">
-              <p className="inline-flex rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-gray-900">
-                TECH STACK
+              <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-yellow-300">
+                <StackGlyph name="layers" />
+                Tech Stack
+              </p>
+              <h3 className="mt-4 max-w-3xl text-2xl font-bold tracking-tight text-[#f5f5f5] sm:text-3xl">
+                Built with <span className="text-yellow-300">modern technologies</span>
+              </h3>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-white/60 sm:text-base">
+                Chosen for speed, scalability, security and an excellent developer
+                experience.
               </p>
 
-              <div className="relative mt-8 grid gap-6 sm:grid-cols-2 md:block md:h-[340px]">
-                <span className="pointer-events-none absolute left-[14%] top-[23%] hidden text-[10px] font-bold uppercase tracking-[0.2em] text-gray-700/35 md:block">
-                  Framework
-                </span>
-                <span className="pointer-events-none absolute right-[17%] top-[10%] hidden text-[10px] font-bold uppercase tracking-[0.2em] text-gray-700/35 md:block">
-                  Styling
-                </span>
-                <span className="pointer-events-none absolute left-[45%] top-[35%] hidden text-[10px] font-bold uppercase tracking-[0.2em] text-gray-700/35 md:block">
-                  Database
-                </span>
-                <span className="pointer-events-none absolute right-[20%] top-[50%] hidden text-[10px] font-bold uppercase tracking-[0.2em] text-gray-700/35 md:block">
-                  Payments
-                </span>
-                <span className="pointer-events-none absolute left-[20%] bottom-[8%] hidden text-[10px] font-bold uppercase tracking-[0.2em] text-gray-700/35 md:block">
-                  Scalable
-                </span>
-                <span className="pointer-events-none absolute right-[41%] bottom-[18%] hidden text-[10px] font-bold uppercase tracking-[0.2em] text-gray-700/35 md:block">
-                  Performance
-                </span>
-                {techItems.map((tech) => (
-                  <div
+              <div className="mt-6 grid gap-3 lg:grid-cols-3">
+                {techItems.slice(0, 3).map((tech) => (
+                  <article
                     key={tech.name}
-                    className={`flex items-center gap-3 text-gray-900 drop-shadow-sm transition-all duration-300 hover:scale-105 hover:text-black md:absolute ${tech.className}`}
+                    className="group h-full rounded-xl border border-yellow-400/25 bg-white/[0.03] p-4 transition-all duration-200 hover:-translate-y-1 hover:border-yellow-300/60 hover:bg-white/[0.06]"
                   >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-yellow-700/20 bg-white/70 text-xs font-black text-gray-900 shadow-[0_8px_18px_rgba(120,75,12,0.12)]">
-                      {tech.name.charAt(0)}
+                    <div className="flex items-center gap-4">
+                      <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl border border-white/30 bg-[#101114] text-2xl font-black shadow-[0_12px_24px_rgba(0,0,0,0.25)] transition-transform duration-200 group-hover:scale-105">
+                        <TechBrandMark brand={tech.brand} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-yellow-300">
+                          {tech.category}
+                        </span>
+                        <span className="mt-1.5 block text-xl font-bold tracking-tight text-[#f5f5f5]">
+                          {tech.name}
+                        </span>
+                        <span className="mt-1 block text-[13px] leading-5 text-white/55">
+                          {tech.description}
+                        </span>
+                      </span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mx-auto mt-3 grid max-w-3xl gap-3 sm:grid-cols-2">
+                {techItems.slice(3).map((tech) => (
+                  <article
+                    key={tech.name}
+                    className="group h-full rounded-xl border border-yellow-400/25 bg-white/[0.03] p-4 transition-all duration-200 hover:-translate-y-1 hover:border-yellow-300/60 hover:bg-white/[0.06]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl border border-white/30 bg-[#101114] text-2xl font-black shadow-[0_12px_24px_rgba(0,0,0,0.25)] transition-transform duration-200 group-hover:scale-105">
+                        <TechBrandMark brand={tech.brand} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-yellow-300">
+                          {tech.category}
+                        </span>
+                        <span className="mt-1.5 block text-xl font-bold tracking-tight text-[#f5f5f5]">
+                          {tech.name}
+                        </span>
+                        <span className="mt-1 block text-[13px] leading-5 text-white/55">
+                          {tech.description}
+                        </span>
+                      </span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-6 grid divide-y divide-white/15 rounded-xl border border-yellow-400/25 bg-white/[0.03] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+                {capabilityItems.map((item) => (
+                  <div key={item.title} className="flex items-center gap-3 px-4 py-4 sm:px-5">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-yellow-400/30 bg-yellow-400/10 text-yellow-300">
+                      <StackGlyph name={item.icon} />
                     </span>
-                    <span>{tech.name}</span>
+                    <span>
+                      <span className="block text-sm font-bold text-yellow-300">
+                        {item.title}
+                      </span>
+                      <span className="mt-0.5 block text-xs leading-5 text-white/55">
+                        {item.description}
+                      </span>
+                    </span>
                   </div>
                 ))}
               </div>
 
-              <p className="mt-6 text-center text-sm font-medium text-gray-700 md:mt-0">
-                Built with a modern startup stack
-              </p>
-              <p className="mt-2 text-center text-[11px] font-semibold uppercase tracking-[0.22em] text-gray-500">
-                Fast Frontend • Secure Payments • Scalable Backend
+              <p className="mt-5 flex items-center justify-center gap-2 text-center text-xs text-white/55">
+                <span className="text-yellow-300"><StackGlyph name="rocket" /></span>
+                Built with performance, security and scalability in mind.
               </p>
             </div>
           </div>

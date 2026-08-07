@@ -142,7 +142,7 @@ function AdminFrame({ section, children, onLogout }: { section: AdminSection; ch
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-[var(--border)] bg-[var(--card)] px-5 py-6 lg:flex lg:flex-col">
         <Link href="/admin" className="flex items-center gap-3 px-2 focus:outline-none focus:ring-4 focus:ring-yellow-300">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--primary)] text-sm font-bold text-[var(--primary-foreground)]">JB</span>
+          <img alt="JobForge" className="h-10 w-10" height={40} src="/brand/jobforge-monogram-dark.svg" width={40} />
           <span className="font-bold tracking-tight">Admin Console</span>
         </Link>
         <p className="mt-10 px-2 text-xs font-bold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">Platform</p>

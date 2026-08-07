@@ -8,7 +8,7 @@ import type {
 } from "@/lib/email/types";
 
 function getEmailFromAddress() {
-  return process.env.EMAIL_FROM_ADDRESS ?? "Job Board <no-reply@example.com>";
+  return process.env.EMAIL_FROM_ADDRESS ?? "JobForge <no-reply@example.com>";
 }
 
 function getEmailReplyTo() {

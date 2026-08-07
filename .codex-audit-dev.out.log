@@ -1,0 +1,38 @@
+
+> job-board@0.1.0 dev
+> next dev --webpack
+
+▲ Next.js 16.2.12 (webpack)
+- Local:         http://localhost:3000
+- Network:       http://10.63.21.45:3000
+- Environments: .env.local
+✓ Ready in 1243ms
+
+○ Compiling / ...
+ GET / 200 in 5.7s (next.js: 4.8s, application-code: 866ms)
+ GET /jobs 200 in 3.7s (next.js: 3.1s, application-code: 663ms)
+ GET /pricing 200 in 2.0s (next.js: 1225ms, application-code: 784ms)
+ GET /login 200 in 1753ms (next.js: 1376ms, application-code: 377ms)
+ GET /signup 200 in 1524ms (next.js: 1278ms, application-code: 246ms)
+ GET /forgot-password 200 in 3.1s (next.js: 2.9s, application-code: 204ms)
+ GET /reset-password 200 in 1358ms (next.js: 1172ms, application-code: 186ms)
+ GET /robots.txt 200 in 1340ms (next.js: 1283ms, application-code: 58ms)
+ GET /sitemap.xml 200 in 1651ms (next.js: 1547ms, application-code: 104ms)
+○ Compiling /_not-found ...
+ GET /does-not-exist 404 in 3.7s (next.js: 3.3s, application-code: 332ms)
+ GET /does-not-exist 404 in 152ms (next.js: 5ms, application-code: 147ms)
+ GET /api/create-order 405 in 2.3s (next.js: 2.2s, application-code: 85ms)
+ POST /api/create-order 401 in 2.5s (next.js: 2.4s, application-code: 87ms)
+ GET /api/verify-payment 405 in 1476ms (next.js: 1425ms, application-code: 51ms)
+ POST /api/verify-payment 401 in 1448ms (next.js: 1393ms, application-code: 55ms)
+ GET /api/billing 401 in 3.0s (next.js: 3.0s, application-code: 21ms)
+ GET /api/recruiter/jobs 401 in 2.6s (next.js: 2.5s, application-code: 59ms)
+ POST /api/admin/moderation 401 in 7.0s (next.js: 7.0s, application-code: 38ms)
+ GET /api/admin/users 401 in 1475ms (next.js: 1437ms, application-code: 38ms)
+○ Compiling /api/razorpay/webhook ...
+ GET /api/razorpay/webhook 405 in 3.4s (next.js: 3.4s, application-code: 33ms)
+ POST /api/email/process 401 in 3.4s (next.js: 3.4s, application-code: 33ms)
+ GET /api/email/process 405 in 11ms (next.js: 2ms, application-code: 9ms)
+ GET /api/jobs/publish-scheduled 405 in 2.1s (next.js: 2.1s, application-code: 31ms)
+ POST /api/jobs/publish-scheduled 401 in 2.1s (next.js: 2.1s, application-code: 31ms)
+ POST /api/razorpay/webhook 503 in 36ms (next.js: 16ms, application-code: 19ms)

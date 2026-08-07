@@ -74,6 +74,32 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.app-sidebar {
+  transform: translateX(-100%);
+}
+
+@media (min-width: 64rem) {
+  .app-sidebar {
+    transform: translateX(0);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .app-shell-content {
+    padding-left: 16rem;
+    transition: padding-left 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: padding-left;
+  }
+
+  html[data-sidebar-collapsed="true"] .app-sidebar {
+    transform: translateX(-100%);
+  }
+
+  html[data-sidebar-collapsed="true"] .app-shell-content {
+    padding-left: 0;
+  }
+}
+
 /* Keep keyboard focus visible on controls that do not define a custom ring. */
 :where(a, button, input, textarea, select):focus-visible {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 38%, transparent);

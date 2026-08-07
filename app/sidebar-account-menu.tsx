@@ -803,7 +803,7 @@ export default function SidebarAccountMenu({
                   Switch Role
                 </p>
                 <p className="mt-1 text-xs leading-5 text-gray-500">
-                  Choose how you want to use Job Board.
+                  Choose how you want to use JobForge.
                 </p>
               </div>
               <button

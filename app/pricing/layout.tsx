@@ -3,7 +3,7 @@ import { createPublicMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPublicMetadata({
   title: "Pricing",
-  description: "Compare Job Board plans for focused hiring and growing teams.",
+  description: "Compare JobForge plans for focused hiring and growing teams.",
   path: "/pricing",
 });
 

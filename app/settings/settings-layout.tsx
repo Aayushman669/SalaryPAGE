@@ -9,7 +9,6 @@ import {
 } from "react";
 import ThemeSelector from "../theme/theme-selector";
 import {
-  getSettingsSectionHref,
   getSettingsSectionsForRole,
   type SettingsSection,
   type SettingsSectionId,
@@ -20,6 +19,7 @@ type SettingsLayoutProps = {
   activeSectionId: SettingsSectionId;
   children: ReactNode;
   onClose: () => void;
+  onSectionChange: (sectionId: SettingsSectionId) => void;
   profile: DashboardProfile;
 };
 
@@ -72,9 +72,11 @@ function AvailabilityBadge({
 
 function SettingsNavigation({
   activeSectionId,
+  onSectionChange,
   role,
 }: {
   activeSectionId: SettingsSectionId;
+  onSectionChange: (sectionId: SettingsSectionId) => void;
   role: DashboardProfile["role_mode"];
 }) {
   const sections = getSettingsSectionsForRole(role);
@@ -89,10 +91,11 @@ function SettingsNavigation({
           const active = section.id === activeSectionId;
 
           return (
-            <Link
+            <button
               key={section.id}
-              href={getSettingsSectionHref(section.id)}
+              type="button"
               aria-current={active ? "page" : undefined}
+              onClick={() => onSectionChange(section.id)}
               className={`flex min-w-[15rem] items-start gap-3 rounded-xl border px-3 py-3 text-left transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-yellow-200 lg:min-w-0 ${
                 active
                   ? "border-yellow-300 bg-yellow-50/70 text-card-foreground"
@@ -110,7 +113,7 @@ function SettingsNavigation({
                   {section.description}
                 </span>
               </span>
-            </Link>
+            </button>
           );
         })}
       </div>
@@ -223,6 +226,7 @@ export function SettingsLayout({
   activeSectionId,
   children,
   onClose,
+  onSectionChange,
   profile,
 }: SettingsLayoutProps) {
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -310,6 +314,7 @@ export function SettingsLayout({
           <div className="mt-8 grid gap-5 lg:grid-cols-[18rem_minmax(0,1fr)]">
             <SettingsNavigation
               activeSectionId={activeSectionId}
+              onSectionChange={onSectionChange}
               role={profile.role_mode}
             />
             <div className="min-w-0">{children}</div>

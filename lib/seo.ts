@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
-export const siteName = "Job Board";
+export const siteName = "JobForge";
 export const siteDescription =
-  "Discover quality jobs from growing companies and manage hiring with a focused, modern job board.";
+  "Discover jobs, connect with recruiters, and build your future with JobForge.";
 export const siteLocale = "en_US";
-export const defaultSocialImage = "/opengraph-image";
+export const defaultSocialImage = "/brand/jobforge-og.png";
 
 function readConfiguredSiteUrl() {
   const configuredValues = [
@@ -190,8 +190,8 @@ export const globalMetadata: Metadata = {
   // disabled until a verified public site URL is configured.
   metadataBase: siteUrl ?? new URL("http://localhost:3000"),
   title: {
-    default: "Find Your Dream Job | Job Board",
-    template: "%s | Job Board",
+    default: "JobForge | Forge Your Future Career",
+    template: "%s | JobForge",
   },
   description: siteDescription,
   applicationName: siteName,
@@ -222,7 +222,7 @@ export const globalMetadata: Metadata = {
       : undefined,
     locale: siteLocale,
     siteName,
-    title: "Find Your Dream Job | Job Board",
+    title: "JobForge | Forge Your Future Career",
     type: "website",
     url: siteUrl ? getCanonicalUrl("/") : undefined,
   },
@@ -230,12 +230,40 @@ export const globalMetadata: Metadata = {
     card: "summary_large_image",
     description: siteDescription,
     images: siteUrl ? [defaultSocialImage] : undefined,
-    title: "Find Your Dream Job | Job Board",
+    title: "JobForge | Forge Your Future Career",
   },
   ...(!isProductionDeployment
     ? { robots: { follow: false, index: false } }
     : {}),
   icons: {
+    apple: [
+      {
+        sizes: "180x180",
+        type: "image/png",
+        url: "/brand/apple-touch-icon.png",
+      },
+    ],
+    icon: [
+      {
+        sizes: "any",
+        url: "/favicon.ico",
+      },
+      {
+        sizes: "192x192",
+        type: "image/png",
+        url: "/brand/jobforge-icon-192.png",
+      },
+      {
+        sizes: "512x512",
+        type: "image/png",
+        url: "/brand/jobforge-icon-512.png",
+      },
+      {
+        sizes: "512x512",
+        type: "image/png",
+        url: "/brand/jobforge-icon-maskable-512.png",
+      },
+    ],
     shortcut: "/favicon.ico",
   },
   manifest: "/manifest.webmanifest",

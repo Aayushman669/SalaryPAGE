@@ -236,7 +236,7 @@ export default function OnboardingPage() {
             What brings you here?
           </h1>
           <p className="mt-3 text-base leading-7 text-gray-500">
-            Choose how you want to use Job Board.
+            Choose how you want to use JobForge.
           </p>
         </div>
 

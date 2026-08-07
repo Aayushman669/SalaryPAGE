@@ -196,7 +196,7 @@ export default function ResetPasswordPage() {
             Reset your password
           </h1>
           <p className="mt-3 text-sm leading-6 text-gray-500">
-            Create a new password for your Job Board account.
+            Create a new password for your JobForge account.
           </p>
         </div>
 

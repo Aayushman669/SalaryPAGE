@@ -3,7 +3,7 @@ import { createPrivateMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPrivateMetadata(
   "Verify Your Email",
-  "Confirm your email address to continue with Job Board.",
+  "Confirm your email address to continue with JobForge.",
 );
 
 export default function VerifyEmailLayout({ children }: { children: React.ReactNode }) {

@@ -109,7 +109,7 @@ export default function RetryPaymentButton({
             setIsRetrying(false);
           },
         },
-        name: "Job Board",
+        name: "JobForge",
         order_id: order.orderId,
         prefill: order.prefill,
         theme: { color: "#020617" },

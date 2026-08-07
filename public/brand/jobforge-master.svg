@@ -1,0 +1,13 @@
+<svg width="420" height="160" viewBox="0 0 420 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">JobForge</title>
+  <desc id="desc">Official JobForge logo with forged JF monogram, wordmark, and tagline.</desc>
+  <rect width="420" height="160" fill="#0A0A0A"/>
+  <path d="M47 36L60 24H128L116 36H47Z" fill="#FACC15"/>
+  <path d="M57 24H73L67 36H51L57 24Z" fill="#FACC15"/>
+  <path d="M86 24H101L95 36H80L86 24Z" fill="#FACC15"/>
+  <path d="M36 119L21 104L44 88L54 47H72L59 102L36 119Z" fill="#FFFFFF"/>
+  <path d="M61 47H119L106 61H76L73 74H101L88 88H70L63 116H45L61 47Z" fill="#FFFFFF"/>
+  <text x="136" y="82" fill="#FFFFFF" font-family="Inter, Geist, Satoshi, Arial, Helvetica, sans-serif" font-size="43" font-weight="700" letter-spacing="-1.2">Job</text>
+  <text x="228" y="82" fill="#FACC15" font-family="Inter, Geist, Satoshi, Arial, Helvetica, sans-serif" font-size="43" font-weight="700" letter-spacing="-1.2">Forge</text>
+  <text x="136" y="116" fill="#FFFFFF" font-family="Inter, Geist, Satoshi, Arial, Helvetica, sans-serif" font-size="18" font-weight="400" letter-spacing="0.1">Forge Your Future Career</text>
+</svg>

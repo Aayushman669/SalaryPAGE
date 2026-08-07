@@ -63,7 +63,7 @@ function formatMemberSince(value: string) {
 
 function shortenDescription(value: string | null) {
   const description = value?.replace(/\s+/g, " ").trim();
-  return description ? description.slice(0, 160) : "Explore this company and its open roles on Job Board.";
+  return description ? description.slice(0, 160) : "Explore this company and its open roles on JobForge.";
 }
 
 function DetailItem({ label, value }: { label: string; value: string | null }) {
@@ -167,7 +167,7 @@ export async function generateMetadata({
   if (!result.data) {
     return createPublicMetadata({
       title: "Company Profile",
-      description: "Explore companies and open roles on Job Board.",
+      description: "Explore companies and open roles on JobForge.",
       noIndex: true,
       path: `/company/${slug}`,
     });
@@ -249,7 +249,7 @@ export default async function PublicCompanyPage({
             ) : (
               <div className="flex h-full items-end bg-gradient-to-br from-yellow-100 via-white to-gray-100 p-6 dark:from-yellow-500/20 dark:via-white/5 dark:to-white/10">
                 <span className="text-sm font-semibold text-gray-500">
-                  {company.industry || "A company on Job Board"}
+                  {company.industry || "A company on JobForge"}
                 </span>
               </div>
             )}

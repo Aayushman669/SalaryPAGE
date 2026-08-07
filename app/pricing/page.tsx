@@ -162,7 +162,7 @@ export default function PricingPage() {
         key: order.keyId,
         amount: order.amount,
         currency: order.currency,
-        name: "Job Board",
+        name: "JobForge",
         description: `${order.planName ?? activePlan?.name ?? "Job"} plan`,
         order_id: order.orderId,
         prefill: {
@@ -217,28 +217,28 @@ export default function PricingPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white px-6 py-10 text-gray-900 dark:bg-[#0f0f10] dark:text-gray-100 sm:px-8 lg:px-12">
+    <main className="min-h-screen bg-white px-6 py-12 text-gray-900 dark:bg-[#0f0f10] dark:text-gray-100 sm:px-8 lg:px-12">
       <StructuredData data={createPricingStructuredData(plans)} />
       <section className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
             Pricing
           </p>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl">
             Simple plans for every hiring stage
           </h1>
-          <p className="mt-4 text-base leading-7 text-gray-500 dark:text-gray-400 sm:text-lg">
-            Choose a plan, complete payment, and start posting quality roles in minutes.
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-gray-500 dark:text-gray-400 sm:text-lg">
+            Choose the hiring capacity that fits your team, from focused job posts to advanced workflows and premium candidate visibility.
           </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm font-medium text-gray-500 dark:text-gray-400">
+          <div className="mt-7 flex flex-wrap justify-center gap-3 text-sm font-medium text-gray-500 dark:text-gray-400">
             <span className="rounded-full border border-gray-200 bg-white px-4 py-2 shadow-[0_10px_24px_rgba(17,24,39,0.04)] dark:border-gray-700 dark:bg-[#171719]">
-              Trusted by startups
+              One-time access
             </span>
             <span className="rounded-full border border-yellow-200 bg-yellow-50 px-4 py-2 text-gray-900 dark:border-yellow-400/40 dark:bg-yellow-400/10 dark:text-gray-100">
-              Secure payments
+              Built for recruiters
             </span>
             <span className="rounded-full border border-gray-200 bg-white px-4 py-2 shadow-[0_10px_24px_rgba(17,24,39,0.04)] dark:border-gray-700 dark:bg-[#171719]">
-              Instant job visibility
+              Lifetime plan access
             </span>
           </div>
         </div>

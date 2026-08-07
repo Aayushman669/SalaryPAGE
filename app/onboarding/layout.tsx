@@ -3,7 +3,7 @@ import { createPrivateMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPrivateMetadata(
   "Account Onboarding",
-  "Complete your private Job Board account setup.",
+  "Complete your private JobForge account setup.",
 );
 
 export default function OnboardingLayout({ children }: { children: React.ReactNode }) {

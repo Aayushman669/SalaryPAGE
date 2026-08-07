@@ -47,20 +47,6 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
           </p>
         </div>
 
-        <div className="mt-10 flex w-full max-w-5xl flex-col gap-4 rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h2 className="text-base font-bold text-gray-900">
-              Published jobs
-            </h2>
-            <p className="mt-1 text-sm text-gray-500">
-              Search and filter roles that are live for candidates.
-            </p>
-          </div>
-          <span className="rounded-full border border-yellow-200 bg-yellow-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-gray-900">
-            {result.totalCount} live
-          </span>
-        </div>
-
         <JobsList filters={filters} result={result} />
       </section>
     </main>

@@ -3,7 +3,7 @@ import { createPrivateMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPrivateMetadata(
   "Signing You In",
-  "Completing secure Job Board authentication.",
+  "Completing secure JobForge authentication.",
 );
 
 export default function AuthCallbackLayout({ children }: { children: React.ReactNode }) {

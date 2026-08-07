@@ -4,77 +4,77 @@ export type PricingFeatureGroup = {
 };
 
 const starterFeatures = [
-  "1 Active Job Post",
-  "Candidate Applications",
-  "Resume Upload Support",
+  "2 Active Job Posts",
+  "Up to 100 Applications",
+  "Resume Downloads",
   "Applicant Management",
-  "Application Status Workflow",
+  "Application Status Tracking",
   "Recruiter Dashboard",
-  "My Applications Dashboard",
-  "Billing Dashboard",
-  "Secure Razorpay Checkout",
-  "Instant Plan Activation",
-  "Mobile Responsive Dashboard",
   "Email Notifications",
+  "Mobile Dashboard",
   "Lifetime Access",
 ] as const;
 
 const growthFeatures = [
   "5 Active Job Posts",
-  "Featured Job Posts (Limited)",
+  "Unlimited Applications",
+  "Featured Job Posts",
   "Priority Job Listing",
   "Advanced Recruiter Dashboard",
-  "Usage Analytics",
   "Hiring Activity Timeline",
+  "Candidate Analytics",
   "Priority Email Support",
   "Better Usage Limits",
 ] as const;
 
 const proFeatures = [
-  "Unlimited Active Job Posts",
-  "Unlimited Featured Job Posts",
-  "Premium Priority Support",
+  "12 Active Job Posts",
+  "Unlimited Resume Downloads",
+  "Company Branding",
+  "Team Collaboration",
+  "Priority Candidate Visibility",
+  "Premium Support",
+  "Advanced Hiring Workflow",
+  "Future AI Features",
+  "Early Access to New Features",
 ] as const;
 
 export const plans = [
   {
     id: "starter",
     name: "Starter",
-    price: 49,
-    billingLabel: "One-Time",
+    price: 79,
+    billingLabel: "(One-Time)",
     badge: null,
     ctaLabel: "Get Starter",
     description:
-      "Launch your hiring journey with everything needed to post jobs and manage applicants.",
+      "Launch a focused hiring workflow with job posts, applications, and essential recruiter tools.",
     featureGroups: [{ items: starterFeatures }],
   },
   {
     id: "growth",
     name: "Growth",
-    price: 99,
-    billingLabel: "One-Time",
-    badge: "MOST POPULAR",
+    price: 159,
+    billingLabel: "(One-Time)",
+    badge: "Most Popular",
     ctaLabel: "Choose Growth",
     description:
-      "Scale your recruitment with more job slots and advanced hiring tools.",
+      "Expand hiring capacity with stronger visibility, analytics, and priority support.",
     featureGroups: [
-      { items: starterFeatures },
-      { title: "Additional Growth Features", items: growthFeatures },
+      { title: "Everything in Starter, plus:", items: growthFeatures },
     ],
   },
   {
     id: "pro",
     name: "Pro",
-    price: 299,
-    billingLabel: "One-Time",
-    badge: "BEST VALUE",
+    price: 399,
+    billingLabel: "(One-Time)",
+    badge: "Enterprise Ready",
     ctaLabel: "Go Pro",
     description:
-      "Built for businesses hiring at scale with maximum flexibility.",
+      "Equip larger teams with branding, collaboration, premium workflows, and future-ready features.",
     featureGroups: [
-      { items: starterFeatures },
-      { title: "Additional Growth Features", items: growthFeatures },
-      { title: "Additional Pro Features", items: proFeatures },
+      { title: "Everything in Growth, plus:", items: proFeatures },
     ],
   },
 ] as const;
