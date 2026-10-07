@@ -71,12 +71,12 @@ export default function NotificationPage() {
   });
 
   if (isAuthLoading || (isLoggedIn && !userId && !identityError)) {
-    return <main className="min-h-screen bg-background px-6 py-10 sm:px-8 lg:px-12"><div className="mx-auto max-w-4xl"><NotificationListSkeleton /></div></main>;
+    return <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 sm:px-8 lg:px-12"><div className="mx-auto max-w-4xl"><NotificationListSkeleton /></div></main>;
   }
 
   if (!isLoggedIn || identityError) {
     return (
-      <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 lg:px-12">
+      <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 lg:px-12">
         <section className="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-7">
           <h1 className="text-2xl font-bold">Notifications unavailable</h1>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">{identityError ?? "Please sign in to view your notifications."}</p>
@@ -87,7 +87,7 @@ export default function NotificationPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
       <section className="mx-auto w-full max-w-4xl">
         <div className="flex flex-col gap-5 border-b border-border pb-7 sm:flex-row sm:items-end sm:justify-between">
           <div>

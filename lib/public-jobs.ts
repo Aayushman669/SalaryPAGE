@@ -15,6 +15,7 @@ import {
   workplaceTypes,
 } from "@/lib/jobs";
 import { cache } from "react";
+import { isNetworkError } from "@/lib/auth-errors";
 import { supabase } from "@/lib/supabase";
 import { clampPositivePage, safeHttpUrl, safePublicSlug } from "@/lib/input-safety";
 
@@ -521,7 +522,7 @@ export async function fetchPublicJobs(
     const { count, data, error } = await query.range(from, to);
 
     if (error) {
-      if (process.env.NODE_ENV === "development") {
+      if (process.env.NODE_ENV === "development" && !isNetworkError(error)) {
         console.error("[public-jobs] list fetch failed", error);
       }
 
@@ -546,7 +547,7 @@ export async function fetchPublicJobs(
       totalCount,
     };
   } catch (error) {
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV === "development" && !isNetworkError(error)) {
       console.error("[public-jobs] list fetch network failure", error);
     }
 

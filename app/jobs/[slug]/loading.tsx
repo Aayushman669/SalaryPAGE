@@ -2,7 +2,7 @@ export default function Loading() {
   return (
     <main
       aria-busy="true"
-      className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12"
+      className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12"
       role="status"
     >
       <article className="mx-auto w-full max-w-6xl">

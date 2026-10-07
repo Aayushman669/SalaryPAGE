@@ -72,7 +72,7 @@ function LoadingState() {
     <main
       aria-busy="true"
       aria-label="Loading billing"
-      className="min-h-screen bg-white px-6 py-10 text-gray-900 sm:px-8 sm:py-14 lg:px-12"
+      className="ui-consistency-surface min-h-screen bg-white px-6 py-10 text-gray-900 sm:px-8 sm:py-14 lg:px-12"
       role="status"
     >
       <section className="mx-auto max-w-6xl animate-pulse">
@@ -87,7 +87,7 @@ function LoadingState() {
 
 function ErrorState({ message, onRetry }: { message: string; onRetry: () => void }) {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white px-6 py-10 text-gray-900 lg:px-12">
+    <main className="ui-consistency-surface flex min-h-screen items-center justify-center bg-white px-6 py-10 text-gray-900 lg:px-12">
       <section className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-[0_20px_60px_rgba(17,24,39,0.08)]">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-gray-500">
           Billing
@@ -503,7 +503,7 @@ export default function BillingPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white px-6 py-10 text-gray-900 sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-white px-6 py-10 text-gray-900 sm:px-8 sm:py-14 lg:px-12">
       <section className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>

@@ -85,7 +85,7 @@ export default function JobsPageActions() {
       {profile?.role_mode === "job_seeker" ? (
         <Link
           href="/saved-jobs"
-          className="hidden h-10 items-center justify-center rounded-xl border border-gray-200 bg-white px-4 text-sm font-semibold text-gray-900 transition-all duration-200 hover:border-yellow-300 hover:bg-yellow-50/60 focus:outline-none focus:ring-4 focus:ring-yellow-200 sm:inline-flex"
+          className="jobs-page-action hidden sm:inline-flex"
         >
           Saved Jobs
         </Link>
@@ -93,14 +93,14 @@ export default function JobsPageActions() {
       {canPostJob ? (
         <Link
           href="/post-job"
-          className="hidden h-10 items-center justify-center rounded-xl bg-black px-4 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_0_4px_rgba(234,179,8,0.16),0_12px_28px_rgba(17,24,39,0.16)] focus:outline-none focus:ring-4 focus:ring-yellow-200 sm:inline-flex"
+          className="jobs-page-action jobs-page-action-solid hidden sm:inline-flex"
         >
           Post a Job
         </Link>
       ) : showPricing ? (
         <Link
           href="/pricing"
-          className="hidden h-10 items-center justify-center rounded-xl border border-gray-200 bg-white px-4 text-sm font-semibold text-gray-900 transition-all duration-200 hover:border-yellow-300 hover:bg-yellow-50/60 focus:outline-none focus:ring-4 focus:ring-yellow-200 sm:inline-flex"
+          className="jobs-page-action jobs-page-action-upgrade hidden sm:inline-flex"
         >
           Upgrade
         </Link>
@@ -120,7 +120,7 @@ export function JobsPostJobCta() {
     return (
       <Link
         href="/post-job"
-        className="mt-10 inline-flex h-11 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_0_4px_rgba(234,179,8,0.16),0_14px_30px_rgba(17,24,39,0.16)] focus:outline-none focus:ring-4 focus:ring-yellow-200 sm:hidden"
+        className="jobs-page-action jobs-page-action-solid mt-10 inline-flex sm:hidden"
       >
         Post a Job
       </Link>
@@ -131,7 +131,7 @@ export function JobsPostJobCta() {
     return (
       <Link
         href="/pricing"
-        className="mt-10 inline-flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white px-5 text-sm font-semibold text-gray-900 transition-all duration-200 hover:border-yellow-300 hover:bg-yellow-50/60 focus:outline-none focus:ring-4 focus:ring-yellow-200 sm:hidden"
+        className="jobs-page-action mt-10 inline-flex sm:hidden"
       >
         Upgrade to Post
       </Link>

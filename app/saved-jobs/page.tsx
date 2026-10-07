@@ -23,10 +23,15 @@ import {
 } from "@/lib/saved-jobs";
 import { supabase } from "@/lib/supabase";
 import SaveJobButton from "@/app/jobs/save-job-button";
+import { BriefcaseIcon, SearchIcon } from "@/app/jobs/jobs-illustrations";
 import {
   savedJobChangedEvent,
   SavedJobsProvider,
 } from "@/app/jobs/saved-jobs-state";
+import {
+  SavedJobsDecorations,
+  SavedJobsEmptyIllustration,
+} from "./saved-jobs-illustrations";
 type SavedJobsToolbarSort = SavedJobsSort | "company";
 
 const initialFilters: SavedJobsFilters = {
@@ -57,15 +62,17 @@ function formatDate(value: string | null) {
 
 function SavedJobsLoading() {
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
-      <section className="mx-auto w-full max-w-6xl">
-        <div className="h-5 w-32 animate-pulse rounded-full bg-gray-100" />
-        <div className="mt-5 h-12 w-80 max-w-full animate-pulse rounded-xl bg-gray-100" />
-        <div className="mt-10 grid gap-4">
+    <main className="saved-jobs-page">
+      <SavedJobsDecorations />
+      <section className="saved-jobs-content">
+        <div className="saved-jobs-loading-eyebrow animate-pulse" />
+        <div className="saved-jobs-loading-heading animate-pulse" />
+        <div className="saved-jobs-loading-filter animate-pulse" />
+        <div className="mt-7 grid gap-4">
           {[0, 1, 2].map((item) => (
             <div
               aria-hidden="true"
-              className="h-48 animate-pulse rounded-2xl border border-gray-200 bg-white"
+              className="saved-job-card saved-job-card-loading animate-pulse"
               key={item}
             />
           ))}
@@ -77,21 +84,22 @@ function SavedJobsLoading() {
 
 function SavedJobsAccessDenied({ recruiter = false }: { recruiter?: boolean }) {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-6 py-10 text-foreground">
-      <section className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-[0_18px_45px_rgba(17,24,39,0.08)]">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gray-500">
+    <main className="saved-jobs-page saved-jobs-page-centered">
+      <SavedJobsDecorations />
+      <section className="saved-jobs-access-card">
+        <p className="saved-jobs-eyebrow">
           Saved Jobs
         </p>
-        <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900">
+        <h1 className="mt-4 text-2xl font-bold tracking-tight text-[#0B1028]">
           {recruiter ? "Saved Jobs are for Job Seekers" : "Saved Jobs unavailable"}
         </h1>
-        <p className="mt-3 text-sm leading-6 text-gray-500">
+        <p className="mt-3 text-sm leading-6 text-[#65708E]">
           {recruiter
             ? "Switch to a Job Seeker account to save and track roles."
             : "Complete onboarding before viewing saved jobs."}
         </p>
         <Link
-          className="mt-7 inline-flex h-11 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+          className="saved-jobs-dark-button mt-7 inline-flex h-11 items-center justify-center rounded-xl px-5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-[#DDD6FE]"
           href="/dashboard"
         >
           Go to Dashboard
@@ -103,17 +111,18 @@ function SavedJobsAccessDenied({ recruiter = false }: { recruiter?: boolean }) {
 
 function SavedJobsEmpty({ filtered }: { filtered: boolean }) {
   return (
-    <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-[0_18px_45px_rgba(17,24,39,0.08)]">
-      <h2 className="text-lg font-bold text-gray-900">
+    <div className="saved-jobs-state-card saved-jobs-empty-state">
+      <SavedJobsEmptyIllustration />
+      <h2 className="text-2xl font-bold text-[#0B1028]">
         {filtered ? "No matching saved jobs" : "You haven't saved any jobs yet."}
       </h2>
-      <p className="mt-3 text-sm leading-6 text-gray-500">
+      <p className="mt-3 text-sm leading-6 text-[#65708E]">
         {filtered
           ? "Try adjusting your search."
           : "Save interesting roles while you browse and return when you are ready."}
       </p>
       <Link
-        className="mt-6 inline-flex h-11 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+        className="saved-jobs-dark-button mt-6 inline-flex h-11 items-center justify-center rounded-xl px-5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-[#DDD6FE]"
         href={filtered ? "/saved-jobs" : "/jobs"}
       >
         {filtered ? "Clear Search" : "Browse Jobs"}
@@ -127,26 +136,26 @@ function SavedJobCard({ job }: { job: SavedJob }) {
 
   return (
     <article
-      className={`rounded-2xl border p-5 shadow-[0_18px_50px_rgba(17,24,39,0.08)] sm:p-6 ${
-        available ? "border-gray-200 bg-white" : "border-gray-200 bg-gray-50"
+      className={`saved-job-card ${
+        available ? "saved-job-card-available" : "saved-job-card-unavailable"
       }`}
     >
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex min-w-0 items-start gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gray-900 text-base font-bold text-white">
+            <div className="saved-job-company-avatar">
               {job.companyName.trim().charAt(0).toUpperCase() || "J"}
             </div>
             <div className="min-w-0">
               {available && job.featured ? (
-                <span className="rounded-full bg-yellow-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-gray-900 ring-1 ring-yellow-200">
+                <span className="saved-job-featured">
                   Featured
                 </span>
               ) : null}
-              <h2 className="mt-3 break-words text-xl font-bold tracking-tight text-gray-900">
+              <h2 className="saved-job-title">
                 {available && job.jobSlug ? (
                   <Link
-                    className="transition-colors duration-200 hover:text-yellow-700 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+                    className="transition-colors duration-200 hover:text-[#5C39D6] focus:outline-none focus:ring-4 focus:ring-[#DDD6FE]"
                     href={`/jobs/${job.jobSlug}`}
                   >
                     {job.jobTitle}
@@ -155,10 +164,10 @@ function SavedJobCard({ job }: { job: SavedJob }) {
                   job.jobTitle
                 )}
               </h2>
-              <p className="mt-2 break-words text-sm font-semibold text-gray-600">
+              <p className="saved-job-company">
                 {job.companyName}
               </p>
-              <p className="mt-1 text-xs font-medium text-gray-400">
+              <p className="saved-job-date">
                 Saved {formatDate(job.savedAt)}
               </p>
             </div>
@@ -170,12 +179,12 @@ function SavedJobCard({ job }: { job: SavedJob }) {
               jobSlug={job.jobSlug ?? ""}
               jobTitle={job.jobTitle}
             />
-            <div className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-left sm:min-w-48">
-              <p className="text-sm font-bold tracking-tight text-gray-900">
+            <div className="saved-job-salary">
+              <p>
                 {available ? formatSalary(job.salary) : "Unavailable"}
               </p>
               {available && job.hasApplied ? (
-                <p className="mt-1 text-xs font-semibold text-yellow-700">
+                <p className="saved-job-applied">
                   Already applied
                 </p>
               ) : null}
@@ -184,7 +193,7 @@ function SavedJobCard({ job }: { job: SavedJob }) {
         </div>
 
         {available ? (
-          <div className="flex flex-wrap gap-2 border-t border-gray-100 pt-5">
+          <div className="saved-job-tags">
             {[
               job.location,
               job.employmentType,
@@ -194,7 +203,7 @@ function SavedJobCard({ job }: { job: SavedJob }) {
               .filter(Boolean)
               .map((detail) => (
                 <span
-                  className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-500"
+                  className="saved-job-tag"
                   key={detail}
                 >
                   {detail}
@@ -202,15 +211,15 @@ function SavedJobCard({ job }: { job: SavedJob }) {
               ))}
           </div>
         ) : (
-          <p className="border-t border-gray-200 pt-5 text-sm font-medium text-gray-500">
+          <p className="saved-job-unavailable-copy">
             This job is no longer available. You can remove it from Saved Jobs.
           </p>
         )}
 
-        <div className="flex flex-wrap items-center justify-end gap-3 border-t border-gray-100 pt-5">
+        <div className="saved-job-actions">
           {available && job.jobSlug ? (
             <Link
-              className="inline-flex h-10 items-center justify-center rounded-xl border border-gray-200 bg-white px-4 text-sm font-semibold text-gray-900 transition-all duration-200 hover:border-yellow-300 hover:bg-yellow-50/60 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+              className="saved-job-secondary-button"
               href={`/jobs/${job.jobSlug}`}
             >
               View Job
@@ -218,7 +227,7 @@ function SavedJobCard({ job }: { job: SavedJob }) {
           ) : null}
           {available && job.jobSlug && !job.hasApplied ? (
             <Link
-              className="inline-flex h-10 items-center justify-center rounded-xl bg-black px-4 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+              className="saved-job-primary-button"
               href={`/jobs/${job.jobSlug}`}
             >
               Apply Now
@@ -226,7 +235,7 @@ function SavedJobCard({ job }: { job: SavedJob }) {
           ) : null}
           {available && job.hasApplied ? (
             <Link
-              className="inline-flex h-10 items-center justify-center rounded-xl border border-yellow-200 bg-yellow-50 px-4 text-sm font-semibold text-gray-900 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+              className="saved-job-applied-button"
               href="/applications"
             >
               View Application
@@ -402,50 +411,53 @@ export default function SavedJobsPage() {
   const hasFilters = Boolean(filters.search.trim());
 
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
-      <section className="mx-auto w-full max-w-6xl">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gray-500">
+    <main className="saved-jobs-page">
+      <SavedJobsDecorations />
+      <section className="saved-jobs-content">
+        <header className="saved-jobs-hero">
+          <div className="saved-jobs-hero-copy">
+            <p className="saved-jobs-eyebrow">
               Job Seeker Dashboard
             </p>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            <h1>
               Saved Jobs
             </h1>
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-gray-500">
+            <p>
               Keep interesting opportunities in one place and apply when you are ready.
             </p>
           </div>
           <Link
-            className="inline-flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white px-5 text-sm font-semibold text-gray-900 transition-all duration-200 hover:border-yellow-300 hover:bg-yellow-50/60 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+            className="saved-jobs-browse-button"
             href="/jobs"
           >
+            <BriefcaseIcon size={18} />
             Browse Jobs
           </Link>
-        </div>
+        </header>
 
-        <div className="mt-10 rounded-2xl border border-gray-200 bg-white p-5 shadow-[0_18px_50px_rgba(17,24,39,0.08)] sm:p-6">
-          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+        <section className="saved-jobs-filter-panel" aria-label="Saved Jobs filters">
+          <div className="saved-jobs-filter-grid">
             <label className="grid gap-2">
-              <span className="text-xs font-bold uppercase tracking-[0.14em] text-gray-500">
+              <span className="saved-jobs-field-label">
                 Search
               </span>
-              <input
-                aria-label="Search saved jobs by job title or company"
-                className="h-11 rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-gray-900 outline-none transition-colors duration-200 placeholder:text-gray-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-                onChange={(event) => setSearchInput(event.target.value)}
-                placeholder="Search by job title or company..."
-                type="search"
-                value={searchInput}
-              />
+              <span className="saved-jobs-search-field">
+                <SearchIcon size={17} />
+                <input
+                  aria-label="Search saved jobs by job title or company"
+                  onChange={(event) => setSearchInput(event.target.value)}
+                  placeholder="Search by job title or company..."
+                  type="search"
+                  value={searchInput}
+                />
+              </span>
             </label>
-            <label className="grid gap-2 lg:min-w-52">
-              <span className="text-xs font-bold uppercase tracking-[0.14em] text-gray-500">
+            <label className="saved-jobs-sort-field">
+              <span className="saved-jobs-field-label">
                 Sort
               </span>
               <select
                 aria-label="Sort saved jobs"
-                className="h-11 rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-gray-900 outline-none focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
                 onChange={(event) =>
                   changeSort(event.target.value as SavedJobsToolbarSort)
                 }
@@ -457,16 +469,17 @@ export default function SavedJobsPage() {
               </select>
             </label>
           </div>
-        </div>
+        </section>
 
         {error ? (
-          <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-[0_18px_45px_rgba(17,24,39,0.08)]">
-            <h2 className="text-lg font-bold text-gray-900">Saved Jobs unavailable</h2>
-            <p className="mt-3 text-sm leading-6 text-gray-500">
+          <div className="saved-jobs-state-card saved-jobs-error-state">
+            <SavedJobsEmptyIllustration />
+            <h2 className="text-2xl font-bold text-[#0B1028]">Saved Jobs unavailable</h2>
+            <p className="mt-3 text-[15px] leading-6 text-[#65708E]">
               {error}
             </p>
             <button
-              className="mt-6 inline-flex h-11 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white focus:outline-none focus:ring-4 focus:ring-yellow-200"
+              className="saved-jobs-dark-button mt-6 inline-flex h-11 items-center justify-center rounded-xl px-5 text-sm font-semibold text-white focus:outline-none focus:ring-4 focus:ring-[#DDD6FE]"
               onClick={() => void loadJobs()}
               type="button"
             >

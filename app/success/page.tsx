@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function SuccessPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white px-6 py-16 text-gray-900 sm:px-8 lg:px-12">
+    <main className="ui-consistency-surface flex min-h-screen items-center justify-center bg-white px-6 py-16 text-gray-900 sm:px-8 lg:px-12">
       <section className="w-full max-w-xl rounded-xl border border-gray-200 bg-white p-8 text-center shadow-[0_24px_70px_rgba(17,24,39,0.10)] sm:p-10">
         <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 text-lg font-black text-gray-900">
           OK

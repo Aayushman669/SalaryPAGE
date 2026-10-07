@@ -31,13 +31,13 @@ import { showErrorToast, showSuccessToast } from "@/lib/toast";
 import CompanySettingsPanel from "./company-settings-panel";
 
 const inputClassName =
-  "h-11 w-full rounded-xl border border-border bg-card px-3 text-sm font-medium text-card-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-accent focus:ring-4 focus:ring-yellow-200";
+  "h-11 w-full rounded-xl border border-[#e4e7f0] bg-white px-3.5 text-sm font-medium text-[#0b1430] outline-none transition-colors duration-200 placeholder:text-[#8a93b0] focus:border-[#a99aff] focus:ring-4 focus:ring-[#635bff]/10 disabled:bg-[#f8f9fc] disabled:text-[#5f6b85]";
 const textareaClassName =
-  "min-h-28 w-full resize-y rounded-xl border border-border bg-card px-3 py-3 text-sm font-medium leading-6 text-card-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-accent focus:ring-4 focus:ring-yellow-200";
+  "min-h-28 w-full resize-y rounded-xl border border-[#e4e7f0] bg-white px-3.5 py-3 text-sm font-medium leading-6 text-[#0b1430] outline-none transition-colors duration-200 placeholder:text-[#8a93b0] focus:border-[#a99aff] focus:ring-4 focus:ring-[#635bff]/10";
 
 function FieldError({ message }: { message?: string }) {
   return message ? (
-    <p className="text-xs font-medium text-destructive" role="alert">
+    <p className="text-xs font-medium text-red-600" role="alert">
       {message}
     </p>
   ) : null;
@@ -45,7 +45,7 @@ function FieldError({ message }: { message?: string }) {
 
 function FieldLabel({ children, htmlFor }: { children: string; htmlFor: string }) {
   return (
-    <label className="text-sm font-semibold text-card-foreground" htmlFor={htmlFor}>
+    <label className="text-sm font-semibold text-[#0b1430]" htmlFor={htmlFor}>
       {children}
     </label>
   );
@@ -63,11 +63,11 @@ function PreferenceToggle({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="inline-flex min-h-10 items-center gap-2 rounded-lg px-2 text-xs font-semibold text-card-foreground focus-within:ring-4 focus-within:ring-yellow-200">
+    <label className="inline-flex min-h-10 items-center gap-2 rounded-lg px-2 text-xs font-semibold text-[#0b1430] focus-within:ring-4 focus-within:ring-[#635bff]/10">
       <input
         aria-label={label}
         checked={checked}
-        className="h-4 w-4 rounded border-border text-accent focus:ring-yellow-300 disabled:cursor-not-allowed disabled:opacity-60"
+        className="h-4 w-4 rounded border-[#d8dcea] text-[#635bff] focus:ring-[#635bff]/20 disabled:cursor-not-allowed disabled:opacity-60"
         disabled={disabled}
         onChange={(event) => onChange(event.target.checked)}
         type="checkbox"
@@ -87,11 +87,11 @@ function PreferenceRow({
   label: string;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-muted p-4">
+    <div className="border-b border-[#edf0f6] py-4 last:border-b-0">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
-          <p className="text-sm font-bold text-card-foreground">{label}</p>
-          <p className="mt-1 text-sm leading-6 text-muted-foreground">
+          <p className="text-sm font-bold text-[#0b1430]">{label}</p>
+          <p className="mt-1 text-sm leading-6 text-[#5f6b85]">
             {description}
           </p>
         </div>
@@ -274,15 +274,15 @@ export function RecruiterProfileSettingsPanel({
   return (
     <div className="grid gap-5">
       <form className="grid gap-5" onSubmit={saveProfile}>
-        <div className="flex flex-col gap-4 rounded-xl border border-border bg-muted p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] p-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h3 className="text-base font-bold text-card-foreground">Personal profile</h3>
-            <p className="mt-1 max-w-2xl text-sm leading-6 text-muted-foreground">
+            <h3 className="text-base font-bold text-[#0b1430]">Personal profile</h3>
+            <p className="mt-1 max-w-2xl text-sm leading-6 text-[#5f6b85]">
               Keep your recruiter identity current across the hiring workspace.
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-border bg-card text-lg font-black text-muted-foreground">
+            <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-[#e4e7f0] bg-white text-lg font-black text-[#5f6b85] shadow-[0_10px_24px_rgba(13,23,51,0.08)]">
               {visibleAvatar ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img alt="Recruiter profile" className="h-full w-full object-cover" decoding="async" loading="lazy" src={visibleAvatar} />
@@ -291,7 +291,7 @@ export function RecruiterProfileSettingsPanel({
               )}
             </div>
             <div className="flex flex-wrap gap-2">
-              <label className="inline-flex h-10 cursor-pointer items-center justify-center rounded-xl border border-border bg-card px-3 text-sm font-semibold text-card-foreground transition-colors hover:border-accent focus-within:ring-4 focus-within:ring-yellow-200">
+              <label className="inline-flex h-10 cursor-pointer items-center justify-center rounded-xl border border-[#e4e7f0] bg-white px-3 text-sm font-semibold text-[#0b1430] transition-colors hover:border-[#cfc8ff] hover:bg-[#f7f5ff] focus-within:ring-4 focus-within:ring-[#635bff]/10">
                 Choose photo
                 <input
                   accept="image/jpeg,image/png,image/webp"
@@ -303,7 +303,7 @@ export function RecruiterProfileSettingsPanel({
               </label>
               {form.recruiterAvatarPath || avatarFile ? (
                 <button
-                  className="inline-flex h-10 items-center justify-center rounded-xl border border-border px-3 text-sm font-semibold text-card-foreground transition-colors hover:border-red-300 hover:text-destructive focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:opacity-60"
+                  className="inline-flex h-10 items-center justify-center rounded-xl border border-[#e4e7f0] px-3 text-sm font-semibold text-[#0b1430] transition-colors hover:border-red-300 hover:text-red-600 focus:outline-none focus:ring-4 focus:ring-[#635bff]/10 disabled:opacity-60"
                   disabled={isSaving}
                   onClick={removeAvatar}
                   type="button"
@@ -317,7 +317,7 @@ export function RecruiterProfileSettingsPanel({
 
         {errors.avatar ? <FieldError message={errors.avatar} /> : null}
         {errorMessage ? (
-          <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700 dark:border-red-300/20 dark:bg-red-300/10 dark:text-red-200" role="alert">
+          <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700" role="alert">
             {errorMessage}
           </p>
         ) : null}
@@ -360,22 +360,22 @@ export function RecruiterProfileSettingsPanel({
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-end gap-3 border-t border-border pt-4">
-          <button className="inline-flex h-11 items-center justify-center rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:opacity-60" disabled={isSaving} type="submit">
+        <div className="flex flex-wrap justify-end gap-3 border-t border-[#edf0f6] pt-4">
+          <button className="inline-flex h-11 items-center justify-center rounded-xl bg-[#10162f] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#1d2749] focus:outline-none focus:ring-4 focus:ring-[#635bff]/10 disabled:cursor-not-allowed disabled:opacity-60" disabled={isSaving} type="submit">
             {isSaving ? "Saving profile..." : "Save profile"}
           </button>
         </div>
       </form>
 
-      <div className="rounded-xl border border-border bg-muted p-5">
+      <div className="rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] p-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h3 className="text-base font-bold text-card-foreground">Company profile</h3>
-            <p className="mt-1 text-sm leading-6 text-muted-foreground">
+            <h3 className="text-base font-bold text-[#0b1430]">Company profile</h3>
+            <p className="mt-1 text-sm leading-6 text-[#5f6b85]">
               Company branding and public company details remain managed here.
             </p>
           </div>
-          <Link className="inline-flex h-10 items-center justify-center rounded-xl border border-border bg-card px-4 text-sm font-semibold text-card-foreground focus:outline-none focus:ring-4 focus:ring-yellow-200" href="#company-profile-editor">
+          <Link className="inline-flex h-10 items-center justify-center rounded-xl border border-[#e4e7f0] bg-white px-4 text-sm font-semibold text-[#0b1430] transition-colors hover:border-[#cfc8ff] hover:bg-[#f7f5ff] focus:outline-none focus:ring-4 focus:ring-[#635bff]/10" href="#company-profile-editor">
             Jump to company details
           </Link>
         </div>
@@ -437,25 +437,25 @@ export function RecruiterAccountSettingsPanel({
 
   return (
     <div className="grid gap-5">
-      <form className="grid gap-4 rounded-xl border border-border bg-muted p-5" onSubmit={updateEmail}>
+      <form className="grid gap-4 rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] p-5" onSubmit={updateEmail}>
         <div>
-          <h3 className="text-base font-bold text-card-foreground">Account email</h3>
-          <p className="mt-1 text-sm leading-6 text-muted-foreground">Email changes use Supabase Auth confirmation. Your current session remains protected.</p>
+          <h3 className="text-base font-bold text-[#0b1430]">Account email</h3>
+          <p className="mt-1 text-sm leading-6 text-[#5f6b85]">Email changes use Supabase Auth confirmation. Your current session remains protected.</p>
         </div>
         <div className="grid gap-2">
           <FieldLabel htmlFor="recruiter-email">Sign-in email</FieldLabel>
           <input autoComplete="email" className={inputClassName} id="recruiter-email" inputMode="email" onChange={(event) => setEmail(event.target.value)} type="email" value={email} />
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="text-sm text-muted-foreground">Current status: {isVerified ? "Verified" : "Verification required"}.</p>
-          <button className="inline-flex h-11 items-center justify-center rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:opacity-60" disabled={isSaving} type="submit">{isSaving ? "Sending confirmation..." : "Change email"}</button>
+          <p className="text-sm text-[#5f6b85]">Current status: {isVerified ? "Verified" : "Verification required"}.</p>
+          <button className="inline-flex h-11 items-center justify-center rounded-xl bg-[#10162f] px-5 text-sm font-semibold text-white focus:outline-none focus:ring-4 focus:ring-[#635bff]/10 disabled:cursor-not-allowed disabled:opacity-60" disabled={isSaving} type="submit">{isSaving ? "Sending confirmation..." : "Change email"}</button>
         </div>
       </form>
-      <div className="rounded-xl border border-border bg-muted p-5">
-        <h3 className="text-base font-bold text-card-foreground">Account record</h3>
+      <div className="rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] p-5">
+        <h3 className="text-base font-bold text-[#0b1430]">Account record</h3>
         <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
-          <div><dt className="text-muted-foreground">Account created</dt><dd className="mt-1 font-semibold text-card-foreground">{formatAccountDate(createdAt)}</dd></div>
-          <div><dt className="text-muted-foreground">Role</dt><dd className="mt-1 font-semibold text-card-foreground">Recruiter</dd></div>
+          <div><dt className="text-[#5f6b85]">Account created</dt><dd className="mt-1 font-semibold text-[#0b1430]">{formatAccountDate(createdAt)}</dd></div>
+          <div><dt className="text-[#5f6b85]">Role</dt><dd className="mt-1 font-semibold text-[#0b1430]">Recruiter</dd></div>
         </dl>
       </div>
     </div>
@@ -511,28 +511,28 @@ export function RecruiterSecuritySettingsPanel({
 
   return (
     <div className="grid gap-5">
-      <div className="rounded-xl border border-border bg-muted p-5">
-        <h3 className="text-base font-bold text-card-foreground">Security information</h3>
+      <div className="rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] p-5">
+        <h3 className="text-base font-bold text-[#0b1430]">Security information</h3>
         <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
-          <div><dt className="text-muted-foreground">Sign-in email</dt><dd className="mt-1 break-all font-semibold text-card-foreground">{profile.email || "Email unavailable"}</dd></div>
-          <div><dt className="text-muted-foreground">Email verification</dt><dd className="mt-1 font-semibold text-card-foreground">{isVerified ? "Verified" : "Not verified"}</dd></div>
-          <div><dt className="text-muted-foreground">Last sign-in</dt><dd className="mt-1 font-semibold text-card-foreground">{formatAccountDate(lastSignIn, true)}</dd></div>
+          <div><dt className="text-[#5f6b85]">Sign-in email</dt><dd className="mt-1 break-all font-semibold text-[#0b1430]">{profile.email || "Email unavailable"}</dd></div>
+          <div><dt className="text-[#5f6b85]">Email verification</dt><dd className="mt-1 font-semibold text-[#0b1430]">{isVerified ? "Verified" : "Not verified"}</dd></div>
+          <div><dt className="text-[#5f6b85]">Last sign-in</dt><dd className="mt-1 font-semibold text-[#0b1430]">{formatAccountDate(lastSignIn, true)}</dd></div>
         </dl>
-        <p className="mt-4 text-sm leading-6 text-muted-foreground">Tokens, device details, session secrets, and IP history are never shown here. Multi-device sessions and two-factor authentication are not enabled in the current authentication system.</p>
+        <p className="mt-4 text-sm leading-6 text-[#5f6b85]">Tokens, device details, session secrets, and IP history are never shown here. Multi-device sessions and two-factor authentication are not enabled in the current authentication system.</p>
       </div>
 
-      <form className="grid gap-4 rounded-xl border border-border bg-muted p-5" onSubmit={changePassword}>
-        <div><h3 className="text-base font-bold text-card-foreground">Change password</h3><p className="mt-1 text-sm leading-6 text-muted-foreground">Use at least 8 characters with letters and numbers. Passwords are handled only by Supabase Auth.</p></div>
+      <form className="grid gap-4 rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] p-5" onSubmit={changePassword}>
+        <div><h3 className="text-base font-bold text-[#0b1430]">Change password</h3><p className="mt-1 text-sm leading-6 text-[#5f6b85]">Use at least 8 characters with letters and numbers. Passwords are handled only by Supabase Auth.</p></div>
         <div className="grid gap-2"><FieldLabel htmlFor="recruiter-new-password">New password</FieldLabel><input aria-describedby={error ? "recruiter-password-error" : undefined} autoComplete="new-password" className={inputClassName} id="recruiter-new-password" onChange={(event) => setPassword(event.target.value)} type="password" value={password} /></div>
         <div className="grid gap-2"><FieldLabel htmlFor="recruiter-confirm-password">Confirm new password</FieldLabel><input autoComplete="new-password" className={inputClassName} id="recruiter-confirm-password" onChange={(event) => setConfirmation(event.target.value)} type="password" value={confirmation} /></div>
-        {error ? <p aria-live="polite" className="text-sm font-semibold text-destructive" id="recruiter-password-error" role="alert">{error}</p> : null}
-        <button className="inline-flex h-11 w-fit items-center justify-center rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:opacity-60" disabled={isSaving} type="submit">{isSaving ? "Updating password..." : "Update password"}</button>
+        {error ? <p aria-live="polite" className="text-sm font-semibold text-red-600" id="recruiter-password-error" role="alert">{error}</p> : null}
+        <button className="inline-flex h-11 w-fit items-center justify-center rounded-xl bg-[#10162f] px-5 text-sm font-semibold text-white focus:outline-none focus:ring-4 focus:ring-[#635bff]/10 disabled:cursor-not-allowed disabled:opacity-60" disabled={isSaving} type="submit">{isSaving ? "Updating password..." : "Update password"}</button>
       </form>
 
-      <div className="rounded-xl border border-border bg-muted p-5">
-        <h3 className="text-base font-bold text-card-foreground">Current session</h3>
-        <p className="mt-1 text-sm leading-6 text-muted-foreground">Sign out from this browser if you are finished using the workspace.</p>
-        <button className="mt-4 inline-flex h-11 items-center justify-center rounded-xl border border-border bg-card px-5 text-sm font-semibold text-card-foreground focus:outline-none focus:ring-4 focus:ring-yellow-200" onClick={() => void logout()} type="button">Sign out</button>
+      <div className="rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] p-5">
+        <h3 className="text-base font-bold text-[#0b1430]">Current session</h3>
+        <p className="mt-1 text-sm leading-6 text-[#5f6b85]">Sign out from this browser if you are finished using the workspace.</p>
+        <button className="mt-4 inline-flex h-11 items-center justify-center rounded-xl border border-[#e4e7f0] bg-white px-5 text-sm font-semibold text-[#0b1430] focus:outline-none focus:ring-4 focus:ring-[#635bff]/10" onClick={() => void logout()} type="button">Sign out</button>
       </div>
     </div>
   );
@@ -577,12 +577,12 @@ function RecruiterPreferencePanel({
   }
 
   if (isLoading) {
-    return <div aria-busy="true" className="rounded-xl border border-border bg-muted p-5 text-sm text-muted-foreground" role="status">Loading preferences...</div>;
+    return <div aria-busy="true" className="rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] p-5 text-sm text-[#5f6b85]" role="status">Loading preferences...</div>;
   }
 
   return (
     <div aria-busy={isSaving ? "true" : undefined} className="grid gap-3">
-      <p className="rounded-xl border border-border bg-muted p-4 text-sm leading-6 text-muted-foreground">Preferences are stored in the existing notification foundation. Delivery is controlled separately by the platform notification workers.</p>
+      <p className="rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] p-4 text-sm leading-6 text-[#5f6b85]">Preferences are stored in the existing notification foundation. Delivery is controlled separately by the platform notification workers.</p>
       {!emailOnly ? <>
         <PreferenceRow description="Receive an in-app notification when a new application arrives." label="New applications"><PreferenceToggle checked={preferences.newApplicationInApp} disabled={isSaving} label="In-app" onChange={(checked) => void save({ ...preferences, newApplicationInApp: checked })} /></PreferenceRow>
         <PreferenceRow description="Receive an in-app notification when a candidate's application status changes." label="Candidate status updates"><PreferenceToggle checked={preferences.candidateStatusUpdatesInApp} disabled={isSaving} label="In-app" onChange={(checked) => void save({ ...preferences, candidateStatusUpdatesInApp: checked })} /></PreferenceRow>
@@ -659,12 +659,12 @@ export function RecruiterDangerZonePanel() {
   }
 
   return (
-    <div className="rounded-xl border border-red-200 bg-red-50/60 p-5 dark:border-red-300/20 dark:bg-red-300/10">
-      <h3 className="text-base font-bold text-red-900 dark:text-red-100">Request account deactivation</h3>
-      <p className="mt-2 text-sm leading-6 text-red-800/80 dark:text-red-100/80">This creates a review request. It does not immediately delete your company, jobs, applications, or legally required hiring records.</p>
-      {request ? <p className="mt-4 rounded-xl border border-red-200/70 bg-white/60 p-4 text-sm font-semibold text-red-900 dark:border-red-200/20 dark:bg-black/10 dark:text-red-100">Request status: {request.status.replaceAll("_", " ")}</p> : <form className="mt-5 grid gap-4" onSubmit={submit}>
-        <label className="grid gap-2 text-sm font-semibold text-red-900 dark:text-red-100" htmlFor="recruiter-deletion-reason">Reason (optional)<textarea className={textareaClassName} id="recruiter-deletion-reason" maxLength={4000} onChange={(event) => setReason(event.target.value)} value={reason} /></label>
-        <label className="grid gap-2 text-sm font-semibold text-red-900 dark:text-red-100" htmlFor="recruiter-delete-confirmation">Type DELETE MY ACCOUNT to confirm<input className={inputClassName} id="recruiter-delete-confirmation" onChange={(event) => setConfirmation(event.target.value)} value={confirmation} /></label>
+    <div className="rounded-xl border border-red-200 bg-white p-5">
+      <h3 className="text-base font-bold text-red-700">Request account deactivation</h3>
+      <p className="mt-2 text-sm leading-6 text-[#5f6b85]">This creates a review request. It does not immediately delete your company, jobs, applications, or legally required hiring records.</p>
+      {request ? <p className="mt-4 rounded-xl border border-red-200 bg-red-50/60 p-4 text-sm font-semibold text-red-700">Request status: {request.status.replaceAll("_", " ")}</p> : <form className="mt-5 grid gap-4" onSubmit={submit}>
+        <label className="grid gap-2 text-sm font-semibold text-[#0b1430]" htmlFor="recruiter-deletion-reason">Reason (optional)<textarea className={textareaClassName} id="recruiter-deletion-reason" maxLength={4000} onChange={(event) => setReason(event.target.value)} value={reason} /></label>
+        <label className="grid gap-2 text-sm font-semibold text-[#0b1430]" htmlFor="recruiter-delete-confirmation">Type DELETE MY ACCOUNT to confirm<input className={inputClassName} id="recruiter-delete-confirmation" onChange={(event) => setConfirmation(event.target.value)} value={confirmation} /></label>
         <button className="inline-flex h-11 w-fit items-center justify-center rounded-xl border border-red-300 bg-red-600 px-5 text-sm font-semibold text-white focus:outline-none focus:ring-4 focus:ring-red-200 disabled:cursor-not-allowed disabled:opacity-60" disabled={isSaving || confirmation !== "DELETE MY ACCOUNT"} type="submit">{isSaving ? "Submitting request..." : "Request account deactivation"}</button>
       </form>}
     </div>

@@ -370,7 +370,7 @@ export default function RecruiterJobsView() {
 
   if (isAuthLoading || (loading && !result)) {
     return (
-      <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+      <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
         <section className="mx-auto w-full max-w-6xl animate-pulse space-y-5">
           <div className="h-10 w-56 rounded-xl bg-gray-100" />
           <div className="h-28 rounded-2xl bg-gray-100" />
@@ -383,7 +383,7 @@ export default function RecruiterJobsView() {
 
   if (!isLoggedIn) {
     return (
-      <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+      <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
         <section className="mx-auto max-w-xl rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm dark:bg-white/5">
           <h1 className="text-xl font-bold">Login required</h1>
           <p className="mt-3 text-sm leading-6 text-gray-500">Log in to view your recruiter jobs.</p>
@@ -395,7 +395,7 @@ export default function RecruiterJobsView() {
 
   if (error && !result) {
     return (
-      <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+      <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
         <section className="mx-auto max-w-xl rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm dark:bg-white/5">
           <h1 className="text-xl font-bold">Jobs unavailable</h1>
           <p className="mt-3 text-sm leading-6 text-gray-500">{error}</p>
@@ -409,7 +409,7 @@ export default function RecruiterJobsView() {
   const hasFilters = Boolean(query || employment || workplace || created !== "all");
 
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
       <section className="mx-auto flex w-full max-w-6xl flex-col">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>

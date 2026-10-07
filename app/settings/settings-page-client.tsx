@@ -13,7 +13,6 @@ import {
   type SettingsSectionId,
 } from "@/lib/settings";
 import {
-  SettingsAppearancePanel,
   SettingsBillingPanel,
   SettingsComingSoon,
   SettingsError,
@@ -88,8 +87,6 @@ function SettingsContent({
           activeSectionId={activeSectionId}
           profile={profile}
         />
-      ) : activeSectionId === "appearance" ? (
-        <SettingsAppearancePanel profile={profile} />
       ) : activeSectionId === "notifications" ? (
         profile.role_mode === "job_seeker" ? (
           <CandidateSettingsSection

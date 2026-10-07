@@ -64,6 +64,13 @@ export function logAuthError(context: string, error: unknown) {
     return;
   }
 
+  // Supabase can surface a temporary auth fetch outage while the UI is
+  // already handling it as an unauthenticated/offline state. Avoid turning
+  // that expected condition into a Next.js development error overlay.
+  if (isNetworkError(error)) {
+    return;
+  }
+
   const authError = readAuthError(error);
 
   console.error(context, {

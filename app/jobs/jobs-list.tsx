@@ -10,6 +10,16 @@ import {
   type FormEvent,
 } from "react";
 import { JobsPostJobCta } from "./jobs-page-actions";
+import {
+  ArrowRightIcon,
+  BriefcaseIcon,
+  CategoryIcon,
+  ChevronDownIcon,
+  FilterIcon,
+  JobsEmptyIllustration,
+  LocationIcon,
+  SearchIcon,
+} from "./jobs-illustrations";
 import SaveJobButton from "./save-job-button";
 import { SavedJobsProvider } from "./saved-jobs-state";
 import {
@@ -51,11 +61,9 @@ type LoadOptions = {
   force?: boolean;
 };
 
-const inputClassName =
-  "h-12 w-full rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-gray-900 outline-none transition-colors duration-200 placeholder:text-gray-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100";
+const inputClassName = "jobs-filter-input";
 
-const selectClassName =
-  "h-12 w-full rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-gray-900 outline-none transition-colors duration-200 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100";
+const selectClassName = "jobs-filter-select";
 
 function getFilterSignature(filters: PublicJobFilters) {
   return [
@@ -168,7 +176,7 @@ function getAdvancedFilterCount(filters: PublicJobFilters) {
 function FieldLabel({ children, htmlFor }: { children: React.ReactNode; htmlFor: string }) {
   return (
     <label
-      className="text-xs font-bold uppercase tracking-[0.14em] text-gray-500"
+      className="jobs-field-label"
       htmlFor={htmlFor}
     >
       {children}
@@ -186,33 +194,33 @@ export function JobCard({
   const companyInitial = job.companyName.trim().charAt(0).toUpperCase() || "J";
 
   return (
-    <article className="rounded-xl border border-border bg-card p-5 shadow-[0_18px_50px_rgba(17,24,39,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_24px_70px_rgba(17,24,39,0.12)] sm:p-6">
+    <article className="jobs-job-card">
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex min-w-0 items-start gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-base font-bold text-primary-foreground shadow-[0_10px_24px_rgba(17,24,39,0.18)]">
+            <div className="jobs-job-company-mark">
               {companyInitial}
             </div>
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 {job.featured ? (
-                  <span className="rounded-full bg-yellow-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-accent-foreground ring-1 ring-yellow-200">
+                  <span className="jobs-job-featured">
                     Featured
                   </span>
                 ) : null}
-                <span className="text-xs font-semibold text-muted-foreground">
+                <span className="jobs-job-posted-time">
                   {formatPostedTime(job.postedAt)}
                 </span>
               </div>
-              <h2 className="mt-3 break-words text-xl font-bold tracking-tight text-card-foreground">
+              <h2 className="jobs-job-title">
                 <Link
                   href={`/jobs/${job.slug}`}
-                  className="transition-colors duration-200 hover:text-yellow-700 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+                  className="jobs-job-title-link"
                 >
                   {job.title}
                 </Link>
               </h2>
-              <p className="mt-2 break-words text-sm font-semibold text-muted-foreground">
+              <p className="jobs-job-company">
                 {job.companyName}
               </p>
             </div>
@@ -220,12 +228,12 @@ export function JobCard({
 
           <div className="flex shrink-0 flex-wrap gap-3 sm:flex-col sm:items-stretch">
             <SaveJobButton compact jobSlug={job.slug} jobTitle={job.title} />
-            <div className="rounded-xl border border-border bg-muted px-4 py-3 text-left sm:min-w-48">
-              <p className="text-sm font-bold tracking-tight text-card-foreground">
+            <div className="jobs-job-salary">
+              <p>
                 {formatPublicJobSalary(job.salary)}
               </p>
               {job.applicationsCount > 0 ? (
-                <p className="mt-1 text-xs font-medium text-muted-foreground">
+                <p className="jobs-job-applications">
                   {job.applicationsCount} applications
                 </p>
               ) : null}
@@ -233,7 +241,7 @@ export function JobCard({
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2 border-t border-gray-100 pt-5">
+        <div className="jobs-job-details">
           {[
             job.location,
             formatPublicJobEmploymentType(job.employmentType),
@@ -243,7 +251,7 @@ export function JobCard({
           ].map((detail) => (
             <span
               key={detail}
-              className="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-muted-foreground"
+              className="jobs-job-detail"
             >
               {detail}
             </span>
@@ -251,10 +259,10 @@ export function JobCard({
         </div>
 
         {showApply ? (
-          <div className="flex justify-end border-t border-gray-100 pt-5">
+          <div className="jobs-job-apply-row">
             <Link
               href={`/jobs/${job.slug}`}
-              className="inline-flex h-10 items-center justify-center rounded-xl bg-black px-4 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_0_4px_rgba(234,179,8,0.16),0_14px_30px_rgba(17,24,39,0.16)] focus:outline-none focus:ring-4 focus:ring-yellow-200"
+              className="jobs-primary-action"
             >
               Apply Now
             </Link>
@@ -285,9 +293,9 @@ function Pagination({
   return (
     <nav
       aria-label="Jobs pagination"
-      className="mt-8 flex flex-col items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white px-4 py-4 shadow-[0_14px_35px_rgba(17,24,39,0.06)] sm:flex-row"
+      className="jobs-pagination"
     >
-      <p className="text-sm font-medium text-gray-500">
+      <p className="jobs-pagination-label">
         Page {page} of {pageCount} / {totalCount} jobs
       </p>
       <div className="flex gap-3">
@@ -295,7 +303,7 @@ function Pagination({
           type="button"
           disabled={isLoading || page <= 1}
           onClick={() => onPageChange(Math.max(1, page - 1))}
-          className="inline-flex h-10 items-center justify-center rounded-xl border border-gray-200 bg-white px-4 text-sm font-semibold text-gray-900 transition-all duration-200 hover:border-yellow-300 hover:bg-yellow-50/60 focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400"
+          className="jobs-secondary-action"
         >
           Previous
         </button>
@@ -303,7 +311,7 @@ function Pagination({
           type="button"
           disabled={isLoading || page >= pageCount}
           onClick={() => onPageChange(Math.min(pageCount, page + 1))}
-          className="inline-flex h-10 items-center justify-center rounded-xl bg-black px-4 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_0_4px_rgba(234,179,8,0.16),0_14px_30px_rgba(17,24,39,0.16)] focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400"
+          className="jobs-primary-action"
         >
           Next
         </button>
@@ -472,101 +480,115 @@ export default function JobsList({
 
   return (
     <>
-      <div className="mt-10 flex w-full max-w-5xl flex-col gap-4 rounded-xl border border-gray-200 bg-gray-50 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h2 className="text-base font-bold text-gray-900">Published jobs</h2>
-          <p className="mt-1 text-sm text-gray-500">
+      <div className="jobs-published-strip">
+        <div className="jobs-published-copy">
+          <div className="jobs-published-icon" aria-hidden="true">
+            <BriefcaseIcon size={24} />
+          </div>
+          <div>
+            <h2>Published Jobs</h2>
+            <p>
             Search and filter roles that are live for candidates.
-          </p>
+            </p>
+          </div>
         </div>
         <span
           aria-live="polite"
-          className="rounded-full border border-yellow-200 bg-yellow-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-gray-900"
+          className="jobs-live-badge"
         >
-          {isLoading ? "Updating" : `${result.totalCount} live`}
+          <span className="jobs-live-dot" aria-hidden="true" />
+          {isLoading ? "Updating" : `${result.totalCount} LIVE`}
         </span>
       </div>
 
       <form
         onSubmit={handleSearchSubmit}
-        className="mt-8 w-full max-w-5xl rounded-2xl border border-gray-200 bg-white p-5 shadow-[0_18px_50px_rgba(17,24,39,0.08)] sm:p-6"
+        className="jobs-filter-card"
       >
-        <div className="grid gap-4 lg:grid-cols-[1.45fr_1fr_1fr]">
-          <div className="grid gap-2">
+        <div className="jobs-filter-grid">
+          <div className="jobs-filter-field">
             <FieldLabel htmlFor="public-job-search">Search</FieldLabel>
-            <input
-              id="public-job-search"
-              value={filters.query}
-              maxLength={80}
-              onChange={(event) =>
-                applyFilterChange({ query: event.target.value })
-              }
-              className={inputClassName}
-              placeholder="Search by title, company, skill or keyword"
-              type="search"
-            />
+            <div className="jobs-filter-control">
+              <SearchIcon size={21} />
+              <input
+                id="public-job-search"
+                value={filters.query}
+                maxLength={80}
+                onChange={(event) =>
+                  applyFilterChange({ query: event.target.value })
+                }
+                className={inputClassName}
+                placeholder="Search by title, company, skill or keyword"
+                type="search"
+              />
+            </div>
           </div>
 
-          <div className="grid gap-2">
+          <div className="jobs-filter-field">
             <FieldLabel htmlFor="public-job-location">Location</FieldLabel>
-            <input
-              id="public-job-location"
-              value={filters.location}
-              maxLength={80}
-              onChange={(event) =>
-                applyFilterChange({ location: event.target.value })
-              }
-              className={inputClassName}
-              placeholder="City, state or remote"
-              type="search"
-            />
+            <div className="jobs-filter-control">
+              <LocationIcon size={21} />
+              <input
+                id="public-job-location"
+                value={filters.location}
+                maxLength={80}
+                onChange={(event) =>
+                  applyFilterChange({ location: event.target.value })
+                }
+                className={inputClassName}
+                placeholder="City, state or remote"
+                type="search"
+              />
+            </div>
           </div>
 
-          <div className="grid gap-2">
+          <div className="jobs-filter-field">
             <FieldLabel htmlFor="public-job-category">Category</FieldLabel>
-            <input
-              id="public-job-category"
-              value={filters.category}
-              maxLength={80}
-              onChange={(event) =>
-                applyFilterChange({ category: event.target.value })
-              }
-              className={inputClassName}
-              placeholder="All categories"
-              type="search"
-            />
+            <div className="jobs-filter-control">
+              <CategoryIcon size={21} />
+              <input
+                id="public-job-category"
+                value={filters.category}
+                maxLength={80}
+                onChange={(event) =>
+                  applyFilterChange({ category: event.target.value })
+                }
+                className={inputClassName}
+                placeholder="All categories"
+                type="search"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="mt-5 flex flex-col gap-3 border-t border-gray-100 pt-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="jobs-filter-actions">
           <button
             type="button"
             aria-controls="public-job-advanced-filters"
             aria-expanded={isAdvancedOpen}
             onClick={() => setIsAdvancedOpen((open) => !open)}
-            className="inline-flex h-10 w-fit items-center rounded-xl border border-gray-200 bg-white px-4 text-sm font-semibold text-gray-900 transition-colors duration-200 hover:border-yellow-300 hover:bg-yellow-50/60 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+            className="jobs-secondary-action jobs-more-filters"
           >
-            More filters{activeAdvancedCount > 0 ? ` (${activeAdvancedCount})` : ""}
-            <span aria-hidden="true" className="ml-2 text-gray-400">
-              {isAdvancedOpen ? "-" : "+"}
-            </span>
+            <span>More filters{activeAdvancedCount > 0 ? ` (${activeAdvancedCount})` : ""}</span>
+            <FilterIcon size={18} />
           </button>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="jobs-filter-submit-group">
             {filtersAreActive ? (
               <button
                 type="button"
                 onClick={handleClearFilters}
-                className="text-sm font-semibold text-gray-500 underline decoration-yellow-400 underline-offset-4 transition-colors hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+                className="jobs-clear-filters"
               >
                 Clear filters
               </button>
             ) : null}
             <button
               type="submit"
-              className="inline-flex h-10 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_0_4px_rgba(234,179,8,0.16),0_14px_30px_rgba(17,24,39,0.16)] focus:outline-none focus:ring-4 focus:ring-yellow-200"
+              className="jobs-primary-action"
             >
-              Search Jobs
+              <span>Search Jobs</span>
+              <ArrowRightIcon size={19} />
             </button>
           </div>
         </div>
@@ -574,9 +596,9 @@ export default function JobsList({
         {isAdvancedOpen ? (
           <div
             id="public-job-advanced-filters"
-            className="mt-5 grid gap-4 border-t border-gray-100 pt-5 md:grid-cols-2 lg:grid-cols-5"
+            className="jobs-advanced-filters"
           >
-            <div className="grid gap-2">
+            <div className="jobs-filter-field">
               <FieldLabel htmlFor="public-job-employment">Employment type</FieldLabel>
               <select
                 id="public-job-employment"
@@ -598,7 +620,7 @@ export default function JobsList({
               </select>
             </div>
 
-            <div className="grid gap-2">
+            <div className="jobs-filter-field">
               <FieldLabel htmlFor="public-job-workplace">Workplace</FieldLabel>
               <select
                 id="public-job-workplace"
@@ -620,7 +642,7 @@ export default function JobsList({
               </select>
             </div>
 
-            <div className="grid gap-2">
+            <div className="jobs-filter-field">
               <FieldLabel htmlFor="public-job-experience">Experience level</FieldLabel>
               <select
                 id="public-job-experience"
@@ -642,28 +664,7 @@ export default function JobsList({
               </select>
             </div>
 
-            <div className="grid gap-2">
-              <FieldLabel htmlFor="public-job-sort">Sort</FieldLabel>
-              <select
-                id="public-job-sort"
-                value={filters.sort}
-                onChange={(event) =>
-                  applyFilterChange(
-                    { sort: event.target.value as PublicJobFilters["sort"] },
-                    { immediate: true },
-                  )
-                }
-                className={selectClassName}
-              >
-                {publicJobSortOptions.map((sort) => (
-                  <option key={sort} value={sort}>
-                    {getPublicJobSortLabel(sort)}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <label className="flex min-h-12 items-center gap-3 rounded-xl border border-gray-200 bg-gray-50 px-3 text-sm font-semibold text-gray-900">
+            <label className="jobs-featured-toggle">
               <input
                 checked={filters.featured}
                 onChange={(event) =>
@@ -683,7 +684,7 @@ export default function JobsList({
         {activeFilters.length > 0 ? (
           <div
             aria-label="Active filters"
-            className="mt-5 flex flex-wrap gap-2"
+            className="jobs-active-filters"
           >
             {activeFilters.map((filter) => (
               <button
@@ -691,7 +692,7 @@ export default function JobsList({
                 type="button"
                 aria-label={`Remove ${filter.label} filter`}
                 onClick={() => handleRemoveFilter(filter.key)}
-                className="inline-flex min-h-8 items-center gap-2 rounded-full border border-yellow-200 bg-yellow-50 px-3 py-1 text-xs font-semibold text-gray-900 transition-colors duration-200 hover:border-yellow-400 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+                className="jobs-active-filter"
               >
                 <span>{filter.label}</span>
                 <span aria-hidden="true" className="text-gray-500">
@@ -703,25 +704,45 @@ export default function JobsList({
         ) : null}
       </form>
 
-      <div
-        aria-busy={isLoading}
-        className="relative mt-8 w-full max-w-5xl"
-      >
+      <div aria-busy={isLoading} className="jobs-results-area">
         <div
           aria-live="polite"
-          className="mb-3 min-h-5 text-sm font-medium text-gray-500"
+          className="jobs-results-meta"
         >
-          {isLoading ? "Updating results..." : `${result.totalCount} jobs found`}
+          <span>
+            {isLoading ? "Updating results..." : `${result.totalCount} jobs found`}
+          </span>
+          <label className="jobs-sort-control" htmlFor="public-job-sort">
+            <span>Sort by:</span>
+            <select
+              id="public-job-sort"
+              value={filters.sort}
+              onChange={(event) =>
+                applyFilterChange(
+                  { sort: event.target.value as PublicJobFilters["sort"] },
+                  { immediate: true },
+                )
+              }
+              className="jobs-sort-select"
+            >
+              {publicJobSortOptions.map((sort) => (
+                <option key={sort} value={sort}>
+                  {getPublicJobSortLabel(sort)}
+                </option>
+              ))}
+            </select>
+            <ChevronDownIcon size={17} />
+          </label>
         </div>
 
         {result.error ? (
-          <div className="rounded-xl border border-gray-200 bg-white p-8 text-center shadow-[0_18px_45px_rgba(17,24,39,0.08)]">
-            <h2 className="text-lg font-bold text-gray-900">Jobs are unavailable</h2>
-            <p className="mt-3 text-sm leading-6 text-gray-500">{result.error}</p>
+          <div className="jobs-empty-state jobs-error-state">
+            <h2>Jobs are unavailable</h2>
+            <p>{result.error}</p>
             <button
               type="button"
               onClick={() => void loadResults(filtersRef.current, { force: true })}
-              className="mt-5 inline-flex h-10 items-center justify-center rounded-xl bg-black px-4 text-sm font-semibold text-white focus:outline-none focus:ring-4 focus:ring-yellow-200"
+              className="jobs-primary-action"
             >
               Try again
             </button>
@@ -729,31 +750,34 @@ export default function JobsList({
         ) : null}
 
         {!result.error && result.jobs.length === 0 ? (
-          <div className="rounded-xl border border-gray-200 bg-white p-8 text-center shadow-[0_18px_45px_rgba(17,24,39,0.08)]">
-            <h2 className="text-lg font-bold text-gray-900">
+          <div className="jobs-empty-state">
+            <JobsEmptyIllustration />
+            <div className="jobs-empty-copy">
+              <h2>
               {filtersAreActive
                 ? "No jobs match your current filters."
                 : "No jobs are available right now."}
-            </h2>
-            <p className="mt-3 text-sm leading-6 text-gray-500">
+              </h2>
+              <p>
               {filtersAreActive
                 ? "Clear a filter or try a broader search."
                 : "Check back soon for new published roles."}
-            </p>
-            {filtersAreActive ? (
-              <button
-                type="button"
-                onClick={handleClearFilters}
-                className="mt-5 inline-flex h-10 items-center justify-center rounded-xl border border-gray-200 bg-white px-4 text-sm font-semibold text-gray-900 focus:outline-none focus:ring-4 focus:ring-yellow-200"
-              >
-                Clear filters
-              </button>
-            ) : null}
+              </p>
+              {filtersAreActive ? (
+                <button
+                  type="button"
+                  onClick={handleClearFilters}
+                  className="jobs-secondary-action jobs-empty-clear"
+                >
+                  Clear filters
+                </button>
+              ) : null}
+            </div>
           </div>
         ) : null}
 
         {!result.error && result.jobs.length > 0 ? (
-          <div className={`flex flex-col gap-4 transition-opacity duration-200 ${isLoading ? "opacity-65" : "opacity-100"}`}>
+          <div className={`jobs-results-list ${isLoading ? "is-loading" : ""}`}>
             <SavedJobsProvider jobSlugs={result.jobs.map((job) => job.slug)}>
               {result.jobs.map((job) => (
                 <JobCard key={job.slug} job={job} />
@@ -764,7 +788,7 @@ export default function JobsList({
       </div>
 
       {!result.error ? (
-        <div className="w-full max-w-5xl">
+        <div className="jobs-pagination-wrap">
           <Pagination
             isLoading={isLoading}
             onPageChange={handlePageChange}

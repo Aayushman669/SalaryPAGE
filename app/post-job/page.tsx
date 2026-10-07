@@ -877,7 +877,7 @@ export default function PostJobPage() {
 
   if (accessState === "error") {
     return (
-      <main className="min-h-screen bg-background px-6 py-12 text-foreground sm:px-8 sm:py-16 lg:px-12">
+      <main className="ui-consistency-surface min-h-screen bg-background px-6 py-12 text-foreground sm:px-8 sm:py-16 lg:px-12">
         <section className="mx-auto flex min-h-[60vh] max-w-xl items-center justify-center">
           <div className="w-full rounded-3xl border border-gray-200 bg-white p-8 text-center shadow-[0_24px_80px_rgba(17,24,39,0.08)]">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gray-500">
@@ -904,7 +904,7 @@ export default function PostJobPage() {
 
   if (accessState === "denied") {
     return (
-      <main className="min-h-screen bg-background px-6 py-12 text-foreground sm:px-8 sm:py-16 lg:px-12">
+      <main className="ui-consistency-surface min-h-screen bg-background px-6 py-12 text-foreground sm:px-8 sm:py-16 lg:px-12">
         <section className="mx-auto flex min-h-[60vh] max-w-2xl items-center justify-center">
           <div className="w-full rounded-3xl border border-gray-200 bg-white p-8 text-center shadow-[0_24px_80px_rgba(17,24,39,0.08)] sm:p-10">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-50 text-sm font-black text-gray-900 ring-1 ring-yellow-200">
@@ -949,7 +949,7 @@ export default function PostJobPage() {
 
   if (accessState === "restricted") {
     return (
-      <main className="mx-auto flex min-h-[60vh] max-w-2xl items-center justify-center px-5 py-12">
+      <main className="ui-consistency-surface mx-auto flex min-h-[60vh] max-w-2xl items-center justify-center px-5 py-12">
         <section className="w-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-7 text-center shadow-sm">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">Posting access</p>
           <h1 className="mt-3 text-2xl font-bold">Job posting is temporarily restricted.</h1>
@@ -962,7 +962,7 @@ export default function PostJobPage() {
 
   if (accessState === "unpaid") {
     return (
-      <main className="min-h-screen bg-background px-6 py-12 text-foreground sm:px-8 sm:py-16 lg:px-12">
+      <main className="ui-consistency-surface min-h-screen bg-background px-6 py-12 text-foreground sm:px-8 sm:py-16 lg:px-12">
         <section className="mx-auto flex min-h-[60vh] max-w-2xl items-center justify-center">
           <div className="w-full rounded-3xl border border-gray-200 bg-white p-8 text-center shadow-[0_24px_80px_rgba(17,24,39,0.08)] sm:p-10">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-50 text-sm font-black text-gray-900 ring-1 ring-yellow-200">
@@ -1017,7 +1017,7 @@ export default function PostJobPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background px-6 py-12 text-foreground sm:px-8 sm:py-16 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-12 text-foreground sm:px-8 sm:py-16 lg:px-12">
       <section className="mx-auto w-full max-w-5xl">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">

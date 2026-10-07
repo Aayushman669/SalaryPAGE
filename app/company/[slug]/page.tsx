@@ -136,7 +136,7 @@ function CompanyPagination({ data }: { data: PublicCompanyPageData }) {
 
 function UnavailableCompany() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-6 py-12 text-foreground">
+    <main className="ui-consistency-surface flex min-h-screen items-center justify-center bg-background px-6 py-12 text-foreground">
       <section className="max-w-md rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm dark:bg-white/5">
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-gray-500">
           Company profile
@@ -220,7 +220,7 @@ export default async function PublicCompanyPage({
   });
 
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
       <article className="mx-auto w-full max-w-6xl">
         <div className="mb-8 flex items-center justify-between gap-3">
           <Link

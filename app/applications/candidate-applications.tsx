@@ -220,7 +220,7 @@ function EmptyState({ filtered }: { filtered: boolean }) {
 
 function CandidateApplicationsLoading() {
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
       <section className="mx-auto w-full max-w-6xl">
         <div className="h-5 w-36 animate-pulse rounded-full bg-gray-100" />
         <div className="mt-5 h-12 w-72 max-w-full animate-pulse rounded-xl bg-gray-100" />
@@ -534,7 +534,7 @@ export default function CandidateApplications() {
   }
 
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
       <section className="mx-auto w-full max-w-6xl">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>

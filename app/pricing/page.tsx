@@ -18,6 +18,13 @@ import { showErrorToast, showSuccessToast } from "@/lib/toast";
 import StructuredData from "@/app/structured-data";
 import { createPricingStructuredData } from "@/lib/structured-data";
 import { PricingCard, PricingTrustSection } from "./pricing-card";
+import {
+  PricingAnalyticsIllustration,
+  PricingCalculatorIllustration,
+  PricingChecklistIllustration,
+  PricingPlantIllustration,
+  PricingTinyDecorations,
+} from "./pricing-illustrations";
 
 export default function PricingPage() {
   const router = useRouter();
@@ -217,47 +224,66 @@ export default function PricingPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white px-6 py-12 text-gray-900 dark:bg-[#0f0f10] dark:text-gray-100 sm:px-8 lg:px-12">
+    <main className="pricing-page relative min-h-screen overflow-hidden bg-[linear-gradient(180deg,#FAF8FF_0%,#FFFFFF_36%,#FFFCF4_71%,#F7FBFF_100%)] px-5 pb-8 pt-7 text-[#0B1433] sm:px-8 lg:px-10">
       <StructuredData data={createPricingStructuredData(plans)} />
-      <section className="mx-auto max-w-6xl">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
-            Pricing
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute left-[-11rem] top-[44rem] h-72 w-80 rounded-[45%_55%_50%_45%] bg-[radial-gradient(ellipse_at_center,rgba(213,205,255,0.26),rgba(255,225,211,0.13)_56%,transparent_76%)] blur-3xl" />
+        <div className="absolute right-[-10rem] top-[9rem] h-72 w-80 rounded-[45%_55%_50%_45%] bg-[radial-gradient(ellipse_at_center,rgba(255,225,211,0.22),rgba(255,238,229,0.12)_56%,transparent_76%)] blur-3xl" />
+        <div className="absolute right-[-8rem] bottom-[-5rem] h-80 w-96 rounded-[45%_55%_50%_45%] bg-[radial-gradient(ellipse_at_center,rgba(255,223,209,0.28),rgba(224,218,255,0.12)_57%,transparent_77%)] blur-3xl" />
+      </div>
+      <PricingChecklistIllustration />
+      <PricingAnalyticsIllustration />
+      <PricingCalculatorIllustration />
+      <PricingPlantIllustration />
+      <PricingTinyDecorations />
+
+      <section className="relative z-[5] mx-auto max-w-[1090px]">
+        <div className="mx-auto max-w-[650px] text-center">
+          <p className="text-[13px] font-extrabold uppercase tracking-[0.16em] text-[#6447FF]">
+            PRICING
           </p>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl">
-            Simple plans for every hiring stage
+          <h1 className="mt-3 text-[42px] font-extrabold leading-[1.02] tracking-tight text-[#070D26] sm:text-[52px]">
+            Simple plans for every
+            <br />
+            hiring stage
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-gray-500 dark:text-gray-400 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-[610px] text-[16px] font-medium leading-[1.5] text-[#343E79]">
             Choose the hiring capacity that fits your team, from focused job posts to advanced workflows and premium candidate visibility.
           </p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3 text-sm font-medium text-gray-500 dark:text-gray-400">
-            <span className="rounded-full border border-gray-200 bg-white px-4 py-2 shadow-[0_10px_24px_rgba(17,24,39,0.04)] dark:border-gray-700 dark:bg-[#171719]">
+          <div className="mt-7 flex flex-wrap justify-center gap-3 text-[13px] font-bold">
+            <span className="inline-flex h-[37px] min-w-[138px] items-center justify-center rounded-xl border border-[#DDD6FE] bg-white px-5 text-[#6759B7] shadow-[0_8px_20px_rgba(80,70,150,0.04)]">
               One-time access
             </span>
-            <span className="rounded-full border border-yellow-200 bg-yellow-50 px-4 py-2 text-gray-900 dark:border-yellow-400/40 dark:bg-yellow-400/10 dark:text-gray-100">
-              Built for recruiters
+            <span className="inline-flex h-[37px] min-w-[138px] items-center justify-center rounded-xl border border-[#F1B600] bg-[#FFFDF4] px-5 text-[#B87900] shadow-[0_8px_20px_rgba(184,121,0,0.05)]">
+              Built for scale
             </span>
-            <span className="rounded-full border border-gray-200 bg-white px-4 py-2 shadow-[0_10px_24px_rgba(17,24,39,0.04)] dark:border-gray-700 dark:bg-[#171719]">
+            <span className="inline-flex h-[37px] min-w-[158px] items-center justify-center rounded-xl border border-[#DDD6FE] bg-white px-5 text-[#6759B7] shadow-[0_8px_20px_rgba(80,70,150,0.04)]">
               Lifetime plan access
             </span>
           </div>
         </div>
 
-        <div className="mx-auto mt-10 max-w-md">
+        <div className="mx-auto mt-5 max-w-[470px]">
           <label
             htmlFor="email"
-            className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-100"
+            className="mb-2 block text-[13px] font-extrabold text-[#11172F]"
           >
             Email for payment access
           </label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="you@company.com"
-            className="h-12 w-full rounded-lg border border-gray-200 bg-white px-4 text-sm text-gray-900 outline-none transition-colors duration-200 placeholder:text-gray-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 dark:border-gray-700 dark:bg-[#171719] dark:text-gray-100"
-          />
+          <div className="relative">
+            <svg aria-hidden="true" className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#A891FF]" fill="none" viewBox="0 0 24 24">
+              <path d="M4 6.5h16v11H4z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" />
+              <path d="m5 8 7 5 7-5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" />
+            </svg>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="you@company.com"
+              className="h-[46px] w-full rounded-[9px] border border-[#DDE1EC] bg-white px-4 pl-12 text-[14px] font-medium text-[#0B1433] outline-none transition-colors duration-200 placeholder:text-[#8D96BB] focus:border-[#A891FF] focus:ring-4 focus:ring-[#DDD6FE]/45"
+            />
+          </div>
           {errorMessage ? (
             <p className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
               {errorMessage}
@@ -265,7 +291,7 @@ export default function PricingPage() {
           ) : null}
         </div>
 
-        <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-3">
+        <div className="mt-6 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6">
           {plans.map((plan) => (
             <PricingCard
               key={plan.id}

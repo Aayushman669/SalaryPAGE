@@ -55,7 +55,7 @@ function formatDate(value: string | null) {
 
 function JobAlertsLoading() {
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
       <section className="mx-auto w-full max-w-6xl" aria-busy="true">
         <div className="animate-pulse">
           <div className="h-4 w-32 rounded-full bg-skeleton" />
@@ -70,7 +70,7 @@ function JobAlertsLoading() {
 
 function JobAlertsAccessDenied({ recruiter = false }: { recruiter?: boolean }) {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-6 py-10 text-foreground">
+    <main className="ui-consistency-surface flex min-h-screen items-center justify-center bg-background px-6 py-10 text-foreground">
       <section className="w-full max-w-md rounded-2xl border border-border bg-card p-8 text-center shadow-[0_18px_45px_rgba(17,24,39,0.08)]">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
           Job Alerts
@@ -583,7 +583,7 @@ export default function JobAlertsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
       <section className="mx-auto w-full max-w-6xl">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>

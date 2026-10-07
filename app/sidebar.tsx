@@ -21,6 +21,7 @@ type NavItem = {
 
 type SidebarProps = {
   isDesktopCollapsed: boolean;
+  usesCanvasChrome: boolean;
   isMobileOpen: boolean;
   onDesktopToggle: () => void;
   onMobileClose: () => void;
@@ -32,12 +33,21 @@ const mobileSidebarId = "app-sidebar-mobile";
 
 const navItems: NavItem[] = [
   {
+    href: "/",
+    label: "Home",
+  },
+  {
     href: "/dashboard",
     label: "Dashboard",
   },
   {
     href: "/jobs",
     label: "Jobs",
+  },
+  {
+    href: "/saved-jobs",
+    label: "Saved Jobs",
+    requiresCandidate: true,
   },
   {
     href: "/post-job",
@@ -70,11 +80,38 @@ function LockIcon() {
   return (
     <span
       aria-hidden="true"
-      className="ml-auto inline-flex h-5 w-5 items-center justify-center rounded-full border border-gray-200 bg-white/70 text-gray-400 backdrop-blur"
+      className="sidebar-lock ml-auto inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#E7E1FF] bg-[#F4F0FF] text-[#7B6BCF]"
     >
-      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24">
-        <rect height="10" rx="2" stroke="currentColor" strokeWidth="2" width="14" x="5" y="10" />
-        <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
+      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24">
+        <rect height="10" rx="2" stroke="currentColor" strokeWidth="1.8" width="14" x="5" y="10" />
+        <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
+      </svg>
+    </span>
+  );
+}
+
+function NavigationIcon({ label }: { label: string }) {
+  const paths: Record<string, string> = {
+    Home: "M4 10.8 12 4l8 6.8v8.2a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-8.2Z",
+    Dashboard: "M4 5h6v6H4V5Zm10 0h6v6h-6V5ZM4 15h6v4H4v-4Zm10 0h6v4h-6v-4Z",
+    Jobs: "M4 8h16v11H4zM8 8V5.5C8 4.7 8.7 4 9.5 4h5c.8 0 1.5.7 1.5 1.5V8M4 12h16M10 12v2h4v-2",
+    "Saved Jobs": "M6 4h12v16l-6-3-6 3V4Z",
+    "Post Job": "M6 3.5h8l4 4V20H6V3.5Zm8 0V8h4M9 13h6M12 10v6",
+    Interviews: "M5 5h14v14H5zM8 3v4M16 3v4M5 9h14M8.5 13h.1m3.4 0h.1m3.4 0h.1",
+    Pricing: "m12 3 8 8-9 10-8-8 9-10Zm0 5v6m-3-3h6",
+  };
+
+  return (
+    <span aria-hidden="true" className="sidebar-nav-icon inline-flex h-6 w-6 shrink-0 items-center justify-center">
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path
+          d={paths[label] ?? paths.Dashboard}
+          fill={label === "Home" || label === "Dashboard" ? "currentColor" : "none"}
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.8"
+        />
       </svg>
     </span>
   );
@@ -116,6 +153,23 @@ function CloseIcon() {
   );
 }
 
+function SidebarDecorations() {
+  return (
+    <div aria-hidden="true" className="sidebar-decoration-layer">
+      <div className="sidebar-peach-atmosphere" />
+      <svg className="sidebar-cloud-drawing" fill="none" viewBox="0 0 180 120">
+        <path d="M22 78c0-11 9-20 20-20 2-17 17-29 34-29 18 0 32 12 35 29 4-4 9-6 15-6 12 0 22 10 22 22h5c10 0 18 8 18 18H40c-10 0-18-6-18-14Z" />
+        <path className="sidebar-bird" d="M99 101c7-7 14-7 21 0m17 11c5-5 10-5 15 0" />
+      </svg>
+      <svg className="sidebar-bottom-drawing" fill="none" viewBox="0 0 360 120">
+        <path className="sidebar-bottom-cloud-left" d="M0 92c22-21 39-17 55-3 18-25 50-21 61 3 19-10 42 1 48 19H0Z" />
+        <path className="sidebar-bottom-cloud-right" d="M244 111c8-20 28-28 45-17 9-22 41-24 53-2 8-3 15 0 18 7v21h-116Z" />
+        <path className="sidebar-bottom-path" d="M140 119c45-32 75-44 105-43 27 1 48 22 76 18 14-2 26-10 39-20" />
+      </svg>
+    </div>
+  );
+}
+
 function SidebarNavigation({
   onNavigate,
   pathname,
@@ -126,7 +180,7 @@ function SidebarNavigation({
   profile: ProfileRow | null;
 }) {
   return (
-    <nav aria-label="Primary navigation" className="grid gap-2">
+    <nav aria-label="Primary navigation" className="sidebar-nav grid gap-2">
       {navItems.map((item) => {
         if (item.requiresRecruiter && profile?.role_mode !== "recruiter") {
           return null;
@@ -148,13 +202,14 @@ function SidebarNavigation({
             aria-current={active ? "page" : undefined}
             aria-label={locked ? `${item.label} locked` : item.label}
             onClick={onNavigate}
-            className={`flex h-11 items-center rounded-xl border-l-4 px-3 text-sm font-semibold transition-all duration-200 ${
+            className={`sidebar-nav-item flex h-11 items-center rounded-xl border-l-4 px-3 text-sm font-semibold transition-all duration-200 ${
               active
-                ? "border-yellow-500 bg-gray-50 text-gray-900 shadow-[0_10px_24px_rgba(17,24,39,0.05)]"
-                : "border-transparent text-gray-500 hover:border-yellow-200 hover:bg-yellow-50/50 hover:text-gray-900"
+                ? "sidebar-nav-item-active border-[#6C3FF2] bg-[#F4F0FF] text-[#5C39D6] shadow-[0_12px_30px_rgba(113,82,232,0.08)]"
+                : "border-transparent text-[#14264D] hover:border-transparent hover:bg-[#FAF8FF] hover:text-[#5C39D6]"
             }`}
           >
-            {item.label}
+            <NavigationIcon label={item.label} />
+            <span className="sidebar-nav-label">{item.label}</span>
             {locked ? <LockIcon /> : null}
           </Link>
         );
@@ -171,7 +226,7 @@ function AuthButton({ onNavigate }: { onNavigate?: () => void }) {
       <Link
         href="/login"
         onClick={onNavigate}
-        className="inline-flex h-10 items-center justify-center rounded-xl border border-gray-200 bg-black px-4 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(17,24,39,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_0_4px_rgba(234,179,8,0.16),0_12px_28px_rgba(17,24,39,0.16)] focus:outline-none focus:ring-4 focus:ring-yellow-200"
+        className="sidebar-login-button inline-flex h-10 items-center justify-center rounded-xl border border-gray-200 bg-black px-4 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(17,24,39,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_0_4px_rgba(234,179,8,0.16),0_12px_28px_rgba(17,24,39,0.16)] focus:outline-none focus:ring-4 focus:ring-yellow-200"
       >
         Login
       </Link>
@@ -183,6 +238,7 @@ function AuthButton({ onNavigate }: { onNavigate?: () => void }) {
 
 export default function Sidebar({
   isDesktopCollapsed,
+  usesCanvasChrome,
   isMobileOpen,
   onDesktopToggle,
   onMobileClose,
@@ -402,7 +458,7 @@ export default function Sidebar({
         aria-label={isDesktopCollapsed ? "Open sidebar" : "Close sidebar"}
         title={isDesktopCollapsed ? "Open sidebar" : "Close sidebar"}
         onClick={onDesktopToggle}
-        className="fixed left-3 top-5 z-40 hidden h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 shadow-[0_10px_24px_rgba(17,24,39,0.08)] transition-colors duration-200 hover:border-yellow-300 hover:bg-yellow-50/50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-yellow-200 lg:inline-flex"
+        className={`sidebar-toggle-button fixed left-3 top-5 z-40 hidden h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 shadow-[0_10px_24px_rgba(17,24,39,0.08)] transition-colors duration-200 hover:border-yellow-300 hover:bg-yellow-50/50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-yellow-200 lg:inline-flex ${usesCanvasChrome ? "home-route-sidebar-toggle" : ""}`}
       >
         <HamburgerIcon />
       </button>
@@ -411,32 +467,18 @@ export default function Sidebar({
         id={desktopSidebarId}
         aria-hidden={isDesktopCollapsed}
         inert={isDesktopCollapsed}
-        className="app-sidebar fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-gray-200 bg-white px-4 py-5 shadow-[12px_0_40px_rgba(17,24,39,0.04)] lg:flex lg:flex-col"
+        className={`app-sidebar fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-gray-200 bg-white px-4 py-5 shadow-[12px_0_40px_rgba(17,24,39,0.04)] lg:flex lg:flex-col ${usesCanvasChrome ? "home-route-sidebar" : ""}`}
       >
-        <Link href="/" className="flex h-16 items-center pl-12 pr-1">
-          <img
-            alt="JobForge"
-            className="h-14 max-w-full object-contain dark:hidden"
-            height={56}
-            src="/brand/jobforge-sidebar-logo-light.svg"
-            width={172}
-          />
-          <img
-            alt=""
-            aria-hidden="true"
-            className="hidden h-14 max-w-full object-contain dark:block"
-            height={56}
-            src="/brand/jobforge-sidebar-logo-transparent.svg"
-            width={172}
-          />
-        </Link>
+        <SidebarDecorations />
+        <div className="sidebar-inner">
+          <div className="sidebar-menu-area">
+            <p className="sidebar-menu-label">MENU</p>
+            <SidebarNavigation pathname={pathname} profile={profile} />
+          </div>
 
-        <div className="mt-6">
-          <SidebarNavigation pathname={pathname} profile={profile} />
-        </div>
-
-        <div className="mt-auto flex items-center gap-2 px-3 pt-6">
-          <AuthButton />
+          <div className="sidebar-profile-area">
+            <AuthButton />
+          </div>
         </div>
       </aside>
 
@@ -453,28 +495,10 @@ export default function Sidebar({
             aria-expanded={isMobileOpen}
             aria-label="Open sidebar"
             onClick={onMobileOpen}
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 shadow-[0_8px_20px_rgba(17,24,39,0.06)] transition-colors duration-200 hover:border-yellow-300 hover:bg-yellow-50/50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+            className="sidebar-mobile-toggle inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 shadow-[0_8px_20px_rgba(17,24,39,0.06)] transition-colors duration-200 hover:border-yellow-300 hover:bg-yellow-50/50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-yellow-200"
           >
             <HamburgerIcon />
           </button>
-
-          <Link href="/" className="flex h-12 items-center">
-            <img
-              alt="JobForge"
-              className="h-11 w-auto dark:hidden"
-              height={44}
-              src="/brand/jobforge-sidebar-logo-light.svg"
-              width={135}
-            />
-            <img
-              alt=""
-              aria-hidden="true"
-              className="hidden h-11 w-auto dark:block"
-              height={44}
-              src="/brand/jobforge-sidebar-logo-transparent.svg"
-              width={135}
-            />
-          </Link>
         </div>
       </header>
 
@@ -495,33 +519,12 @@ export default function Sidebar({
         aria-hidden={!isMobileOpen}
         inert={!isMobileOpen}
         tabIndex={-1}
-        className={`fixed inset-y-0 left-0 z-50 flex w-[min(20rem,calc(100vw-3rem))] flex-col border-r border-gray-200 bg-white px-4 py-5 shadow-[18px_0_50px_rgba(17,24,39,0.18)] transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`sidebar-mobile-drawer fixed inset-y-0 left-0 z-50 flex w-[min(20rem,calc(100vw-3rem))] flex-col border-r border-gray-200 bg-white px-4 py-5 shadow-[18px_0_50px_rgba(17,24,39,0.18)] transition-transform duration-300 ease-in-out lg:hidden ${
           isMobileOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex h-14 items-center justify-between gap-3">
-          <Link
-            href="/"
-            onClick={() => closeMobileSidebar()}
-            className="flex min-w-0 items-center"
-          >
-            <img
-              alt="JobForge"
-              className="h-12 max-w-full object-contain dark:hidden"
-              height={48}
-              src="/brand/jobforge-sidebar-logo-light.svg"
-              width={148}
-            />
-            <img
-              alt=""
-              aria-hidden="true"
-              className="hidden h-12 max-w-full object-contain dark:block"
-              height={48}
-              src="/brand/jobforge-sidebar-logo-transparent.svg"
-              width={148}
-            />
-          </Link>
-
+        <SidebarDecorations />
+        <div className="sidebar-mobile-inner">
           <button
             ref={mobileCloseButtonRef}
             type="button"
@@ -531,18 +534,19 @@ export default function Sidebar({
           >
             <CloseIcon />
           </button>
-        </div>
 
-        <div className="mt-7 min-h-0 flex-1 overflow-y-auto pb-4">
-          <SidebarNavigation
-            pathname={pathname}
-            profile={profile}
-            onNavigate={() => closeMobileSidebar()}
-          />
-        </div>
+          <div className="sidebar-mobile-menu min-h-0 flex-1 overflow-y-auto">
+            <p className="sidebar-menu-label">MENU</p>
+            <SidebarNavigation
+              pathname={pathname}
+              profile={profile}
+              onNavigate={() => closeMobileSidebar()}
+            />
+          </div>
 
-        <div className="border-t border-gray-200 px-3 pt-5">
-          <AuthButton onNavigate={() => closeMobileSidebar()} />
+          <div className="sidebar-profile-area">
+            <AuthButton onNavigate={() => closeMobileSidebar()} />
+          </div>
         </div>
       </aside>
     </>

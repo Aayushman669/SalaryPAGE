@@ -131,7 +131,7 @@ export default function SignupPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white px-5 py-12 text-gray-900 sm:px-8 lg:px-12">
+    <main className="ui-consistency-surface flex min-h-screen items-center justify-center bg-white px-5 py-12 text-gray-900 sm:px-8 lg:px-12">
       <div className="grid w-full max-w-5xl items-stretch gap-8 lg:grid-cols-[1fr_440px]">
         <AuthVisualPanel />
 

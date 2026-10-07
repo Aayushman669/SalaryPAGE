@@ -11,6 +11,7 @@ import {
   buildRoleBasedDashboardData,
   isValidRole,
   normalizeDashboardProfile,
+  createEmptyRecruiterJobsDashboardInput,
   type DashboardProfile,
   type DashboardPanelGroup,
   type DashboardQuickActionItem,
@@ -82,6 +83,7 @@ type CachedDashboardProfile = {
 
 const DASHBOARD_ERROR_MESSAGE =
   "We could not load your dashboard profile. Please try again.";
+const DASHBOARD_REQUEST_TIMEOUT_MS = 12_000;
 
 let cachedDashboardProfile: CachedDashboardProfile | null = null;
 
@@ -101,6 +103,43 @@ function createProfileCache(userId: string, profile: DashboardProfile) {
     profile,
     userId,
   };
+}
+
+function withTimeoutFallback<T>(
+  promise: Promise<T>,
+  fallback: T,
+  timeoutMs = DASHBOARD_REQUEST_TIMEOUT_MS,
+) {
+  return new Promise<T>((resolve) => {
+    let settled = false;
+    const timeoutId = window.setTimeout(() => {
+      if (!settled) {
+        settled = true;
+        resolve(fallback);
+      }
+    }, timeoutMs);
+
+    promise.then(
+      (value) => {
+        if (settled) {
+          return;
+        }
+
+        settled = true;
+        window.clearTimeout(timeoutId);
+        resolve(value);
+      },
+      () => {
+        if (settled) {
+          return;
+        }
+
+        settled = true;
+        window.clearTimeout(timeoutId);
+        resolve(fallback);
+      },
+    );
+  });
 }
 
 export function notifyDashboardProfileChanged(profile: DashboardProfile) {
@@ -417,10 +456,22 @@ export function useDashboardData({
         const isCandidate = profileResult.profile?.role_mode === "job_seeker";
         const isRecruiter = profileResult.profile?.role_mode === "recruiter";
         const recruiterJobsRequest = isRecruiter
-          ? loadRecruiterDashboardJobs(data.user.id)
+          ? withTimeoutFallback(
+              loadRecruiterDashboardJobs(data.user.id),
+              {
+                data: null,
+                error: CONNECTION_ERROR_MESSAGE,
+              },
+            )
           : Promise.resolve({ data: null, error: null });
         const companyRequest = isRecruiter
-          ? getCompanyProfile(data.user.id)
+          ? withTimeoutFallback(
+              getCompanyProfile(data.user.id),
+              {
+                company: null,
+                error: CONNECTION_ERROR_MESSAGE,
+              },
+            )
           : Promise.resolve({ company: null, error: null });
 
         const [candidateProfileResult, candidateSavedJobs, candidateJobAlerts, candidateApplications] =
@@ -475,23 +526,21 @@ export function useDashboardData({
           return;
         }
 
-        if (recruiterJobsResult.error) {
-          setState({
-            candidateApplications,
-            candidateJobAlerts,
-            candidateSavedJobs,
-            candidateProfile: candidateProfileResult.candidateProfile,
-            candidateProfileError: candidateProfileResult.error,
-            candidateRecommendations: candidateRecommendationsResult.jobs,
-            candidateRecommendationsError: candidateRecommendationsResult.error,
-            company: companyResult.company,
-            error: recruiterJobsResult.error,
-            loading: false,
-            profile: profileResult.profile,
-            recruiterJobs: null,
-          });
-          return;
+        if (recruiterJobsResult.error && isRecruiter) {
+          // The recruiter shell can still render its controls and empty states
+          // when an optional dashboard aggregate is unavailable. Keep the
+          // error in the console for diagnosis without blocking the route.
+          if (process.env.NODE_ENV === "development") {
+            console.warn(
+              "[dashboard] recruiter aggregates unavailable; using empty dashboard data",
+              recruiterJobsResult.error,
+            );
+          }
         }
+
+        const recruiterJobs = isRecruiter
+          ? recruiterJobsResult.data ?? createEmptyRecruiterJobsDashboardInput()
+          : recruiterJobsResult.data;
 
         setState({
           candidateApplications,
@@ -505,7 +554,7 @@ export function useDashboardData({
           error: "",
           loading: false,
           profile: profileResult.profile,
-          recruiterJobs: recruiterJobsResult.data,
+          recruiterJobs,
         });
       } catch (error) {
         logAuthError("[dashboard] unexpected profile load failure", error);

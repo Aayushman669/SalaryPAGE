@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <main className="min-h-screen bg-white px-6 py-16 text-gray-900 sm:px-8 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-white px-6 py-16 text-gray-900 sm:px-8 lg:px-12">
       <section className="mx-auto flex w-full max-w-6xl flex-col items-center">
         <nav className="mb-14 flex w-full items-center justify-end">
           <div className="rounded-xl bg-black px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(17,24,39,0.16)]">

@@ -29,6 +29,16 @@ import { showErrorToast, showSuccessToast } from "@/lib/toast";
 import CandidateAvatar from "@/app/applications/candidate-avatar";
 import InterviewReasonDialog from "./interview-reason-dialog";
 import InterviewScheduleDialog from "./interview-schedule-dialog";
+import {
+  InterviewCalendarIcon,
+  InterviewCancelIcon,
+  InterviewCheckIcon,
+  InterviewChevronIcon,
+  InterviewEmptyIllustration,
+  InterviewFilterIcon,
+  InterviewPageDecorations,
+  InterviewSearchIcon,
+} from "./interview-illustrations";
 
 type JobOption = { id: string; title: string };
 
@@ -142,15 +152,15 @@ function getFriendlyError(error: unknown) {
 }
 
 function statusClass(status: InterviewStatus) {
-  if (status === "scheduled") return "border-yellow-300 bg-yellow-50 text-yellow-900";
-  if (status === "completed") return "border-emerald-200 bg-emerald-50 text-emerald-800";
-  if (status === "cancelled") return "border-red-200 bg-red-50 text-red-800";
-  return "border-gray-300 bg-gray-100 text-gray-800";
+  if (status === "scheduled") return "interview-status-scheduled";
+  if (status === "completed") return "interview-status-completed";
+  if (status === "cancelled") return "interview-status-cancelled";
+  return "interview-status-neutral";
 }
 
 function InterviewStatusBadge({ status }: { status: InterviewStatus }) {
   return (
-    <span className={`inline-flex rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] ${statusClass(status)}`}>
+    <span className={`interview-status-badge ${statusClass(status)}`}>
       {getInterviewStatusLabel(status)}
     </span>
   );
@@ -163,14 +173,17 @@ function getInterviewTab(filters: InterviewFilters): InterviewTab {
   return "all";
 }
 
-function SummaryCard({ label, value, note }: { label: string; note: string; value: number | null }) {
+function SummaryCard({ icon, label, tone, value, note }: { icon: React.ReactNode; label: string; note: string; tone: "upcoming" | "completed" | "cancelled"; value: number | null }) {
   return (
-    <article className="min-w-0 rounded-xl border border-gray-200 bg-white px-3 py-3 shadow-[0_10px_30px_rgba(17,24,39,0.05)]">
-      <div className="flex items-center gap-3">
-        <p className="text-xs font-bold uppercase tracking-[0.12em] text-gray-500">{label}</p>
+    <article className={`interview-summary-card interview-summary-card-${tone}`}>
+      <div className="interview-summary-icon" aria-hidden="true">
+        {icon}
       </div>
-      <p className="mt-2 text-2xl font-bold tracking-tight text-gray-900">{value === null ? "-" : value}</p>
-      <p className="mt-1 text-xs text-gray-500">{note}</p>
+      <div className="interview-summary-copy">
+        <p className="interview-summary-label">{label}</p>
+        <p className="interview-summary-value">{value === null ? "-" : value}</p>
+        <p className="interview-summary-note">{note}</p>
+      </div>
     </article>
   );
 }
@@ -535,32 +548,34 @@ export default function RecruiterInterviews({ profile }: { profile: ProfileRow }
     : null;
 
   return (
-    <main className="min-h-screen bg-background px-5 py-8 text-foreground sm:px-8 sm:py-12 lg:px-12">
-      <section className="mx-auto w-full max-w-7xl">
-        <header className="flex flex-col gap-5 pb-2 lg:flex-row lg:items-end lg:justify-between">
+    <main className="interviews-reference-page">
+      <InterviewPageDecorations />
+      <div className="interviews-reference-header-actions">
+        <button aria-label="Schedule interview" className="interviews-primary-action interviews-schedule-action" onClick={() => setScheduleMode("create")} type="button">+ Schedule Interview</button>
+      </div>
+      <section className="interviews-reference-content">
+        <header className="interviews-reference-header">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-gray-500">Recruiter workspace</p>
-            <h1 className="mt-3 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Interviews</h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-gray-500">Manage upcoming, completed, and cancelled interviews for applicants on your jobs.</p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <button aria-label="Schedule interview" className="inline-flex h-11 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white transition hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-yellow-200" onClick={() => setScheduleMode("create")} type="button">+ Schedule Interview</button>
+            <p className="interviews-reference-eyebrow">Recruiter workspace</p>
+            <h1>Interviews</h1>
+            <p>Manage upcoming, completed, and cancelled interviews for applicants on your jobs.</p>
           </div>
         </header>
 
-        <section aria-label="Interview summary" className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          <SummaryCard label="Upcoming" note="Future scheduled" value={isSummaryLoading ? null : summary?.upcoming ?? null} />
-          <SummaryCard label="Completed" note="Finished interviews" value={isSummaryLoading ? null : summary?.completed ?? null} />
-          <SummaryCard label="Cancelled" note="Cancelled records" value={isSummaryLoading ? null : summary?.cancelled ?? null} />
+        <section aria-label="Interview summary" className="interview-summary-grid">
+          <SummaryCard icon={<InterviewCalendarIcon size={22} />} label="Upcoming" note="Future scheduled" tone="upcoming" value={isSummaryLoading ? null : summary?.upcoming ?? null} />
+          <SummaryCard icon={<InterviewCheckIcon size={22} />} label="Completed" note="Finished interviews" tone="completed" value={isSummaryLoading ? null : summary?.completed ?? null} />
+          <SummaryCard icon={<InterviewCancelIcon size={22} />} label="Cancelled" note="Cancelled records" tone="cancelled" value={isSummaryLoading ? null : summary?.cancelled ?? null} />
         </section>
-        {summaryError ? <p className="mt-3 text-right text-xs text-gray-500">Summary counts are temporarily unavailable.</p> : null}
+        {summaryError ? <p className="interview-summary-error">Summary counts are temporarily unavailable.</p> : null}
 
-        <div className="mt-6 flex max-w-full flex-wrap gap-2" role="tablist" aria-label="Interview views">
+        <div className="interviews-filter-card" role="region" aria-label="Interview filters">
+        <div className="interviews-tab-row" role="tablist" aria-label="Interview views">
           {interviewTabViews.map((item) => (
             <button
               aria-controls="interview-results"
               aria-selected={activeTab === item}
-              className={`inline-flex h-10 items-center rounded-lg border px-4 text-sm font-semibold capitalize transition focus:outline-none focus:ring-4 focus:ring-yellow-200 ${activeTab === item ? "border-yellow-400 bg-yellow-50 text-gray-900" : "border-transparent bg-transparent text-gray-500 hover:border-gray-700 hover:bg-gray-900 hover:text-white"}`}
+              className={`interviews-tab ${activeTab === item ? "is-active" : ""}`}
               key={item}
               onClick={() => commitFilters(item === "upcoming" ? { view: "upcoming", status: "", page: 1 } : item === "completed" ? { view: "all", status: "completed", page: 1 } : item === "cancelled" ? { view: "cancelled", status: "", page: 1 } : { view: "all", status: "", page: 1 })}
               role="tab"
@@ -573,57 +588,63 @@ export default function RecruiterInterviews({ profile }: { profile: ProfileRow }
 
         <form
           aria-label="Filter interviews"
-          className="mt-4 rounded-2xl border border-gray-200 bg-white p-3 shadow-[0_14px_38px_rgba(17,24,39,0.06)] sm:p-4"
+          className="interviews-filter-form"
           onSubmit={(event) => {
             event.preventDefault();
             handleSearchSubmit();
           }}
         >
-          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_15rem_auto] lg:items-end">
-            <label className="grid gap-2">
-              <span className="text-xs font-bold uppercase tracking-[0.14em] text-gray-500">Search</span>
-              <input aria-label="Search candidate or job title" className="h-11 rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-gray-900 outline-none placeholder:text-gray-400 transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100" onChange={(event) => handleSearchChange(event.target.value)} placeholder="Search candidate or job title" type="search" value={filters.search} />
+          <div className="interviews-filter-row">
+            <label className="interviews-filter-field interviews-filter-search-field">
+              <span>Search</span>
+              <div className="interviews-filter-control">
+                <InterviewSearchIcon size={20} />
+                <input aria-label="Search candidate or job title" onChange={(event) => handleSearchChange(event.target.value)} placeholder="Search candidate or job title" type="search" value={filters.search} />
+              </div>
             </label>
-            <label className="grid gap-2">
-              <span className="text-xs font-bold uppercase tracking-[0.14em] text-gray-500">Status</span>
-              <select aria-label="Filter by status" className="h-11 rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-gray-900 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100" onChange={(event) => commitFilters({ status: event.target.value as InterviewFilters["status"] })} value={filters.status}>
+            <label className="interviews-filter-field interviews-filter-status-field">
+              <span>Status</span>
+              <div className="interviews-status-control">
+              <select aria-label="Filter by status" onChange={(event) => commitFilters({ status: event.target.value as InterviewFilters["status"] })} value={filters.status}>
                 <option value="">All statuses</option>
                 {interviewStatuses.map((item) => <option key={item} value={item}>{getInterviewStatusLabel(item)}</option>)}
               </select>
+              <InterviewChevronIcon size={17} />
+              </div>
             </label>
-            <button aria-expanded={isMoreFiltersOpen} aria-controls="advanced-interview-filters" className="inline-flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white px-4 text-sm font-semibold text-gray-900 transition hover:border-gray-400 focus:outline-none focus:ring-4 focus:ring-yellow-200" onClick={() => setIsMoreFiltersOpen((open) => !open)} type="button">
-              Filters{activeAdvancedCount > 0 ? ` (${activeAdvancedCount})` : ""}
-              <span aria-hidden="true" className="ml-2 text-gray-500">{isMoreFiltersOpen ? "-" : "+"}</span>
+            <button aria-expanded={isMoreFiltersOpen} aria-controls="advanced-interview-filters" className="interviews-filters-button" onClick={() => setIsMoreFiltersOpen((open) => !open)} type="button">
+              <span>Filters{activeAdvancedCount > 0 ? ` (${activeAdvancedCount})` : ""}</span>
+              <InterviewFilterIcon size={18} />
             </button>
           </div>
 
           {isMoreFiltersOpen ? (
-            <div className="mt-4 grid gap-4 border-t border-gray-100 pt-4 sm:grid-cols-2 lg:grid-cols-5" id="advanced-interview-filters">
-              <label className="grid gap-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-gray-500">Interview type</span>
-                <select aria-label="Filter by interview type" className="h-11 rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-gray-900 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100" onChange={(event) => commitFilters({ interviewType: event.target.value as InterviewFilters["interviewType"] })} value={filters.interviewType}>
+            <div className="interviews-advanced-filters" id="advanced-interview-filters">
+              <label className="interviews-filter-field">
+                <span>Interview type</span>
+                <select aria-label="Filter by interview type" onChange={(event) => commitFilters({ interviewType: event.target.value as InterviewFilters["interviewType"] })} value={filters.interviewType}>
                   <option value="">All types</option>
                   {interviewTypes.map((item) => <option key={item} value={item}>{getInterviewTypeLabel(item)}</option>)}
                 </select>
               </label>
-              <label className="grid gap-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-gray-500">Job</span>
-                <select aria-label="Filter by job" className="h-11 rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-gray-900 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100" onChange={(event) => commitFilters({ jobId: event.target.value })} value={filters.jobId}>
+              <label className="interviews-filter-field">
+                <span>Job</span>
+                <select aria-label="Filter by job" onChange={(event) => commitFilters({ jobId: event.target.value })} value={filters.jobId}>
                   <option value="">All jobs</option>
                   {jobs.map((job) => <option key={job.id} value={job.id}>{job.title}</option>)}
                 </select>
               </label>
-              <label className="grid gap-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-gray-500">From date</span>
-                <input aria-label="Filter from date" className="h-11 rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-gray-900 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100" onChange={(event) => commitFilters({ dateFrom: event.target.value })} type="date" value={filters.dateFrom} />
+              <label className="interviews-filter-field">
+                <span>From date</span>
+                <input aria-label="Filter from date" onChange={(event) => commitFilters({ dateFrom: event.target.value })} type="date" value={filters.dateFrom} />
               </label>
-              <label className="grid gap-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-gray-500">To date</span>
-                <input aria-label="Filter to date" className="h-11 rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-gray-900 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100" onChange={(event) => commitFilters({ dateTo: event.target.value })} type="date" value={filters.dateTo} />
+              <label className="interviews-filter-field">
+                <span>To date</span>
+                <input aria-label="Filter to date" onChange={(event) => commitFilters({ dateTo: event.target.value })} type="date" value={filters.dateTo} />
               </label>
-              <label className="grid gap-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-gray-500">Sort</span>
-                <select aria-label="Sort interviews" className="h-11 rounded-xl border border-gray-200 bg-white px-3 text-sm font-semibold text-gray-900 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100" onChange={(event) => commitFilters({ sort: event.target.value as InterviewSort })} value={filters.sort}>
+              <label className="interviews-filter-field">
+                <span>Sort</span>
+                <select aria-label="Sort interviews" onChange={(event) => commitFilters({ sort: event.target.value as InterviewSort })} value={filters.sort}>
                   <option value="soonest">Soonest first</option>
                   <option value="latest">Latest first</option>
                   <option value="updated">Recently updated</option>
@@ -633,28 +654,29 @@ export default function RecruiterInterviews({ profile }: { profile: ProfileRow }
           ) : null}
 
           {activeFilters.length > 0 ? (
-            <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-gray-100 pt-4">
+            <div className="interviews-active-filters">
               {activeFilters.map((activeFilter) => (
-                <button aria-label={`Remove ${activeFilter.label}`} className="inline-flex max-w-full items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-semibold text-gray-700 transition hover:border-yellow-400 hover:bg-yellow-50 focus:outline-none focus:ring-4 focus:ring-yellow-100" key={activeFilter.key} onClick={() => clearFilter(activeFilter.key)} type="button">
+                <button aria-label={`Remove ${activeFilter.label}`} className="interviews-active-filter" key={activeFilter.key} onClick={() => clearFilter(activeFilter.key)} type="button">
                   <span className="truncate">{activeFilter.label}</span>
-                  <span aria-hidden="true" className="text-gray-400">x</span>
+                  <span aria-hidden="true">x</span>
                 </button>
               ))}
-              <button className="ml-1 text-xs font-bold text-gray-600 underline decoration-yellow-400 underline-offset-4 transition hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-yellow-100" onClick={clearFilters} type="button">Clear filters</button>
+              <button className="interviews-clear-filters" onClick={clearFilters} type="button">Clear filters</button>
             </div>
           ) : null}
         </form>
+        </div>
 
-        <div className="mt-5 flex min-h-5 items-center justify-between gap-3" aria-live="polite">
-          <p className="text-xs font-medium text-gray-500">{isLoading ? "Updating interviews..." : `Showing ${totalCount} interview${totalCount === 1 ? "" : "s"}`}</p>
-          {isLoading && interviews.length > 0 ? <span aria-hidden="true" className="h-2 w-2 animate-pulse rounded-full bg-yellow-400" /> : null}
+        <div className="interviews-results-meta" aria-live="polite">
+          <p>{isLoading ? "Updating interviews..." : `Showing ${totalCount} interview${totalCount === 1 ? "" : "s"}`}</p>
+          {isLoading && interviews.length > 0 ? <span aria-hidden="true" className="interviews-loading-dot" /> : null}
         </div>
 
         {error ? (
-          <div className="mt-3 rounded-2xl border border-red-200 bg-red-50 p-6" role="alert">
-            <h2 className="text-lg font-bold text-red-900">Interviews unavailable</h2>
-            <p className="mt-2 text-sm leading-6 text-red-800">{error}</p>
-            <button className="mt-4 inline-flex h-10 items-center rounded-xl bg-black px-4 text-sm font-semibold text-white focus:outline-none focus:ring-4 focus:ring-yellow-200" onClick={() => void loadInterviews(filterRef.current)} type="button">Retry</button>
+          <div className="interviews-error-state" role="alert">
+            <h2>Interviews unavailable</h2>
+            <p>{error}</p>
+            <button className="interviews-primary-action" onClick={() => void loadInterviews(filterRef.current)} type="button">Retry</button>
           </div>
         ) : null}
 
@@ -662,12 +684,14 @@ export default function RecruiterInterviews({ profile }: { profile: ProfileRow }
           {!error && isLoading && interviews.length === 0 ? <div className="rounded-2xl border border-gray-200 bg-white shadow-[0_14px_38px_rgba(17,24,39,0.06)]"><InterviewListSkeleton /></div> : null}
 
           {!error && !isLoading && interviews.length === 0 ? (
-            <div className="rounded-2xl border border-gray-200 bg-white p-10 text-center shadow-[0_14px_38px_rgba(17,24,39,0.06)]">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-yellow-300 bg-yellow-50 text-lg font-bold text-yellow-900" aria-hidden="true">I</div>
-              <h2 className="mt-5 text-xl font-bold text-gray-900">{hasActiveFilters ? "No interviews match these filters" : activeTab === "upcoming" ? "No interviews scheduled" : `No ${activeTab} interviews`}</h2>
-              <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-gray-500">{hasActiveFilters ? "Try clearing a filter or choosing a different view." : activeTab === "upcoming" ? "Scheduled interviews will appear here once you invite applicants." : "Interview records in this view will appear here when they are available."}</p>
-              <div className="mt-6 flex flex-wrap justify-center gap-3">
-                {hasActiveFilters ? <button className="inline-flex h-11 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white focus:outline-none focus:ring-4 focus:ring-yellow-200" onClick={clearFilters} type="button">Clear filters</button> : <button aria-label="Schedule interview" className="inline-flex h-11 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white focus:outline-none focus:ring-4 focus:ring-yellow-200" onClick={() => setScheduleMode("create")} type="button">+ Schedule Interview</button>}
+            <div className="interviews-empty-state">
+              <InterviewEmptyIllustration />
+              <div className="interviews-empty-copy">
+                <h2>{hasActiveFilters ? "No interviews match these filters" : activeTab === "upcoming" ? "No interviews scheduled" : `No ${activeTab} interviews`}</h2>
+                <p>{hasActiveFilters ? "Try clearing a filter or choosing a different view." : activeTab === "upcoming" ? "Scheduled interviews will appear here once you invite applicants." : "Interview records in this view will appear here when they are available."}</p>
+                <div className="interviews-empty-actions">
+                  {hasActiveFilters ? <button className="interviews-primary-action" onClick={clearFilters} type="button">Clear filters</button> : <button aria-label="Schedule interview" className="interviews-primary-action interviews-schedule-action" onClick={() => setScheduleMode("create")} type="button">+ Schedule Interview</button>}
+                </div>
               </div>
             </div>
           ) : null}

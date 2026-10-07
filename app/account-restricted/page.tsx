@@ -16,7 +16,7 @@ export default function AccountRestrictedPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[var(--background)] px-5 py-12 text-[var(--foreground)]">
+    <main className="ui-consistency-surface flex min-h-screen items-center justify-center bg-[var(--background)] px-5 py-12 text-[var(--foreground)]">
       <section className="w-full max-w-md rounded-2xl border border-[var(--border)] bg-[var(--card)] p-7 text-center shadow-sm">
         <p className="text-xs font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">Account access</p>
         <h1 className="mt-3 text-2xl font-bold">Your account access is temporarily restricted.</h1>

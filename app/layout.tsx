@@ -1,7 +1,6 @@
 import Script from "next/script";
 import AppShell from "./app-shell";
 import { AuthProvider } from "./auth-context";
-import ThemeProvider from "./theme-provider";
 import ToastProvider from "./toast-provider";
 import { globalMetadata } from "@/lib/seo";
 import { sidebarCollapsedStorageKey } from "@/lib/sidebar-state";
@@ -28,12 +27,10 @@ export default function RootLayout({
         <Script id="sidebar-state" strategy="beforeInteractive">
           {sidebarStateScript}
         </Script>
-        <ThemeProvider>
-          <AuthProvider>
-            <AppShell>{children}</AppShell>
-            <ToastProvider />
-          </AuthProvider>
-        </ThemeProvider>
+        <AuthProvider>
+          <AppShell>{children}</AppShell>
+          <ToastProvider />
+        </AuthProvider>
       </body>
     </html>
   );

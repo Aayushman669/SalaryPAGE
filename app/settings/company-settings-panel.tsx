@@ -33,9 +33,9 @@ import { showErrorToast, showSuccessToast } from "@/lib/toast";
 import { notifyPublicCompanyChanged } from "@/lib/public-cache-client";
 
 const inputClassName =
-  "h-11 w-full rounded-xl border border-gray-200 bg-white px-3 text-sm font-medium text-gray-900 outline-none transition-all duration-200 placeholder:text-gray-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 dark:bg-white/5";
+  "h-11 w-full rounded-xl border border-[#e4e7f0] bg-white px-3.5 text-sm font-medium text-[#0b1430] outline-none transition-colors duration-200 placeholder:text-[#8a93b0] focus:border-[#a99aff] focus:ring-4 focus:ring-[#635bff]/10 disabled:bg-[#f8f9fc] disabled:text-[#5f6b85]";
 const textareaClassName =
-  "min-h-28 w-full resize-y rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm font-medium leading-6 text-gray-900 outline-none transition-all duration-200 placeholder:text-gray-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 dark:bg-white/5";
+  "min-h-28 w-full resize-y rounded-xl border border-[#e4e7f0] bg-white px-3.5 py-3 text-sm font-medium leading-6 text-[#0b1430] outline-none transition-colors duration-200 placeholder:text-[#8a93b0] focus:border-[#a99aff] focus:ring-4 focus:ring-[#635bff]/10";
 
 function FieldError({ message }: { message?: string }) {
   return message ? <p className="text-xs font-medium text-red-600">{message}</p> : null;
@@ -43,7 +43,7 @@ function FieldError({ message }: { message?: string }) {
 
 function FieldLabel({ children, htmlFor }: { children: string; htmlFor: string }) {
   return (
-    <label className="text-sm font-semibold text-gray-900" htmlFor={htmlFor}>
+    <label className="text-sm font-semibold text-[#0b1430]" htmlFor={htmlFor}>
       {children}
     </label>
   );
@@ -93,7 +93,7 @@ function AssetPreview({
       src={visibleSrc}
     />
   ) : (
-    <span aria-hidden="true" className="text-lg font-black text-gray-400">
+    <span aria-hidden="true" className="text-lg font-black text-[#8a93b0]">
       {fallback}
     </span>
   );
@@ -444,9 +444,9 @@ export default function CompanySettingsPanel({
 
   if (profile.role_mode !== "recruiter") {
     return (
-      <div className="rounded-xl border border-gray-200 bg-gray-50 px-5 py-6 dark:bg-white/5">
-        <p className="text-sm font-bold text-gray-900">Recruiter company profile</p>
-        <p className="mt-2 text-sm leading-6 text-gray-500">
+      <div className="rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] px-5 py-6">
+        <p className="text-sm font-bold text-[#0b1430]">Recruiter company profile</p>
+        <p className="mt-2 text-sm leading-6 text-[#5f6b85]">
           Company profiles are available for Recruiter accounts. Switch roles from your account menu to manage one.
         </p>
       </div>
@@ -456,29 +456,29 @@ export default function CompanySettingsPanel({
   if (isLoading) {
     return (
       <div aria-busy="true" className="animate-pulse space-y-4" role="status">
-        <div className="h-12 rounded-xl bg-gray-100 dark:bg-white/10" />
-        <div className="h-32 rounded-xl bg-gray-100 dark:bg-white/10" />
-        <div className="h-12 w-40 rounded-xl bg-gray-100 dark:bg-white/10" />
+        <div className="h-12 rounded-xl bg-[#f3f4fa]" />
+        <div className="h-32 rounded-xl bg-[#f3f4fa]" />
+        <div className="h-12 w-40 rounded-xl bg-[#f3f4fa]" />
       </div>
     );
   }
 
   return (
     <div className="grid gap-5">
-      <div className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-gray-50 px-5 py-5 dark:bg-white/5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-bold text-gray-900">Company profile</p>
-          <p className="mt-1 text-sm leading-6 text-gray-500">
+          <p className="text-sm font-bold text-[#0b1430]">Company profile</p>
+          <p className="mt-1 text-sm leading-6 text-[#5f6b85]">
             Keep one trusted company identity for your future job listings and recruiter workspace.
           </p>
         </div>
         <div className="min-w-44">
-          <div className="flex items-center justify-between text-xs font-bold text-gray-500">
+          <div className="flex items-center justify-between text-xs font-bold text-[#5f6b85]">
             <span>Profile completion</span>
             <span>{completion}%</span>
           </div>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-gray-200 dark:bg-white/10">
-            <div className="h-full rounded-full bg-yellow-400 transition-all" style={{ width: `${completion}%` }} />
+          <div className="mt-2 h-2 overflow-hidden rounded-full bg-[#e4e7f0]">
+            <div className="h-full rounded-full bg-[#635bff] transition-all" style={{ width: `${completion}%` }} />
           </div>
         </div>
       </div>
@@ -498,7 +498,7 @@ export default function CompanySettingsPanel({
         <div className="grid gap-2 sm:col-span-2">
           <FieldLabel htmlFor="company-slug">SEO slug</FieldLabel>
           <input id="company-slug" value={form.slug} onChange={(event) => updateField("slug", event.target.value)} className={inputClassName} maxLength={160} />
-          <p className="text-xs text-gray-500">Used for your public company profile URL.</p>
+          <p className="text-xs text-[#5f6b85]">Used for your public company profile URL.</p>
           <FieldError message={errors.slug} />
         </div>
         <div className="grid gap-2 sm:col-span-2">
@@ -613,103 +613,103 @@ export default function CompanySettingsPanel({
           <FieldError message={errors.youtubeUrl} />
         </div>
         <div className="grid gap-2 sm:col-span-2">
-          <p className="text-sm font-semibold text-gray-900">Brand assets</p>
+          <p className="text-sm font-semibold text-[#0b1430]">Brand assets</p>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="grid gap-2 rounded-xl border border-dashed border-gray-300 bg-gray-50 p-4 text-sm font-semibold text-gray-900 dark:bg-white/5">
-              <span>Logo <span className="font-normal text-gray-500">(JPG, PNG, WebP, up to 5MB)</span></span>
+            <div className="grid gap-2 rounded-xl border border-dashed border-[#d8dcea] bg-[#f8f9fc] p-4 text-sm font-semibold text-[#0b1430]">
+              <span>Logo <span className="font-normal text-[#5f6b85]">(JPG, PNG, WebP, up to 5MB)</span></span>
               <input aria-label="Upload company logo" accept="image/jpeg,image/png,image/webp" className="text-xs" onChange={(event) => handleAssetChange(event, "logo")} type="file" />
-              <span className="flex h-20 w-20 overflow-hidden rounded-xl border border-gray-200 bg-white dark:bg-white/10">
+              <span className="flex h-20 w-20 overflow-hidden rounded-xl border border-[#e4e7f0] bg-white">
                 {logoPreview ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img alt="Selected company logo" className="h-full w-full object-cover" src={logoPreview} />
                 ) : <AssetPreview alt="Company logo" fallback={form.name.slice(0, 1).toUpperCase() || "C"} path={form.logoPath} />}
               </span>
-              {form.logoPath || logoFile ? <button type="button" onClick={() => removeAsset("logo")} className="w-fit text-xs font-semibold text-red-600 underline-offset-2 hover:underline focus:outline-none focus:ring-2 focus:ring-yellow-400">Remove logo</button> : null}
+              {form.logoPath || logoFile ? <button type="button" onClick={() => removeAsset("logo")} className="w-fit text-xs font-semibold text-red-600 underline-offset-2 hover:underline focus:outline-none focus:ring-2 focus:ring-[#635bff]/30">Remove logo</button> : null}
             </div>
-            <div className="grid gap-2 rounded-xl border border-dashed border-gray-300 bg-gray-50 p-4 text-sm font-semibold text-gray-900 dark:bg-white/5">
-              <span>Banner <span className="font-normal text-gray-500">(JPG, PNG, WebP, up to 8MB)</span></span>
+            <div className="grid gap-2 rounded-xl border border-dashed border-[#d8dcea] bg-[#f8f9fc] p-4 text-sm font-semibold text-[#0b1430]">
+              <span>Banner <span className="font-normal text-[#5f6b85]">(JPG, PNG, WebP, up to 8MB)</span></span>
               <input aria-label="Upload company banner" accept="image/jpeg,image/png,image/webp" className="text-xs" onChange={(event) => handleAssetChange(event, "banner")} type="file" />
-              <span className="flex h-20 w-full overflow-hidden rounded-xl border border-gray-200 bg-white dark:bg-white/10">
+              <span className="flex h-20 w-full overflow-hidden rounded-xl border border-[#e4e7f0] bg-white">
                 {bannerPreview ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img alt="Selected company banner" className="h-full w-full object-cover" src={bannerPreview} />
                 ) : <AssetPreview alt="Company banner" fallback="B" path={form.bannerPath} />}
               </span>
-              {form.bannerPath || bannerFile ? <button type="button" onClick={() => removeAsset("banner")} className="w-fit text-xs font-semibold text-red-600 underline-offset-2 hover:underline focus:outline-none focus:ring-2 focus:ring-yellow-400">Remove banner</button> : null}
+              {form.bannerPath || bannerFile ? <button type="button" onClick={() => removeAsset("banner")} className="w-fit text-xs font-semibold text-red-600 underline-offset-2 hover:underline focus:outline-none focus:ring-2 focus:ring-[#635bff]/30">Remove banner</button> : null}
             </div>
           </div>
           <FieldError message={errors.assets} />
         </div>
         <section className="grid gap-3 sm:col-span-2" aria-labelledby="company-stats-title">
           <div>
-            <h2 id="company-stats-title" className="text-sm font-semibold text-gray-900">Company stats</h2>
-            <p className="mt-1 text-xs text-gray-500">Live totals from your recruiter-owned jobs.</p>
+            <h2 id="company-stats-title" className="text-sm font-semibold text-[#0b1430]">Company stats</h2>
+            <p className="mt-1 text-xs text-[#5f6b85]">Live totals from your recruiter-owned jobs.</p>
           </div>
           {statsError ? <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs font-medium text-red-700" role="alert">{statsError}</p> : null}
           <div className="grid gap-3 sm:grid-cols-3">
             {[{ label: "Active jobs", value: companyStats.activeJobs }, { label: "Total jobs", value: companyStats.totalJobs }, { label: "Applications", value: companyStats.totalApplications }].map((stat) => (
-              <div key={stat.label} className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-4 dark:bg-white/5">
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-gray-500">{stat.label}</p>
-                <p className="mt-2 text-2xl font-bold text-gray-900">{isStatsLoading ? "..." : stat.value}</p>
+              <div key={stat.label} className="rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] px-4 py-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#5f6b85]">{stat.label}</p>
+                <p className="mt-2 text-2xl font-bold text-[#0b1430]">{isStatsLoading ? "..." : stat.value}</p>
               </div>
             ))}
           </div>
         </section>
         <section className="grid gap-4 sm:col-span-2" aria-labelledby="company-gallery-editor-title">
           <div>
-            <h2 id="company-gallery-editor-title" className="text-sm font-semibold text-gray-900">Company gallery</h2>
-            <p className="mt-1 text-xs text-gray-500">Share up to 24 workplace images. Files stay private and are signed for viewing.</p>
+            <h2 id="company-gallery-editor-title" className="text-sm font-semibold text-[#0b1430]">Company gallery</h2>
+            <p className="mt-1 text-xs text-[#5f6b85]">Share up to 24 workplace images. Files stay private and are signed for viewing.</p>
           </div>
           {galleryError ? <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs font-medium text-red-700" role="alert">{galleryError}</p> : null}
-          {!company ? <p className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-500 dark:bg-white/5">Save the company profile before adding gallery images.</p> : null}
+          {!company ? <p className="rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] px-4 py-3 text-sm text-[#5f6b85]">Save the company profile before adding gallery images.</p> : null}
           {company ? (
-            <div className="grid gap-3 rounded-xl border border-dashed border-gray-300 bg-gray-50 p-4 dark:bg-white/5">
+            <div className="grid gap-3 rounded-xl border border-dashed border-[#d8dcea] bg-[#f8f9fc] p-4">
               <input accept="image/jpeg,image/png,image/webp" className="text-xs" onChange={handleGalleryFileChange} type="file" />
               <input aria-label="Gallery image description" className={inputClassName} maxLength={160} onChange={(event) => setGalleryAltText(event.target.value)} placeholder="Image description (optional)" value={galleryAltText} />
-              {galleryPreview ? <div className="aspect-[4/3] max-w-xs overflow-hidden rounded-xl border border-gray-200">
+              {galleryPreview ? <div className="aspect-[4/3] max-w-xs overflow-hidden rounded-xl border border-[#e4e7f0]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img alt="Selected gallery image preview" className="h-full w-full object-cover" src={galleryPreview} />
               </div> : null}
-              <button type="button" disabled={!galleryFile || isGallerySaving} onClick={() => void handleGalleryUpload()} className="inline-flex h-10 w-fit items-center justify-center rounded-xl bg-black px-4 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus:ring-4 focus:ring-yellow-200">{isGallerySaving && !replacingGalleryId ? "Uploading..." : "Upload image"}</button>
+              <button type="button" disabled={!galleryFile || isGallerySaving} onClick={() => void handleGalleryUpload()} className="inline-flex h-10 w-fit items-center justify-center rounded-xl bg-[#10162f] px-4 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus:ring-4 focus:ring-[#635bff]/10">{isGallerySaving && !replacingGalleryId ? "Uploading..." : "Upload image"}</button>
             </div>
           ) : null}
-          {isGalleryLoading ? <div aria-busy="true" className="h-32 animate-pulse rounded-xl bg-gray-100 dark:bg-white/10" /> : null}
-          {!isGalleryLoading && gallery.length > 0 ? <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{gallery.map((item) => <div key={item.id} className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:bg-white/5"><div className="aspect-[4/3] bg-gray-100 dark:bg-white/10">{item.imageUrl ? (
+          {isGalleryLoading ? <div aria-busy="true" className="h-32 animate-pulse rounded-xl bg-[#f3f4fa]" /> : null}
+          {!isGalleryLoading && gallery.length > 0 ? <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{gallery.map((item) => <div key={item.id} className="overflow-hidden rounded-xl border border-[#e4e7f0] bg-white"><div className="aspect-[4/3] bg-[#f8f9fc]">{item.imageUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
                 <img alt={item.altText} className="h-full w-full object-cover" decoding="async" loading="lazy" src={item.imageUrl} />
-          ) : <span className="flex h-full items-center justify-center text-xs text-gray-500">Image unavailable</span>}</div><div className="grid gap-2 p-3"><p className="break-words text-xs font-medium text-gray-700">{item.altText}</p><div className="flex flex-wrap gap-3"><label className="cursor-pointer text-xs font-semibold text-gray-900 underline-offset-2 hover:underline"><span>{replacingGalleryId === item.id ? "Replacing..." : "Replace"}</span><input accept="image/jpeg,image/png,image/webp" className="sr-only" disabled={isGallerySaving} onChange={(event) => void handleGalleryReplace(event, item)} type="file" /></label><button type="button" disabled={isGallerySaving} onClick={() => void handleGalleryDelete(item)} className="text-xs font-semibold text-red-600 underline-offset-2 hover:underline disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-yellow-400">Delete</button></div></div></div>)}</div> : null}
-          {!isGalleryLoading && company && gallery.length === 0 ? <p className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-5 text-center text-sm text-gray-500 dark:bg-white/5">No gallery images yet.</p> : null}
+          ) : <span className="flex h-full items-center justify-center text-xs text-[#5f6b85]">Image unavailable</span>}</div><div className="grid gap-2 p-3"><p className="break-words text-xs font-medium text-[#34406a]">{item.altText}</p><div className="flex flex-wrap gap-3"><label className="cursor-pointer text-xs font-semibold text-[#0b1430] underline-offset-2 hover:underline"><span>{replacingGalleryId === item.id ? "Replacing..." : "Replace"}</span><input accept="image/jpeg,image/png,image/webp" className="sr-only" disabled={isGallerySaving} onChange={(event) => void handleGalleryReplace(event, item)} type="file" /></label><button type="button" disabled={isGallerySaving} onClick={() => void handleGalleryDelete(item)} className="text-xs font-semibold text-red-600 underline-offset-2 hover:underline disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-[#635bff]/30">Delete</button></div></div></div>)}</div> : null}
+          {!isGalleryLoading && company && gallery.length === 0 ? <p className="rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] px-4 py-5 text-center text-sm text-[#5f6b85]">No gallery images yet.</p> : null}
         </section>
       </div>
 
-      <div className="flex flex-wrap items-center justify-end gap-3 border-t border-gray-200 pt-5">
-        <button type="button" onClick={() => setIsPreviewing((current) => !current)} className="inline-flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white px-4 text-sm font-semibold text-gray-900 transition hover:border-yellow-300 hover:bg-yellow-50 focus:outline-none focus:ring-4 focus:ring-yellow-200 dark:bg-white/5">
+      <div className="flex flex-wrap items-center justify-end gap-3 border-t border-[#edf0f6] pt-5">
+        <button type="button" onClick={() => setIsPreviewing((current) => !current)} className="inline-flex h-11 items-center justify-center rounded-xl border border-[#e4e7f0] bg-white px-4 text-sm font-semibold text-[#0b1430] transition-colors hover:border-[#cfc8ff] hover:bg-[#f7f5ff] focus:outline-none focus:ring-4 focus:ring-[#635bff]/10">
           {isPreviewing ? "Hide Preview" : "Preview Profile"}
         </button>
-        {form.slug ? <Link href={`/company/${slugifyCompanyName(form.slug)}`} target="_blank" rel="noreferrer" className="inline-flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white px-4 text-sm font-semibold text-gray-900 transition hover:border-yellow-300 hover:bg-yellow-50 focus:outline-none focus:ring-4 focus:ring-yellow-200 dark:bg-white/5">Open public profile</Link> : null}
-        <button type="button" disabled={isSaving} onClick={() => void handleSave()} className="inline-flex h-11 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 focus:outline-none focus:ring-4 focus:ring-yellow-200">
+        {form.slug ? <Link href={`/company/${slugifyCompanyName(form.slug)}`} target="_blank" rel="noreferrer" className="inline-flex h-11 items-center justify-center rounded-xl border border-[#e4e7f0] bg-white px-4 text-sm font-semibold text-[#0b1430] transition-colors hover:border-[#cfc8ff] hover:bg-[#f7f5ff] focus:outline-none focus:ring-4 focus:ring-[#635bff]/10">Open public profile</Link> : null}
+        <button type="button" disabled={isSaving} onClick={() => void handleSave()} className="inline-flex h-11 items-center justify-center rounded-xl bg-[#10162f] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#1d2749] disabled:cursor-not-allowed disabled:opacity-60 focus:outline-none focus:ring-4 focus:ring-[#635bff]/10">
           {isSaving ? "Saving..." : "Save Changes"}
         </button>
       </div>
 
       {isPreviewing ? (
-        <section aria-labelledby="company-preview-title" className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:bg-white/5">
-          <div className="h-28 bg-gray-100 dark:bg-white/10">
+        <section aria-labelledby="company-preview-title" className="overflow-hidden rounded-2xl border border-[#e4e7f0] bg-white shadow-[0_10px_35px_rgba(30,40,80,0.04)]">
+          <div className="h-28 bg-[#f8f9fc]">
             {bannerPreview ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img alt="Company banner preview" className="h-full w-full object-cover" src={bannerPreview} />
             ) : <AssetPreview alt="Company banner preview" fallback="" path={form.bannerPath} />}
           </div>
           <div className="relative px-5 pb-5 pt-10">
-            <span className="absolute -top-8 left-5 flex h-16 w-16 overflow-hidden rounded-2xl border-4 border-white bg-gray-50 dark:border-[#171719] dark:bg-white/10">
+            <span className="absolute -top-8 left-5 flex h-16 w-16 overflow-hidden rounded-2xl border-4 border-white bg-[#f8f9fc]">
               {logoPreview ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img alt="Company logo preview" className="h-full w-full object-cover" src={logoPreview} />
               ) : <AssetPreview alt="Company logo preview" fallback={form.name.slice(0, 1).toUpperCase() || "C"} path={form.logoPath} />}
             </span>
-            <h3 id="company-preview-title" className="text-xl font-bold text-gray-900">{form.name || "Your company name"}</h3>
-            <p className="mt-1 text-sm text-gray-500">{form.industry || "Industry"} {form.headquarters ? `· ${form.headquarters}` : ""}</p>
-            <p className="mt-4 whitespace-pre-wrap text-sm leading-6 text-gray-600">{form.about || "Your company description will appear here."}</p>
+            <h3 id="company-preview-title" className="text-xl font-bold text-[#0b1430]">{form.name || "Your company name"}</h3>
+            <p className="mt-1 text-sm text-[#5f6b85]">{form.industry || "Industry"} {form.headquarters ? ` - ${form.headquarters}` : ""}</p>
+            <p className="mt-4 whitespace-pre-wrap text-sm leading-6 text-[#34406a]">{form.about || "Your company description will appear here."}</p>
           </div>
         </section>
       ) : null}

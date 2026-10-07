@@ -4,8 +4,11 @@ import type { CandidateDashboardApplication } from "@/lib/candidate-dashboard";
 import { getApplicationStatusDisplay } from "@/lib/applications";
 import type { PublicJobListItem } from "@/lib/public-jobs";
 import ApplicationStatusBadge from "@/app/applications/application-status-badge";
-import { DashboardSection } from "./dashboard-widgets";
 import { JobCard } from "@/app/jobs/jobs-list";
+import {
+  ApplicationDocumentsIllustration,
+  RecommendationIllustration,
+} from "./dashboard-illustrations";
 
 function formatDate(value: string | null) {
   if (!value) {
@@ -64,57 +67,59 @@ function RecentApplications({
   error: string | null;
 }) {
   return (
-    <DashboardSection
-      actionHref="/applications"
-      actionLabel="View All"
-      description="Keep up with the roles you have already applied to."
-      title="Recent Applications"
-    >
+    <section className="candidate-dashboard-panel candidate-applications-panel">
+      <header className="candidate-dashboard-panel-header">
+        <div>
+          <h2>Recent Applications</h2>
+          <p>Keep up with the roles you have already applied to.</p>
+        </div>
+        <Link className="candidate-dashboard-panel-action" href="/applications">
+          View All
+        </Link>
+      </header>
       {error ? (
-        <div className="mt-6 rounded-xl border border-border bg-muted p-5 text-sm text-muted-foreground">
+        <div className="candidate-dashboard-panel-error">
           {error}
         </div>
       ) : applications.length === 0 ? (
-        <div className="mt-6 rounded-xl border border-dashed border-border bg-muted p-6">
-          <h3 className="text-sm font-bold text-card-foreground">No applications yet.</h3>
-          <p className="mt-2 text-sm leading-6 text-muted-foreground">
-            Start applying to jobs and track your progress here.
-          </p>
-          <Link
-            className="mt-4 inline-flex h-10 items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground focus:outline-none focus:ring-4 focus:ring-yellow-200"
-            href="/jobs"
-          >
-            Browse Jobs
-          </Link>
+        <div className="candidate-applications-empty">
+          <ApplicationDocumentsIllustration />
+          <div>
+            <h3>No applications yet.</h3>
+            <p>Start applying to jobs and track your progress here.</p>
+            <Link className="candidate-dashboard-dark-button" href="/jobs">
+              Browse Jobs
+            </Link>
+          </div>
         </div>
       ) : (
-        <div className="mt-6 grid gap-3">
+        <div className="candidate-applications-list">
           {applications.map((application) => {
             const status = getApplicationStatusDisplay(application.status);
             const companyInitial = application.companyName.charAt(0).toUpperCase() || "C";
 
             return (
               <article
-                className="rounded-xl border border-border bg-muted p-4"
+                className="candidate-application-row"
                 key={application.id}
               >
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex min-w-0 items-center gap-3">
                     <div
                       aria-label={`${application.companyName} logo`}
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-sm font-bold text-primary-foreground"
+                      className="candidate-application-avatar"
                       title={`${application.companyName} logo`}
                     >
                       {companyInitial}
                     </div>
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-bold text-card-foreground" title={application.jobTitle}>
+                      <p className="truncate text-sm font-bold text-[#10162F]" title={application.jobTitle}>
                         {application.jobTitle}
                       </p>
-                      <p className="mt-1 truncate text-sm font-medium text-muted-foreground" title={application.companyName}>
+                      <p className="mt-1 truncate text-sm font-medium text-[#69728E]" title={application.companyName}>
                         {application.companyName}
                       </p>
-                      <p className="mt-2 text-xs text-muted-foreground">
+                      <p className="mt-2 text-xs text-[#7E87A3]">
                         Applied {formatDate(application.appliedAt)}
                       </p>
                     </div>
@@ -122,7 +127,7 @@ function RecentApplications({
                   <div className="flex flex-wrap items-center gap-3">
                     <ApplicationStatusBadge compact status={application.status} />
                     <Link
-                      className="inline-flex h-9 items-center justify-center rounded-xl border border-border bg-card px-3 text-xs font-semibold text-card-foreground focus:outline-none focus:ring-4 focus:ring-yellow-200"
+                      className="candidate-application-view"
                       href="/applications"
                       title={status.description}
                     >
@@ -135,7 +140,7 @@ function RecentApplications({
           })}
         </div>
       )}
-    </DashboardSection>
+    </section>
   );
 }
 
@@ -152,39 +157,43 @@ function ProfileCompletion({
   const missing = missingProfileSections(candidateProfile, fullName).slice(0, 5);
 
   return (
-    <DashboardSection
-      actionHref="/settings/profile"
-      actionLabel="Edit Profile"
-      description="A complete profile gives recruiters a clearer picture of your fit."
-      title="Profile Completion"
-    >
+    <section className="candidate-dashboard-panel candidate-completion-panel">
+      <header className="candidate-dashboard-panel-header">
+        <div>
+          <h2>Profile Completion</h2>
+          <p>A complete profile gives recruiters a clearer picture of your fit.</p>
+        </div>
+        <Link className="candidate-dashboard-panel-action" href="/settings/profile">
+          Edit Profile
+        </Link>
+      </header>
       {profileError ? (
-        <div className="mt-6 rounded-xl border border-border bg-muted p-5 text-sm text-muted-foreground">
+        <div className="candidate-dashboard-panel-error">
           {profileError}
         </div>
       ) : (
-        <div className="mt-6">
-          <div className="flex items-center justify-between gap-3 text-sm font-semibold text-card-foreground">
+        <div className="candidate-completion-content">
+          <div className="candidate-completion-progress-copy">
             <span>{completion}% complete</span>
-            {completion < 100 ? <span className="text-muted-foreground">Keep going</span> : <span className="text-emerald-600 dark:text-emerald-300">Complete</span>}
+            {completion < 100 ? <span>Keep going</span> : <span className="is-complete">Complete</span>}
           </div>
           <div
             aria-label={`Profile ${completion}% complete`}
             aria-valuemax={100}
             aria-valuemin={0}
             aria-valuenow={completion}
-            className="mt-3 h-2 overflow-hidden rounded-full bg-muted-foreground/20"
+            className="candidate-completion-progress"
             role="progressbar"
           >
-            <div className="h-full rounded-full bg-accent transition-[width]" style={{ width: `${completion}%` }} />
+            <div className="candidate-completion-progress-fill" style={{ width: `${completion}%` }} />
           </div>
           {completion < 100 && missing.length > 0 ? (
-            <div className="mt-5">
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">Missing</p>
-              <div className="mt-3 flex flex-wrap gap-2">
+            <div className="candidate-completion-missing">
+              <p>Missing</p>
+              <div>
                 {missing.map((section) => (
                   <Link
-                    className="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-card-foreground focus:outline-none focus:ring-4 focus:ring-yellow-200"
+                    className="candidate-completion-pill"
                     href="/settings/profile"
                     key={section}
                   >
@@ -195,13 +204,13 @@ function ProfileCompletion({
             </div>
           ) : null}
           {completion < 100 ? (
-            <p className="mt-5 text-sm leading-6 text-muted-foreground">
+            <p className="candidate-completion-helper">
               Complete your profile to improve recruiter visibility.
             </p>
           ) : null}
         </div>
       )}
-    </DashboardSection>
+    </section>
   );
 }
 
@@ -213,31 +222,39 @@ function RecommendedJobs({
   jobs: PublicJobListItem[];
 }) {
   return (
-    <DashboardSection
-      actionHref="/jobs"
-      actionLabel="Browse All Jobs"
-      description="Published jobs matched from your current profile preferences, with latest jobs as a safe fallback."
-      title="Recommended Jobs"
-    >
+    <section className="candidate-dashboard-panel candidate-recommendations-panel">
+      <header className="candidate-dashboard-panel-header">
+        <div>
+          <h2>Recommended Jobs</h2>
+          <p>Published jobs matched from your current profile preferences, with latest jobs as a safe fallback.</p>
+        </div>
+      </header>
       {error ? (
-        <div className="mt-6 rounded-xl border border-border bg-muted p-5 text-sm text-muted-foreground">
+        <div className="candidate-dashboard-panel-error">
           Recommendations are temporarily unavailable. Browse all published jobs instead.
-          <Link className="mt-3 inline-flex font-semibold text-accent-foreground underline" href="/jobs">
+          <Link className="candidate-dashboard-error-link" href="/jobs">
             Browse Jobs
           </Link>
         </div>
       ) : jobs.length === 0 ? (
-        <div className="mt-6 rounded-xl border border-dashed border-border bg-muted p-6 text-sm text-muted-foreground">
-          No matching jobs yet. Browse all published jobs to keep exploring.
+        <div className="candidate-recommendations-empty">
+          <RecommendationIllustration />
+          <div>
+            <h3>No matching jobs yet.</h3>
+            <p>Browse all published jobs to keep exploring.</p>
+            <Link className="candidate-dashboard-dark-button" href="/jobs">
+              Browse Jobs
+            </Link>
+          </div>
         </div>
       ) : (
-        <div className="mt-6 grid gap-4 lg:grid-cols-3">
+        <div className="candidate-recommendations-grid">
           {jobs.map((job) => (
             <JobCard job={job} key={job.slug} showApply />
           ))}
         </div>
       )}
-    </DashboardSection>
+    </section>
   );
 }
 
@@ -259,8 +276,8 @@ export default function CandidateDashboardWidgets({
   recommendationsError: string | null;
 }) {
   return (
-    <div className="mt-12 grid gap-6">
-      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+    <div className="candidate-dashboard-lower">
+      <div className="candidate-dashboard-lower-grid">
         <RecentApplications applications={applications} error={applicationsError} />
         <ProfileCompletion
           candidateProfile={candidateProfile}
@@ -268,7 +285,9 @@ export default function CandidateDashboardWidgets({
           profileError={profileError}
         />
       </div>
-      <RecommendedJobs error={recommendationsError} jobs={recommendations} />
+      <div className="candidate-dashboard-recommendations">
+        <RecommendedJobs error={recommendationsError} jobs={recommendations} />
+      </div>
     </div>
   );
 }

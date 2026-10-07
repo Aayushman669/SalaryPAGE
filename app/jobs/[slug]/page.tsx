@@ -114,7 +114,7 @@ export default async function JobDetailsPage({ params }: JobDetailsPageProps) {
   const structuredData = createJobPostingStructuredData(job);
 
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
       {structuredData ? <StructuredData data={structuredData} /> : null}
       <JobViewTracker slug={job.slug} />
       <article className="mx-auto w-full max-w-6xl">

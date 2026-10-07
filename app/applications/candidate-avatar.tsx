@@ -7,7 +7,7 @@ type CandidateAvatarProps = {
   ariaLabel?: string;
   imageUrl?: string | null;
   name?: string | null;
-  size?: "md" | "sm";
+  size?: "lg" | "md" | "sm";
 };
 
 function normalizeCandidateName(name: string | null | undefined) {
@@ -43,7 +43,12 @@ export default function CandidateAvatar({
   const [failedImageUrl, setFailedImageUrl] = useState<string | null>(null);
   const showImage =
     Boolean(normalizedImageUrl) && failedImageUrl !== normalizedImageUrl;
-  const sizeClassName = size === "md" ? "h-11 w-11 text-sm" : "h-9 w-9 text-xs";
+  const sizeClassName =
+    size === "lg"
+      ? "h-14 w-14 text-base"
+      : size === "md"
+        ? "h-11 w-11 text-sm"
+        : "h-9 w-9 text-xs";
 
   return (
     <span

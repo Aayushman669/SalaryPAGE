@@ -633,7 +633,7 @@ export function DashboardSkeleton() {
     <main
       aria-busy="true"
       aria-label="Loading dashboard"
-      className="min-h-screen bg-white px-6 py-10 text-gray-900 sm:px-8 sm:py-14 lg:px-12"
+      className="ui-consistency-surface min-h-screen bg-white px-6 py-10 text-gray-900 sm:px-8 sm:py-14 lg:px-12"
       role="status"
     >
       <section className="mx-auto flex w-full max-w-6xl flex-col">

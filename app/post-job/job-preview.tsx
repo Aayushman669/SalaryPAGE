@@ -54,7 +54,7 @@ export default function JobPreview({
   const hasApplicationMethods = data.applicationMethods.length > 0;
 
   return (
-    <main className="min-h-screen bg-background px-6 py-12 text-foreground sm:px-8 sm:py-16 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-12 text-foreground sm:px-8 sm:py-16 lg:px-12">
       <section className="mx-auto w-full max-w-5xl">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">

@@ -1,11 +1,9 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Toaster } from "sonner";
 
 type ToastPosition = "top-center" | "top-right";
-type ToastTheme = "light" | "dark";
 
 function ToastIcon({ label, mark }: { label: string; mark: string }) {
   return (
@@ -20,14 +18,8 @@ function ToastIcon({ label, mark }: { label: string; mark: string }) {
 
 export default function ToastProvider() {
   const [position, setPosition] = useState<ToastPosition>("top-right");
-  const [isMounted, setIsMounted] = useState(false);
-  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
-    const mountedId = window.setTimeout(() => {
-      setIsMounted(true);
-    }, 0);
-
     const mediaQuery = window.matchMedia("(max-width: 640px)");
 
     function updatePosition() {
@@ -38,13 +30,9 @@ export default function ToastProvider() {
     mediaQuery.addEventListener("change", updatePosition);
 
     return () => {
-      window.clearTimeout(mountedId);
       mediaQuery.removeEventListener("change", updatePosition);
     };
   }, []);
-
-  const toastTheme: ToastTheme =
-    isMounted && resolvedTheme === "dark" ? "dark" : "light";
 
   return (
     <Toaster
@@ -56,7 +44,7 @@ export default function ToastProvider() {
       mobileOffset={16}
       offset={24}
       position={position}
-      theme={toastTheme}
+      theme="light"
       visibleToasts={4}
       icons={{
         error: <ToastIcon label="Error" mark="!" />,

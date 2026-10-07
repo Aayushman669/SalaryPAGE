@@ -9,7 +9,7 @@ import RecruiterInterviews from "./recruiter-interviews";
 
 function LoadingState() {
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
       <section className="mx-auto w-full max-w-6xl">
         <div className="h-5 w-40 animate-pulse rounded-full bg-gray-100" />
         <div className="mt-5 h-12 w-80 max-w-full animate-pulse rounded-xl bg-gray-100" />
@@ -21,7 +21,7 @@ function LoadingState() {
 
 function AccessState({ message, showLogin = false }: { message: string; showLogin?: boolean }) {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-6 py-10 text-foreground">
+    <main className="ui-consistency-surface flex min-h-screen items-center justify-center bg-background px-6 py-10 text-foreground">
       <section className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-[0_18px_45px_rgba(17,24,39,0.08)]">
         <p className="text-xs font-bold uppercase tracking-[0.18em] text-gray-500">Interviews</p>
         <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900">Interviews unavailable</h1>

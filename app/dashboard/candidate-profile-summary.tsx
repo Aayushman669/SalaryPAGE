@@ -9,6 +9,7 @@ import {
   type CandidateProfile,
 } from "@/lib/candidate-profile";
 import CandidateAvatar from "@/app/applications/candidate-avatar";
+import { ProfileDocumentIllustration } from "./dashboard-illustrations";
 
 export default function CandidateProfileSummary({
   candidateProfile: providedCandidateProfile,
@@ -86,62 +87,65 @@ export default function CandidateProfileSummary({
     : "Resume not uploaded";
 
   return (
-    <section className="mt-8 flex flex-col gap-4 rounded-2xl border border-border bg-muted p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex min-w-0 items-center gap-3">
+    <section className="candidate-profile-card">
+      <div className="candidate-profile-identity">
         <CandidateAvatar
           imageUrl={photoUrl ?? profile.avatar_url}
           name={profile.full_name}
-          size="md"
+          size="lg"
         />
-        <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-            Candidate profile
-          </p>
+        <div className="candidate-profile-copy">
+          <p>Candidate Profile</p>
           {profileLoading ? (
             <div
               aria-busy="true"
-              className="mt-2 h-5 w-40 animate-pulse rounded-full bg-muted-foreground/20"
+              className="candidate-profile-loading animate-pulse"
             />
           ) : (
-            <p className="truncate text-base font-bold text-card-foreground">
+            <h2 className="truncate">
               {profile.full_name?.trim() || "Complete your candidate profile"}
-            </p>
+            </h2>
           )}
           {!profileLoading && candidateProfile?.professional_headline ? (
             <p
-              className="mt-1 truncate text-sm text-muted-foreground"
+              className="candidate-profile-headline truncate"
               title={candidateProfile.professional_headline}
             >
               {candidateProfile.professional_headline}
             </p>
           ) : null}
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="candidate-profile-status">
             {profileHasError
               ? "Profile details unavailable"
-              : `${completion}% complete - ${resumeStatus}`}
+              : `${completion}% complete \u2022 ${resumeStatus}`}
           </p>
           {!hasError && completion < 100 ? (
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            <p className="candidate-profile-helper">
               Complete your profile to improve recruiter visibility.
             </p>
           ) : null}
         </div>
       </div>
-      <div className="flex items-center gap-3">
-        <div className="hidden min-w-32 sm:block">
-          <div className="flex items-center justify-between text-xs font-bold text-muted-foreground">
+      <div className="candidate-profile-art" aria-hidden="true">
+        <span className="candidate-profile-art-wash" />
+        <ProfileDocumentIllustration />
+        <span className="candidate-profile-art-leaf" />
+      </div>
+      <div className="candidate-profile-progress-area">
+        <div className="candidate-profile-progress">
+          <div>
             <span>Complete</span>
             <span>{completion}%</span>
           </div>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-muted-foreground/20">
+          <div role="progressbar" aria-label={`Profile ${completion}% complete`} aria-valuemax={100} aria-valuemin={0} aria-valuenow={completion}>
             <div
-              className="h-full rounded-full bg-accent transition-all"
+              className="candidate-profile-progress-fill"
               style={{ width: `${completion}%` }}
             />
           </div>
         </div>
         <Link
-          className="inline-flex h-10 shrink-0 items-center justify-center rounded-xl border border-border bg-card px-4 text-sm font-semibold text-card-foreground transition hover:bg-accent/10 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+          className="candidate-profile-button"
           href="/settings/profile"
         >
           {completion < 100 ? "Complete Profile" : "Edit Profile"}

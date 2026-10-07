@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import AuthRouteGuard from "./auth-route-guard";
 import Sidebar from "./sidebar";
 import NotificationAutoToast from "./notifications/notification-auto-toast";
@@ -11,26 +12,36 @@ function applyDesktopSidebarState(isCollapsed: boolean) {
 }
 
 export default function AppShell({ children }: { children: ReactNode }) {
-  const [isDesktopCollapsed, setIsDesktopCollapsed] = useState(false);
+  const pathname = usePathname();
+  const isHomeRoute = pathname === "/";
+  const usesCanvasChrome =
+    isHomeRoute || pathname === "/pricing" || pathname === "/saved-jobs";
+  const isDashboardRoute = pathname === "/dashboard";
+  const [isDesktopCollapsed, setIsDesktopCollapsed] = useState(usesCanvasChrome);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   useEffect(() => {
-    let isCollapsed =
-      document.documentElement.dataset.sidebarCollapsed === "true";
+    let isCollapsed = isHomeRoute
+      ? true
+      : isDashboardRoute
+        ? false
+        : document.documentElement.dataset.sidebarCollapsed === "true";
 
-    try {
-      const storedValue = window.localStorage.getItem(
-        sidebarCollapsedStorageKey,
-      );
+    if (!isHomeRoute && !isDashboardRoute) {
+      try {
+        const storedValue = window.localStorage.getItem(
+          sidebarCollapsedStorageKey,
+        );
 
-      if (storedValue === "true" || storedValue === "false") {
-        isCollapsed = storedValue === "true";
-      } else if (storedValue !== null) {
-        window.localStorage.removeItem(sidebarCollapsedStorageKey);
-        isCollapsed = false;
+        if (storedValue === "true" || storedValue === "false") {
+          isCollapsed = storedValue === "true";
+        } else if (storedValue !== null) {
+          window.localStorage.removeItem(sidebarCollapsedStorageKey);
+          isCollapsed = false;
+        }
+      } catch {
+        // The shell still works when storage is unavailable.
       }
-    } catch {
-      // The shell still works when storage is unavailable.
     }
 
     applyDesktopSidebarState(isCollapsed);
@@ -42,7 +53,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
     return () => {
       window.cancelAnimationFrame(syncId);
     };
-  }, []);
+  }, [isDashboardRoute, isHomeRoute]);
 
   const toggleDesktopSidebar = useCallback(() => {
     setIsDesktopCollapsed((currentValue) => {
@@ -75,6 +86,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
     <>
       <Sidebar
         isDesktopCollapsed={isDesktopCollapsed}
+        usesCanvasChrome={usesCanvasChrome}
         isMobileOpen={isMobileOpen}
         onDesktopToggle={toggleDesktopSidebar}
         onMobileClose={closeMobileSidebar}
@@ -84,7 +96,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
       <div
         aria-hidden={isMobileOpen || undefined}
         inert={isMobileOpen}
-        className="app-shell-content min-h-screen"
+        className={`app-shell-content min-h-screen ${isHomeRoute ? "home-route-content" : ""}`}
       >
         <main>
           <AuthRouteGuard>{children}</AuthRouteGuard>

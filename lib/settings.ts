@@ -4,12 +4,10 @@ import type {
   DashboardRole,
 } from "@/lib/dashboard-data";
 import { formatPlan } from "@/lib/dashboard-data";
-import type { ThemePreference } from "@/lib/theme";
 import type { EmailPreferenceState } from "@/lib/email/types";
 
 export type SettingsSectionId =
   | "account"
-  | "appearance"
   | "billing"
   | "danger"
   | "job-alerts"
@@ -23,7 +21,6 @@ export type SettingsAvailability = "available" | "coming-soon" | "future";
 
 export type SettingsIconName =
   | "account"
-  | "appearance"
   | "billing"
   | "danger"
   | "job-alerts"
@@ -66,10 +63,6 @@ export type NotificationSettings = {
   inAppNotificationsReady: boolean;
 };
 
-export type AppearanceSettings = {
-  themePreference: ThemePreference | null;
-};
-
 export type BillingSettings = {
   currentPlan: DashboardPlan;
   planLabel: string;
@@ -88,7 +81,6 @@ export type DangerZoneSettings = {
 
 export type SettingsData = {
   account: AccountSettings;
-  appearance: AppearanceSettings;
   billing: BillingSettings;
   danger: DangerZoneSettings;
   notifications: NotificationSettings;
@@ -145,13 +137,6 @@ export const settingsSections = [
   },
   {
     availability: "available",
-    description: "Choose your theme preference and future visual settings.",
-    icon: "appearance",
-    id: "appearance",
-    title: "Appearance",
-  },
-  {
-    availability: "available",
     description: "View your plan, usage, payments, and purchase history.",
     icon: "billing",
     id: "billing",
@@ -196,7 +181,6 @@ export function getSettingsSectionsForRole(role: DashboardRole | null) {
     "security",
     "notifications",
     "preferences",
-    "appearance",
     "billing",
     "danger",
   ];
@@ -207,7 +191,6 @@ export function getSettingsSectionsForRole(role: DashboardRole | null) {
     "notifications",
     "privacy",
     "job-alerts",
-    "appearance",
     "danger",
   ];
 
@@ -245,9 +228,6 @@ export function buildSettingsData(profile: DashboardProfile): SettingsData {
     account: {
       email: profile.email,
       userId: profile.id,
-    },
-    appearance: {
-      themePreference: null,
     },
     billing: {
       currentPlan: profile.current_plan,

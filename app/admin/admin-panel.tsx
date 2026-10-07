@@ -5,7 +5,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { type FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useAuth } from "@/app/auth-context";
 import { supabase } from "@/lib/supabase";
-import ThemeSelector from "@/app/theme/theme-selector";
 import type {
   AdminApplication,
   AdminAnalyticsRange,
@@ -139,7 +138,7 @@ function AdminNavigation({ section }: { section: AdminSection }) {
 
 function AdminFrame({ section, children, onLogout }: { section: AdminSection; children: React.ReactNode; onLogout: () => void }) {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+    <div className="ui-consistency-surface min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-[var(--border)] bg-[var(--card)] px-5 py-6 lg:flex lg:flex-col">
         <Link href="/admin" className="flex items-center gap-3 px-2 focus:outline-none focus:ring-4 focus:ring-yellow-300">
           <img alt="JobForge" className="h-10 w-10" height={40} src="/brand/jobforge-monogram-dark.svg" width={40} />
@@ -156,7 +155,6 @@ function AdminFrame({ section, children, onLogout }: { section: AdminSection; ch
             <h1 className="mt-1 text-lg font-bold">{sectionMeta[section].title}</h1>
           </div>
           <div className="flex items-center gap-2">
-            <ThemeSelector />
             <button type="button" onClick={onLogout} className="rounded-xl bg-[var(--primary)] px-3 py-2 text-sm font-semibold text-[var(--primary-foreground)] focus:outline-none focus:ring-4 focus:ring-yellow-300 lg:hidden">Log out</button>
           </div>
         </div>

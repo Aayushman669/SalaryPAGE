@@ -22,13 +22,13 @@ import {
 import { showErrorToast, showSuccessToast } from "@/lib/toast";
 
 const inputClassName =
-  "h-11 w-full rounded-xl border border-gray-200 bg-white px-3 text-sm font-medium text-gray-900 outline-none transition-all duration-200 placeholder:text-gray-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 dark:border-white/10 dark:bg-white/5 dark:text-gray-100 dark:placeholder:text-gray-500";
+  "h-11 w-full rounded-xl border border-[#e4e7f0] bg-white px-3.5 text-sm font-medium text-[#0b1430] outline-none transition-colors duration-200 placeholder:text-[#8a93b0] focus:border-[#a99aff] focus:ring-4 focus:ring-[#635bff]/10 disabled:bg-[#f8f9fc] disabled:text-[#5f6b85]";
 const textareaClassName =
-  "min-h-28 w-full resize-y rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm font-medium leading-6 text-gray-900 outline-none transition-all duration-200 placeholder:text-gray-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 dark:border-white/10 dark:bg-white/5 dark:text-gray-100 dark:placeholder:text-gray-500";
+  "min-h-28 w-full resize-y rounded-xl border border-[#e4e7f0] bg-white px-3.5 py-3 text-sm font-medium leading-6 text-[#0b1430] outline-none transition-colors duration-200 placeholder:text-[#8a93b0] focus:border-[#a99aff] focus:ring-4 focus:ring-[#635bff]/10";
 
 function FieldError({ message }: { message?: string }) {
   return message ? (
-    <p className="text-xs font-medium text-red-600 dark:text-red-400" role="alert">
+    <p className="text-xs font-medium text-red-600" role="alert">
       {message}
     </p>
   ) : null;
@@ -36,7 +36,7 @@ function FieldError({ message }: { message?: string }) {
 
 function FieldLabel({ children, htmlFor }: { children: string; htmlFor: string }) {
   return (
-    <label className="text-sm font-semibold text-gray-900 dark:text-gray-100" htmlFor={htmlFor}>
+    <label className="text-sm font-semibold text-[#0b1430]" htmlFor={htmlFor}>
       {children}
     </label>
   );
@@ -84,7 +84,7 @@ function CandidateAssetPreview({
       src={src}
     />
   ) : (
-    <span aria-hidden="true" className="m-auto text-lg font-black text-gray-400">
+    <span aria-hidden="true" className="m-auto text-lg font-black text-[#8a93b0]">
       {fallback}
     </span>
   );
@@ -313,9 +313,9 @@ export default function CandidateProfileSettingsPanel({
 
   if (profile.role_mode !== "job_seeker") {
     return (
-      <div className="rounded-xl border border-gray-200 bg-gray-50 px-5 py-6 dark:border-white/10 dark:bg-white/5">
-        <p className="text-sm font-bold text-gray-900 dark:text-gray-100">Candidate profile</p>
-        <p className="mt-2 text-sm leading-6 text-gray-500">
+      <div className="rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] px-5 py-6">
+        <p className="text-sm font-bold text-[#0b1430]">Candidate profile</p>
+        <p className="mt-2 text-sm leading-6 text-[#5f6b85]">
           Candidate profiles are available for Job Seeker accounts. Switch roles from your account menu to manage one.
         </p>
       </div>
@@ -325,35 +325,35 @@ export default function CandidateProfileSettingsPanel({
   if (isLoading) {
     return (
       <div aria-busy="true" className="animate-pulse space-y-4" role="status">
-        <div className="h-24 rounded-xl bg-gray-100 dark:bg-white/10" />
-        <div className="h-11 rounded-xl bg-gray-100 dark:bg-white/10" />
-        <div className="h-32 rounded-xl bg-gray-100 dark:bg-white/10" />
+        <div className="h-24 rounded-xl bg-[#f3f4fa]" />
+        <div className="h-11 rounded-xl bg-[#f3f4fa]" />
+        <div className="h-32 rounded-xl bg-[#f3f4fa]" />
       </div>
     );
   }
 
   return (
     <div className="grid gap-5">
-      <div className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-gray-50 px-5 py-5 dark:border-white/10 dark:bg-white/5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 rounded-xl border border-[#e4e7f0] bg-[#f8f9fc] px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-bold text-gray-900 dark:text-gray-100">Candidate profile</p>
-          <p className="mt-1 text-sm leading-6 text-gray-500">
+          <p className="text-sm font-bold text-[#0b1430]">Candidate profile</p>
+          <p className="mt-1 text-sm leading-6 text-[#5f6b85]">
             Keep your professional profile ready for applications and recruiter review.
           </p>
         </div>
         <div className="min-w-44">
-          <div className="flex items-center justify-between text-xs font-bold text-gray-500">
+          <div className="flex items-center justify-between text-xs font-bold text-[#5f6b85]">
             <span>Profile completion</span>
             <span>{completion}%</span>
           </div>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-gray-200 dark:bg-white/10">
-            <div className="h-full rounded-full bg-yellow-400 transition-all" style={{ width: `${completion}%` }} />
+          <div className="mt-2 h-2 overflow-hidden rounded-full bg-[#e4e7f0]">
+            <div className="h-full rounded-full bg-[#635bff] transition-all" style={{ width: `${completion}%` }} />
           </div>
         </div>
       </div>
 
       {errorMessage ? (
-        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700 dark:border-red-400/30 dark:bg-red-400/10 dark:text-red-300" role="alert">
+        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700" role="alert">
           {errorMessage}
         </p>
       ) : null}
@@ -367,7 +367,7 @@ export default function CandidateProfileSettingsPanel({
         <div className="grid gap-2 sm:col-span-2">
           <FieldLabel htmlFor="candidate-email">Email</FieldLabel>
           <input id="candidate-email" className={`${inputClassName} cursor-not-allowed opacity-70`} disabled value={profile.email ?? "Email unavailable"} />
-          <p className="text-xs text-gray-500">Your email comes from your authenticated account.</p>
+          <p className="text-xs text-[#5f6b85]">Your email comes from your authenticated account.</p>
         </div>
         <div className="grid gap-2 sm:col-span-2">
           <FieldLabel htmlFor="candidate-headline">Professional headline</FieldLabel>
@@ -382,7 +382,7 @@ export default function CandidateProfileSettingsPanel({
         <div className="grid gap-2 sm:col-span-2">
           <FieldLabel htmlFor="candidate-skills">Skills</FieldLabel>
           <textarea id="candidate-skills" className={textareaClassName} onChange={(event) => updateField("skillsText", event.target.value)} placeholder="React, TypeScript, SQL (one per line or comma separated)" value={form.skillsText} />
-          <p className="text-xs text-gray-500">{parseCandidateSkills(form.skillsText).length} of 50 skills</p>
+          <p className="text-xs text-[#5f6b85]">{parseCandidateSkills(form.skillsText).length} of 50 skills</p>
           <FieldError message={errors.skillsText} />
         </div>
         <div className="grid gap-2 sm:col-span-2">
@@ -443,10 +443,10 @@ export default function CandidateProfileSettingsPanel({
           <FieldError message={errors.githubUrl} />
         </div>
         <div className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
-          <label className="grid cursor-pointer gap-3 rounded-xl border border-dashed border-gray-300 bg-gray-50 p-4 text-sm font-semibold text-gray-900 dark:border-white/15 dark:bg-white/5 dark:text-gray-100">
-            <span>Profile photo <span className="font-normal text-gray-500">(JPG, PNG, WebP, up to 5MB)</span></span>
+          <label className="grid cursor-pointer gap-3 rounded-xl border border-dashed border-[#d8dcea] bg-[#f8f9fc] p-4 text-sm font-semibold text-[#0b1430]">
+            <span>Profile photo <span className="font-normal text-[#5f6b85]">(JPG, PNG, WebP, up to 5MB)</span></span>
             <input accept="image/jpeg,image/png,image/webp" className="text-xs" onChange={handlePhotoChange} type="file" />
-            <span className="flex h-20 w-20 overflow-hidden rounded-full border border-gray-200 bg-white dark:border-white/10 dark:bg-white/10">
+            <span className="flex h-20 w-20 overflow-hidden rounded-full border border-[#e4e7f0] bg-white">
               {photoPreview ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img alt="Selected profile photo" className="h-full w-full object-cover" src={photoPreview} />
@@ -455,10 +455,10 @@ export default function CandidateProfileSettingsPanel({
               )}
             </span>
           </label>
-          <label className="grid cursor-pointer gap-3 rounded-xl border border-dashed border-gray-300 bg-gray-50 p-4 text-sm font-semibold text-gray-900 dark:border-white/15 dark:bg-white/5 dark:text-gray-100">
-            <span>Resume <span className="font-normal text-gray-500">(PDF, up to 5MB)</span></span>
+          <label className="grid cursor-pointer gap-3 rounded-xl border border-dashed border-[#d8dcea] bg-[#f8f9fc] p-4 text-sm font-semibold text-[#0b1430]">
+            <span>Resume <span className="font-normal text-[#5f6b85]">(PDF, up to 5MB)</span></span>
             <input accept="application/pdf,.pdf" className="text-xs" onChange={handleResumeChange} type="file" />
-            <span className="text-sm font-medium text-gray-500">
+            <span className="text-sm font-medium text-[#5f6b85]">
               {resumeFile ? resumeFile.name : form.resumePath ? "Resume uploaded" : "No resume uploaded"}
             </span>
           </label>
@@ -466,19 +466,19 @@ export default function CandidateProfileSettingsPanel({
         <FieldError message={errors.assets} />
       </div>
 
-      <div className="flex flex-col gap-3 border-t border-gray-200 pt-5 dark:border-white/10 sm:flex-row sm:items-center sm:justify-between">
-        <button className="inline-flex h-11 items-center justify-center rounded-xl border border-gray-300 bg-white px-5 text-sm font-semibold text-gray-900 transition hover:border-yellow-400 hover:bg-yellow-50 focus:outline-none focus:ring-4 focus:ring-yellow-100 dark:border-white/15 dark:bg-white/5 dark:text-gray-100" onClick={() => setIsPreviewing((current) => !current)} type="button">
+      <div className="flex flex-col gap-3 border-t border-[#edf0f6] pt-5 sm:flex-row sm:items-center sm:justify-between">
+        <button className="inline-flex h-11 items-center justify-center rounded-xl border border-[#e4e7f0] bg-white px-5 text-sm font-semibold text-[#0b1430] transition-colors hover:border-[#cfc8ff] hover:bg-[#f7f5ff] focus:outline-none focus:ring-4 focus:ring-[#635bff]/10" onClick={() => setIsPreviewing((current) => !current)} type="button">
           {isPreviewing ? "Close Preview" : "Preview Profile"}
         </button>
-        <button className="inline-flex h-11 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-[0_0_0_4px_rgba(234,179,8,0.16)] focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:opacity-60" disabled={isSaving} onClick={() => void handleSave()} type="button">
+        <button className="inline-flex h-11 items-center justify-center rounded-xl bg-[#10162f] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#1d2749] focus:outline-none focus:ring-4 focus:ring-[#635bff]/10 disabled:cursor-not-allowed disabled:opacity-60" disabled={isSaving} onClick={() => void handleSave()} type="button">
           {isSaving ? "Saving..." : "Save Profile"}
         </button>
       </div>
 
       {isPreviewing ? (
-        <section aria-label="Candidate profile preview" className="rounded-2xl border border-yellow-300 bg-yellow-50/60 p-5 dark:border-yellow-400/40 dark:bg-yellow-400/10">
+        <section aria-label="Candidate profile preview" className="rounded-2xl border border-[#ded9ff] bg-[#f7f5ff] p-5">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-            <span className="flex h-16 w-16 shrink-0 overflow-hidden rounded-full border border-yellow-300 bg-white dark:bg-white/10">
+            <span className="flex h-16 w-16 shrink-0 overflow-hidden rounded-full border border-[#ded9ff] bg-white">
               {photoPreview ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img alt="Profile preview" className="h-full w-full object-cover" src={photoPreview} />
@@ -487,20 +487,20 @@ export default function CandidateProfileSettingsPanel({
               )}
             </span>
             <div className="min-w-0">
-              <h3 className="break-words text-xl font-bold text-gray-900 dark:text-gray-100">{form.fullName || "Your name"}</h3>
-              <p className="mt-1 break-words text-sm font-semibold text-gray-700 dark:text-gray-300">{form.professionalHeadline || "Professional headline"}</p>
-              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{form.location || "Location not specified"}</p>
+              <h3 className="break-words text-xl font-bold text-[#0b1430]">{form.fullName || "Your name"}</h3>
+              <p className="mt-1 break-words text-sm font-semibold text-[#34406a]">{form.professionalHeadline || "Professional headline"}</p>
+              <p className="mt-1 text-sm text-[#5f6b85]">{form.location || "Location not specified"}</p>
             </div>
           </div>
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-gray-600 dark:text-gray-400">About</h4>
-              <p className="mt-2 whitespace-pre-line break-words text-sm leading-6 text-gray-800 dark:text-gray-200">{form.aboutMe || "Add an introduction to help recruiters understand your background."}</p>
+              <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-[#5f6b85]">About</h4>
+              <p className="mt-2 whitespace-pre-line break-words text-sm leading-6 text-[#34406a]">{form.aboutMe || "Add an introduction to help recruiters understand your background."}</p>
             </div>
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-gray-600 dark:text-gray-400">Skills</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-[#5f6b85]">Skills</h4>
               <div className="mt-2 flex flex-wrap gap-2">
-                {parseCandidateSkills(form.skillsText).length > 0 ? parseCandidateSkills(form.skillsText).map((skill) => <span className="rounded-full border border-yellow-300 bg-white px-2.5 py-1 text-xs font-semibold text-gray-800 dark:bg-white/10 dark:text-gray-100" key={skill}>{skill}</span>) : <span className="text-sm text-gray-600 dark:text-gray-400">Add your key skills.</span>}
+                {parseCandidateSkills(form.skillsText).length > 0 ? parseCandidateSkills(form.skillsText).map((skill) => <span className="rounded-full border border-[#ded9ff] bg-white px-2.5 py-1 text-xs font-semibold text-[#34406a]" key={skill}>{skill}</span>) : <span className="text-sm text-[#5f6b85]">Add your key skills.</span>}
               </div>
             </div>
           </div>

@@ -15,7 +15,7 @@ const RecruiterApplications = dynamic(
 
 function ApplicationsLoading() {
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
       <section className="mx-auto w-full max-w-6xl">
         <div className="h-5 w-36 animate-pulse rounded-full bg-gray-100" />
         <div className="mt-5 h-12 w-72 max-w-full animate-pulse rounded-xl bg-gray-100" />
@@ -35,7 +35,7 @@ function ApplicationsLoading() {
 
 function ApplicationsError({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
-    <main className="min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
+    <main className="ui-consistency-surface min-h-screen bg-background px-6 py-10 text-foreground sm:px-8 sm:py-14 lg:px-12">
       <section className="mx-auto w-full max-w-5xl">
         <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-[0_18px_45px_rgba(17,24,39,0.08)]">
           <h1 className="text-lg font-bold text-gray-900">

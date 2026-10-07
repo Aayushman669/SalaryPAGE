@@ -114,7 +114,7 @@ export default function UpgradeDialog({
           <div
             ref={dialogRef}
             tabIndex={-1}
-            className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-[0_28px_90px_rgba(17,24,39,0.22)]"
+            className="ui-consistency-surface w-full max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-[0_28px_90px_rgba(17,24,39,0.22)]"
             onMouseDown={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">

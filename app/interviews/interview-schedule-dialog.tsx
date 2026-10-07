@@ -311,7 +311,7 @@ export default function InterviewScheduleDialog({
           </p>
           <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
             <button className="inline-flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white px-5 text-sm font-semibold text-gray-900 focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:opacity-60" disabled={isSaving} onClick={onClose} type="button">Cancel</button>
-            <button className="inline-flex h-11 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:opacity-60" disabled={isSaving} onClick={() => void submit()} type="button">
+            <button className="inline-flex h-11 items-center justify-center rounded-xl bg-black px-5 text-sm font-semibold text-white interviews-schedule-action focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:opacity-60" disabled={isSaving} onClick={() => void submit()} type="button">
               {isSaving ? "Saving..." : isReschedule ? "Save new time" : "Schedule interview"}
             </button>
           </div>

@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useAuth } from "./auth-context";
-import { useThemePreference } from "./theme/use-theme-preference";
 import {
   ensureProfile,
   getProfile,
@@ -21,8 +21,6 @@ import {
   normalizePlan,
 } from "@/lib/dashboard-data";
 import { supabase } from "@/lib/supabase";
-import { themeLabels, themePreferences } from "@/lib/theme";
-import type { ThemePreference } from "@/lib/theme";
 import { showErrorToast, showSuccessToast } from "@/lib/toast";
 import {
   clearDashboardProfileCache,
@@ -41,6 +39,14 @@ type AccountUser = {
   id: string;
 };
 
+type DropdownPosition = {
+  left: number;
+  width: number;
+  maxHeight: number;
+  edge: "top" | "bottom";
+  offset: number;
+};
+
 const roleSwitchOptions = [
   {
     description: "Browse and apply for jobs",
@@ -57,6 +63,17 @@ const roleSwitchOptions = [
   id: ProfileRole;
   title: string;
 }>;
+
+const ACCOUNT_LOOKUP_TIMEOUT_MS = 3_000;
+
+function settleWithin<T>(promise: Promise<T>, fallback: T) {
+  return Promise.race([
+    promise,
+    new Promise<T>((resolve) => {
+      window.setTimeout(() => resolve(fallback), ACCOUNT_LOOKUP_TIMEOUT_MS);
+    }),
+  ]);
+}
 
 function readMetadataName(metadata: Record<string, unknown> | undefined) {
   return typeof metadata?.full_name === "string" ? metadata.full_name : "";
@@ -91,13 +108,12 @@ function MenuIcon({ label }: { label: string }) {
     P: "M4 7h16v10H4zM4 10h16",
     R: "M9 6V4h6v2M4 8h16v10H4zM4 12h16",
     S: "M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7ZM12 4v2M12 18v2M4 12h2M18 12h2",
-    T: "M6 5h12v14H6zM9 8h6M9 12h6M9 16h3",
   };
 
   return (
     <span
       aria-hidden="true"
-      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-gray-700"
+      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-[#E7E1FF] bg-[#F4F0FF] text-[#7B6BCF]"
     >
       <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24">
         <path
@@ -124,20 +140,17 @@ export default function SidebarAccountMenu({
   const [isProfileLoading, setIsProfileLoading] = useState(true);
   const [isRoleModalOpen, setIsRoleModalOpen] = useState(false);
   const [isSwitchingRole, setIsSwitchingRole] = useState(false);
-  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [selectedRole, setSelectedRole] = useState<ProfileRole | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const roleCloseButtonRef = useRef<HTMLButtonElement | null>(null);
   const roleDialogRef = useRef<HTMLDivElement | null>(null);
   const roleOptionRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const roleSwitchButtonRef = useRef<HTMLButtonElement | null>(null);
-  const themeButtonRef = useRef<HTMLButtonElement | null>(null);
-  const themeOptionRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const { isMounted, preference, setPreference } = useThemePreference({
-    userId: profile?.id,
-  });
+  const [dropdownPosition, setDropdownPosition] =
+    useState<DropdownPosition | null>(null);
 
   useEffect(() => {
     if (isAuthLoading) {
@@ -164,21 +177,38 @@ export default function SidebarAccountMenu({
       setIsProfileLoading(true);
 
       try {
-        const { data, error } = await client.auth.getUser();
+        const sessionResult = await settleWithin(client.auth.getSession(), null);
+        const sessionUser = sessionResult?.data.session?.user ?? null;
+
+        if (sessionUser) {
+          setAccountUser({
+            email: sessionUser.email ?? null,
+            fullName: readMetadataName(sessionUser.user_metadata),
+            id: sessionUser.id,
+          });
+          setIsProfileLoading(false);
+        }
+
+        const userResult = await settleWithin(client.auth.getUser(), null);
 
         if (!isMountedEffect) {
           return;
         }
 
-        if (error) {
-          logAuthError("[account-menu] user lookup failed", error);
-          setAccountUser(null);
-          setProfile(null);
+        if (!userResult) {
+          // Keep the cached session identity visible during a temporary auth outage.
+          if (!sessionUser) {
+            setAccountUser(null);
+            setProfile(null);
+            setIsProfileLoading(false);
+          }
           setIsProfileLoading(false);
           return;
         }
 
-        if (!data.user) {
+        const user = userResult.data.user ?? sessionUser;
+
+        if (!user) {
           setAccountUser(null);
           setProfile(null);
           setIsProfileLoading(false);
@@ -186,24 +216,24 @@ export default function SidebarAccountMenu({
         }
 
         const nextUser = {
-          email: data.user.email ?? null,
-          fullName: readMetadataName(data.user.user_metadata),
-          id: data.user.id,
+          email: user.email ?? null,
+          fullName: readMetadataName(user.user_metadata),
+          id: user.id,
         };
 
         setAccountUser(nextUser);
 
-        const profileResult = await getProfile(data.user.id);
+        const profileResult = await settleWithin(getProfile(user.id), null);
 
         if (!isMountedEffect) {
           return;
         }
 
-        if (profileResult.error) {
+        if (profileResult?.error) {
           logAuthError("[account-menu] profile lookup failed", profileResult.error);
           setProfile(null);
         } else {
-          setProfile(profileResult.profile);
+          setProfile(profileResult?.profile ?? null);
         }
 
         setIsProfileLoading(false);
@@ -265,27 +295,22 @@ export default function SidebarAccountMenu({
     }
 
     function handlePointerDown(event: MouseEvent) {
-      if (
-        menuRef.current &&
-        event.target instanceof Node &&
-        !menuRef.current.contains(event.target)
-      ) {
+      if (!(event.target instanceof Node)) {
+        return;
+      }
+
+      const isInsideTrigger = menuRef.current?.contains(event.target) ?? false;
+      const isInsideDropdown =
+        dropdownRef.current?.contains(event.target) ?? false;
+
+      if (!isInsideTrigger && !isInsideDropdown) {
         setIsOpen(false);
-        setIsThemeMenuOpen(false);
       }
     }
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        if (isThemeMenuOpen) {
-          event.preventDefault();
-          setIsThemeMenuOpen(false);
-          themeButtonRef.current?.focus();
-          return;
-        }
-
         setIsOpen(false);
-        setIsThemeMenuOpen(false);
         buttonRef.current?.focus();
       }
     }
@@ -297,11 +322,81 @@ export default function SidebarAccountMenu({
       document.removeEventListener("mousedown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, isThemeMenuOpen]);
+  }, [isOpen]);
+
+  const updateDropdownPosition = useCallback(() => {
+    const trigger = buttonRef.current;
+
+    if (!trigger || typeof window === "undefined") {
+      return;
+    }
+
+    const triggerRect = trigger.getBoundingClientRect();
+    const viewportPadding = 12;
+    const triggerGap = 10;
+    const width = Math.min(
+      triggerRect.width,
+      Math.max(0, window.innerWidth - viewportPadding * 2),
+    );
+    const left = Math.min(
+      Math.max(viewportPadding, triggerRect.left),
+      Math.max(viewportPadding, window.innerWidth - width - viewportPadding),
+    );
+
+    if (placement === "top") {
+      const bottom = window.innerHeight - triggerRect.top + triggerGap;
+      const availableHeight = Math.max(
+        1,
+        triggerRect.top - triggerGap - viewportPadding,
+      );
+
+      setDropdownPosition({
+        edge: "bottom",
+        left,
+        maxHeight: availableHeight,
+        offset: bottom,
+        width,
+      });
+      return;
+    }
+
+    const top = triggerRect.bottom + triggerGap;
+    const availableHeight = Math.max(
+      1,
+      window.innerHeight - top - viewportPadding,
+    );
+
+    setDropdownPosition({
+      edge: "top",
+      left,
+      maxHeight: availableHeight,
+      offset: top,
+      width,
+    });
+  }, [placement]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    updateDropdownPosition();
+
+    function handleViewportChange() {
+      updateDropdownPosition();
+    }
+
+    window.addEventListener("resize", handleViewportChange);
+    window.addEventListener("scroll", handleViewportChange, true);
+
+    return () => {
+      window.removeEventListener("resize", handleViewportChange);
+      window.removeEventListener("scroll", handleViewportChange, true);
+    };
+  }, [isOpen, updateDropdownPosition]);
 
   const closeAccountMenu = useCallback(() => {
     setIsOpen(false);
-    setIsThemeMenuOpen(false);
   }, []);
 
   const closeRoleModal = useCallback(() => {
@@ -399,7 +494,6 @@ export default function SidebarAccountMenu({
       profile && isValidRole(profile.role_mode) ? profile.role_mode : null;
 
     setSelectedRole(currentRole ?? "job_seeker");
-    setIsThemeMenuOpen(false);
     setIsOpen(false);
     setIsRoleModalOpen(true);
   }, [profile]);
@@ -523,31 +617,6 @@ export default function SidebarAccountMenu({
     }
   }, [isSwitchingRole, profile, router, selectedRole]);
 
-  const handleThemeOptionKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
-      if (event.key === "Escape" || event.key === "ArrowLeft") {
-        event.preventDefault();
-        setIsThemeMenuOpen(false);
-        themeButtonRef.current?.focus();
-        return;
-      }
-
-      if (event.key !== "ArrowDown" && event.key !== "ArrowUp") {
-        return;
-      }
-
-      event.preventDefault();
-
-      const nextIndex =
-        event.key === "ArrowDown"
-          ? (index + 1) % themePreferences.length
-          : (index - 1 + themePreferences.length) % themePreferences.length;
-
-      themeOptionRefs.current[nextIndex]?.focus();
-    },
-    [],
-  );
-
   if (isAuthLoading || !isLoggedIn) {
     return null;
   }
@@ -563,11 +632,6 @@ export default function SidebarAccountMenu({
       ? getRoleLabel(currentRole)
       : "Profile setup";
   const initial = getAccountInitial(displayName, email);
-  const panelPosition =
-    placement === "top"
-      ? "bottom-full left-0 mb-3"
-      : "right-0 top-full mt-3";
-  const activeThemeLabel = isMounted ? themeLabels[preference] : "Light";
   const isSwitchButtonDisabled =
     !selectedRole || isSwitchingRole || selectedRole === currentRole;
 
@@ -576,13 +640,14 @@ export default function SidebarAccountMenu({
       <button
         ref={buttonRef}
         type="button"
+        aria-label="Account menu"
         aria-expanded={isOpen}
         aria-haspopup="menu"
         onClick={() => {
-          setIsThemeMenuOpen(false);
+          setDropdownPosition(null);
           setIsOpen((current) => !current);
         }}
-        className={`flex h-11 min-w-0 items-center gap-2 rounded-xl border border-gray-200 bg-white px-2.5 text-left shadow-[0_10px_22px_rgba(17,24,39,0.05)] transition-all duration-200 hover:border-yellow-300 hover:bg-yellow-50/50 hover:shadow-[0_14px_28px_rgba(17,24,39,0.08)] focus:outline-none focus:ring-4 focus:ring-yellow-200 ${
+        className={`sidebar-account-button flex h-11 min-w-0 items-center gap-2 rounded-xl border border-gray-200 bg-white px-2.5 text-left shadow-[0_10px_22px_rgba(17,24,39,0.05)] transition-all duration-200 hover:border-yellow-300 hover:bg-yellow-50/50 hover:shadow-[0_14px_28px_rgba(17,24,39,0.08)] focus:outline-none focus:ring-4 focus:ring-yellow-200 ${
           compact ? "max-w-[170px]" : "w-full"
         }`}
       >
@@ -615,23 +680,31 @@ export default function SidebarAccountMenu({
         </svg>
       </button>
 
-      {isOpen ? (
-        <div
-          role="menu"
-          aria-label="Account menu"
-          className={`absolute z-50 w-[min(17rem,calc(100vw-2rem))] rounded-2xl border border-gray-200 bg-white p-2 shadow-[0_18px_50px_rgba(17,24,39,0.14)] ${panelPosition}`}
-        >
+      {isOpen && dropdownPosition && typeof document !== "undefined"
+        ? createPortal(
+            <div
+              ref={dropdownRef}
+              role="menu"
+              aria-label="Account menu"
+              className="sidebar-account-dropdown fixed z-[60] overflow-y-auto overscroll-contain rounded-2xl border border-[#E8E2FF] bg-white/95 p-2 shadow-[0_18px_50px_rgba(85,65,176,0.16)] backdrop-blur"
+              style={{
+                left: dropdownPosition.left,
+                maxHeight: dropdownPosition.maxHeight,
+                [dropdownPosition.edge]: dropdownPosition.offset,
+                width: dropdownPosition.width,
+              }}
+            >
           <div className="px-2 pb-2 pt-1.5">
             <div className="flex min-w-0 items-center gap-2">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gray-900 text-[11px] font-black text-white">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(145deg,#4E25BA,#28116E)] text-[11px] font-black text-white shadow-[0_8px_18px_rgba(85,65,176,0.18)]">
                 {initial}
               </span>
               <div className="min-w-0">
-                <p className="truncate text-sm font-bold leading-5 text-gray-900">
+                <p className="truncate text-sm font-bold leading-5 text-[#14264D]">
                   {displayName}
                 </p>
                 {email ? (
-                  <p className="truncate text-[11px] font-medium leading-4 text-gray-500">
+                  <p className="truncate text-[11px] font-medium leading-4 text-[#7B80AD]">
                     {email}
                   </p>
                 ) : null}
@@ -639,107 +712,25 @@ export default function SidebarAccountMenu({
             </div>
 
             <div className="mt-2 flex flex-wrap gap-1.5">
-              <span className="inline-flex max-w-full items-center rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-[11px] font-semibold text-gray-700">
+              <span className="inline-flex max-w-full items-center rounded-full border border-[#E7E1FF] bg-[#F4F0FF] px-2 py-0.5 text-[11px] font-semibold text-[#5C39D6]">
                 {roleLabel}
               </span>
-              <span className="inline-flex max-w-full items-center rounded-full border border-yellow-200 bg-yellow-50 px-2 py-0.5 text-[11px] font-semibold text-gray-900">
+              <span className="inline-flex max-w-full items-center rounded-full border border-[#F4D77D] bg-[#FFF8DC] px-2 py-0.5 text-[11px] font-semibold text-[#8A5A00]">
                 {planLabel} Plan
               </span>
             </div>
           </div>
 
-          <div className="relative border-y border-gray-100 py-1.5">
+          <div className="grid gap-1 border-t border-[#F0EDFF] pt-1.5">
             <button
-              ref={themeButtonRef}
               type="button"
               role="menuitem"
-              aria-expanded={isThemeMenuOpen}
-              aria-haspopup="menu"
-              disabled={!isMounted}
-              onClick={() => setIsThemeMenuOpen((current) => !current)}
-              className="flex h-10 w-full items-center gap-2 rounded-xl px-2 text-xs font-semibold text-gray-800 transition-all duration-200 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:opacity-60"
+              onClick={openRoleModal}
+              className="flex h-10 w-full items-center gap-2 rounded-xl px-2 text-xs font-semibold text-[#14264D] transition-all duration-200 hover:bg-[#FAF8FF] hover:text-[#5C39D6] focus:outline-none focus:ring-4 focus:ring-[#DDD6FE]"
             >
-              <MenuIcon label="T" />
-              <span>Theme</span>
-              <span className="ml-auto text-[11px] font-semibold text-gray-500">
-                {activeThemeLabel}
-              </span>
-              <svg
-                aria-hidden="true"
-                className={`h-3.5 w-3.5 text-gray-400 transition-transform duration-200 ${
-                  isThemeMenuOpen ? "rotate-90" : ""
-                }`}
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M9 6l6 6-6 6"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </svg>
+              <MenuIcon label="R" />
+              <span>Switch Role</span>
             </button>
-
-            {isThemeMenuOpen ? (
-              <div
-                role="menu"
-                aria-label="Theme preference"
-                className="absolute left-2 right-2 top-12 z-10 rounded-xl border border-gray-200 bg-white p-1 shadow-[0_14px_34px_rgba(17,24,39,0.14)]"
-              >
-                {themePreferences.map((themePreference, index) => {
-                  const selected = preference === themePreference;
-
-                  return (
-                    <button
-                      key={themePreference}
-                      ref={(element) => {
-                        themeOptionRefs.current[index] = element;
-                      }}
-                      type="button"
-                      role="menuitemradio"
-                      aria-checked={selected}
-                      onKeyDown={(event) =>
-                        handleThemeOptionKeyDown(event, index)
-                      }
-                      onClick={() => {
-                        void setPreference(themePreference as ThemePreference);
-                        setIsThemeMenuOpen(false);
-                        themeButtonRef.current?.focus();
-                      }}
-                      className={`flex h-9 w-full items-center gap-2 rounded-lg px-2 text-left text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-yellow-200 ${
-                        selected
-                          ? "bg-yellow-50 text-gray-900"
-                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                      }`}
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={`h-2 w-2 rounded-full ${
-                          selected ? "bg-yellow-500" : "bg-transparent"
-                        }`}
-                      />
-                      <span>{themeLabels[themePreference]}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            ) : null}
-          </div>
-
-          <div className="grid gap-1 pt-1.5">
-            {profile ? (
-              <button
-                type="button"
-                role="menuitem"
-                onClick={openRoleModal}
-                className="flex h-10 w-full items-center gap-2 rounded-xl px-2 text-xs font-semibold text-gray-800 transition-all duration-200 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-yellow-200"
-              >
-                <MenuIcon label="R" />
-                <span>Switch Role</span>
-              </button>
-            ) : null}
             <Link
               href="/settings"
               role="menuitem"
@@ -747,7 +738,7 @@ export default function SidebarAccountMenu({
                 rememberSettingsReturnPath();
                 closeAccountMenu();
               }}
-              className="flex h-10 items-center gap-2 rounded-xl px-2 text-xs font-semibold text-gray-800 transition-all duration-200 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+              className="flex h-10 items-center gap-2 rounded-xl px-2 text-xs font-semibold text-[#14264D] transition-all duration-200 hover:bg-[#FAF8FF] hover:text-[#5C39D6] focus:outline-none focus:ring-4 focus:ring-[#DDD6FE]"
             >
               <MenuIcon label="S" />
               <span>Settings</span>
@@ -756,11 +747,11 @@ export default function SidebarAccountMenu({
               href="/pricing"
               role="menuitem"
               onClick={closeAccountMenu}
-              className="flex h-10 items-center gap-2 rounded-xl px-2 text-xs font-semibold text-gray-800 transition-all duration-200 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+              className="flex h-10 items-center gap-2 rounded-xl px-2 text-xs font-semibold text-[#14264D] transition-all duration-200 hover:bg-[#FAF8FF] hover:text-[#5C39D6] focus:outline-none focus:ring-4 focus:ring-[#DDD6FE]"
             >
               <MenuIcon label="P" />
               <span>Plans</span>
-              <span className="ml-auto rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-semibold text-gray-500">
+              <span className="ml-auto rounded-full bg-[#F4F0FF] px-2 py-0.5 text-[11px] font-semibold text-[#7B6BCF]">
                 {planLabel}
               </span>
             </Link>
@@ -768,20 +759,22 @@ export default function SidebarAccountMenu({
               type="button"
               role="menuitem"
               onClick={handleLogout}
-              className="flex h-10 w-full items-center gap-2 rounded-xl px-2 text-xs font-semibold text-gray-800 transition-all duration-200 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+              className="flex h-10 w-full items-center gap-2 rounded-xl px-2 text-xs font-semibold text-[#14264D] transition-all duration-200 hover:bg-[#FAF8FF] hover:text-[#5C39D6] focus:outline-none focus:ring-4 focus:ring-[#DDD6FE]"
             >
               <MenuIcon label="L" />
               <span>Logout</span>
             </button>
           </div>
-        </div>
-      ) : null}
+            </div>,
+            document.body,
+          )
+        : null}
 
       {isRoleModalOpen ? (
         <div
           aria-labelledby="role-switch-title"
           aria-modal="true"
-          className="fixed inset-0 z-[70] flex items-center justify-center bg-gray-900/30 px-4 py-6 backdrop-blur-sm"
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-[#28116E]/25 px-4 py-6 backdrop-blur-sm"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
               closeRoleModal();
@@ -791,18 +784,18 @@ export default function SidebarAccountMenu({
         >
           <div
             ref={roleDialogRef}
-            className="w-full max-w-sm rounded-2xl border border-gray-200 bg-white p-3 shadow-[0_24px_70px_rgba(17,24,39,0.20)]"
+            className="w-full max-w-sm rounded-2xl border border-[#E8E2FF] bg-white/95 p-3 shadow-[0_24px_70px_rgba(85,65,176,0.2)] backdrop-blur"
             onMouseDown={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-3 px-1 pb-2">
               <div>
                 <p
                   id="role-switch-title"
-                  className="text-sm font-bold text-gray-900"
+                  className="text-sm font-bold text-[#14264D]"
                 >
                   Switch Role
                 </p>
-                <p className="mt-1 text-xs leading-5 text-gray-500">
+                <p className="mt-1 text-xs leading-5 text-[#7B80AD]">
                   Choose how you want to use JobForge.
                 </p>
               </div>
@@ -812,7 +805,7 @@ export default function SidebarAccountMenu({
                 aria-label="Close role switch"
                 disabled={isSwitchingRole}
                 onClick={closeRoleModal}
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white text-sm font-bold text-gray-500 transition-all duration-200 hover:border-yellow-300 hover:bg-yellow-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:opacity-60"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[#E7E1FF] bg-[#F4F0FF] text-sm font-bold text-[#7B6BCF] transition-all duration-200 hover:border-[#CFC1FF] hover:bg-[#FAF8FF] hover:text-[#5C39D6] focus:outline-none focus:ring-4 focus:ring-[#DDD6FE] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 x
               </button>
@@ -836,10 +829,10 @@ export default function SidebarAccountMenu({
                       handleRoleOptionKeyDown(event, index)
                     }
                     role="radio"
-                    className={`rounded-xl border px-3 py-3 text-left transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-yellow-200 ${
+                    className={`rounded-xl border px-3 py-3 text-left transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-[#DDD6FE] ${
                       isSelected
-                        ? "border-yellow-400 bg-yellow-50 shadow-[0_12px_28px_rgba(234,179,8,0.12)]"
-                        : "border-gray-200 bg-white hover:border-yellow-300 hover:bg-yellow-50/50"
+                        ? "border-[#F0B400] bg-[#FFF8DC] shadow-[0_12px_28px_rgba(230,161,0,0.14)]"
+                        : "border-[#E8E2FF] bg-white hover:border-[#CFC1FF] hover:bg-[#FAF8FF]"
                     }`}
                   >
                     <span className="flex items-start gap-3">
@@ -847,24 +840,24 @@ export default function SidebarAccountMenu({
                         aria-hidden="true"
                         className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[10px] font-black ${
                           isSelected
-                            ? "bg-yellow-500 text-gray-900"
-                            : "bg-gray-900 text-white"
+                            ? "bg-[#E6A100] text-[#1B243B]"
+                            : "bg-[#F4F0FF] text-[#5C39D6]"
                         }`}
                       >
                         {option.title.charAt(0)}
                       </span>
                       <span className="min-w-0 flex-1">
                         <span className="flex items-center gap-2">
-                          <span className="text-sm font-bold text-gray-900">
+                          <span className="text-sm font-bold text-[#14264D]">
                             {option.title}
                           </span>
                           {isCurrent ? (
-                            <span className="rounded-full border border-yellow-200 bg-yellow-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-gray-900">
+                            <span className="rounded-full border border-[#F4D77D] bg-[#FFF8DC] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#8A5A00]">
                               Current
                             </span>
                           ) : null}
                         </span>
-                        <span className="mt-1 block text-xs leading-5 text-gray-500">
+                        <span className="mt-1 block text-xs leading-5 text-[#7B80AD]">
                           {option.description}
                         </span>
                       </span>
@@ -874,12 +867,12 @@ export default function SidebarAccountMenu({
               })}
             </div>
 
-            <div className="flex items-center gap-2 border-t border-gray-100 pt-3">
+            <div className="flex items-center gap-2 border-t border-[#F0EDFF] pt-3">
               <button
                 type="button"
                 disabled={isSwitchingRole}
                 onClick={closeRoleModal}
-                className="h-10 flex-1 rounded-xl border border-gray-200 bg-white px-3 text-xs font-semibold text-gray-700 transition-all duration-200 hover:border-yellow-300 hover:bg-yellow-50/60 focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:opacity-60"
+                className="h-10 flex-1 rounded-xl border border-[#E7E1FF] bg-white px-3 text-xs font-semibold text-[#5C39D6] transition-all duration-200 hover:border-[#CFC1FF] hover:bg-[#FAF8FF] focus:outline-none focus:ring-4 focus:ring-[#DDD6FE] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 Cancel
               </button>
@@ -888,7 +881,7 @@ export default function SidebarAccountMenu({
                 type="button"
                 disabled={isSwitchButtonDisabled}
                 onClick={handleSwitchRole}
-                className="h-10 flex-1 rounded-xl bg-black px-3 text-xs font-semibold text-white transition-all duration-200 hover:shadow-[0_0_0_4px_rgba(234,179,8,0.16),0_14px_30px_rgba(17,24,39,0.16)] focus:outline-none focus:ring-4 focus:ring-yellow-200 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 disabled:shadow-none"
+                className="h-10 flex-1 rounded-xl bg-[linear-gradient(135deg,#6647F0,#4C31C8)] px-3 text-xs font-semibold text-white transition-all duration-200 hover:shadow-[0_0_0_4px_rgba(221,214,254,0.72),0_14px_30px_rgba(85,65,176,0.18)] focus:outline-none focus:ring-4 focus:ring-[#DDD6FE] disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 disabled:shadow-none"
               >
                 {isSwitchingRole ? "Switching..." : "Switch"}
               </button>

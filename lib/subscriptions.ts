@@ -167,6 +167,31 @@ const fallbackPlan: SubscriptionPlan = {
   price: 0,
 };
 
+export function createFreeSubscriptionSnapshot(
+  roleMode: SubscriptionSnapshot["roleMode"] = "recruiter",
+): SubscriptionSnapshot {
+  return {
+    plan: fallbackPlan,
+    roleMode,
+    subscription: {
+      expiresAt: null,
+      id: null,
+      purchasedAt: null,
+      startsAt: null,
+      status: null,
+    },
+    usage: {
+      featuredJobsUsed: 0,
+      jobsPosted: 0,
+      remainingFeaturedJobs: 0,
+      periodEnd: null,
+      periodStart: new Date(0).toISOString(),
+      remainingJobs: 0,
+      subscriptionId: null,
+    },
+  };
+}
+
 function isSubscriptionPlanSlug(value: string | null | undefined): value is SubscriptionPlanSlug {
   return subscriptionPlanSlugs.includes(value as SubscriptionPlanSlug);
 }
@@ -298,26 +323,7 @@ export async function getSubscriptionSnapshot(): Promise<{
     if (!row) {
       return {
         error: null,
-        snapshot: {
-          plan: fallbackPlan,
-          roleMode: null,
-          subscription: {
-            expiresAt: null,
-            id: null,
-            purchasedAt: null,
-            startsAt: null,
-            status: null,
-          },
-          usage: {
-            featuredJobsUsed: 0,
-            jobsPosted: 0,
-            remainingFeaturedJobs: 0,
-            periodEnd: null,
-            periodStart: new Date(0).toISOString(),
-            remainingJobs: 0,
-            subscriptionId: null,
-          },
-        },
+        snapshot: createFreeSubscriptionSnapshot(null),
       };
     }
 

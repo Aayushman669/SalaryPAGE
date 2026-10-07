@@ -10,6 +10,28 @@ import {
   isProtectedRoute as checkIsProtectedRoute,
 } from "@/lib/auth-routes";
 
+const DASHBOARD_ROUTE_CHECK_TIMEOUT_MS = 12_000;
+
+async function resolveDashboardRedirect(
+  getCurrentRedirectPath: () => Promise<string>,
+) {
+  try {
+    return await Promise.race([
+      getCurrentRedirectPath(),
+      new Promise<string>((resolve) => {
+        window.setTimeout(
+          () => resolve("/dashboard"),
+          DASHBOARD_ROUTE_CHECK_TIMEOUT_MS,
+        );
+      }),
+    ]);
+  } catch {
+    // A valid Supabase session is already known here. Let the dashboard
+    // render and let its own data loader report a profile problem if needed.
+    return "/dashboard";
+  }
+}
+
 function getCurrentAppPath() {
   return `${window.location.pathname}${window.location.search}${window.location.hash}`;
 }
@@ -63,7 +85,10 @@ export default function AuthRouteGuard({ children }: { children: ReactNode }) {
       }
 
       if (isProtectedRoute && isLoggedIn && !isAdminRoute) {
-        const redirectPath = await getCurrentRedirectPath();
+        const redirectPath =
+          pathname === "/dashboard"
+            ? await resolveDashboardRedirect(getCurrentRedirectPath)
+            : await getCurrentRedirectPath();
 
         if (pathname === "/account-restricted") {
           if (redirectPath !== "/account-restricted") {

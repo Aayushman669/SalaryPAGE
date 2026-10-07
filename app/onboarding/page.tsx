@@ -223,7 +223,7 @@ export default function OnboardingPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white px-6 py-12 text-gray-900 sm:px-8 lg:px-12">
+    <main className="ui-consistency-surface flex min-h-screen items-center justify-center bg-white px-6 py-12 text-gray-900 sm:px-8 lg:px-12">
       <section className="relative w-full max-w-4xl overflow-hidden rounded-3xl border border-gray-200 bg-[#FEFEFC] p-8 text-center shadow-[0_26px_75px_rgba(0,0,0,0.07)] sm:p-10">
         <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-yellow-400/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 left-10 h-52 w-52 rounded-full bg-yellow-500/10 blur-3xl" />

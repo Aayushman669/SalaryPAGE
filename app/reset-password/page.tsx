@@ -164,7 +164,7 @@ export default function ResetPasswordPage() {
 
   if (status === "invalid") {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white px-5 py-12 text-gray-900 sm:px-8">
+      <main className="ui-consistency-surface flex min-h-screen items-center justify-center bg-white px-5 py-12 text-gray-900 sm:px-8">
         <section className="relative w-full max-w-md overflow-hidden rounded-3xl border border-gray-200 bg-[#FEFEFC] p-7 text-center shadow-[0_26px_75px_rgba(0,0,0,0.07)] sm:p-9">
           <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-yellow-400/20 blur-3xl" />
           <div className="relative">
@@ -184,7 +184,7 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white px-5 py-12 text-gray-900 sm:px-8">
+    <main className="ui-consistency-surface flex min-h-screen items-center justify-center bg-white px-5 py-12 text-gray-900 sm:px-8">
       <section className="relative w-full max-w-md overflow-hidden rounded-3xl border border-gray-200 bg-[#FEFEFC] p-7 shadow-[0_26px_75px_rgba(0,0,0,0.07)] sm:p-9">
         <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-yellow-400/20 blur-3xl" />
 
